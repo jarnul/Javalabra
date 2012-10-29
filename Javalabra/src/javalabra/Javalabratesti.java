@@ -8,7 +8,7 @@ package javalabra;
  *
  * @author csguest
  */
-public class Javalabra {
+public class Javalabratesti {
 
     /**
      * @param args the command line arguments
