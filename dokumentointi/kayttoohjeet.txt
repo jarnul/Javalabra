@@ -1,0 +1,1 @@
+Nyt ohjelma ei tee muuta kuin avaa JForm-ikkunan, ja sulkeutuu "Lopeta" nappulasta.
