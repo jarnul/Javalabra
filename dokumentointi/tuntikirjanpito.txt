@@ -1,3 +1,4 @@
 29.10.2012:
-14-16 ensimmäinen luento, perusjutut, navigaatiorakenne, tosi simppeli luokkakaavio. 18:40-19:00 Säätöä.
+14-16 ensimmäinen luento, perusjutut, navigaatiorakenne, tosi simppeli luokkakaavio, ensimmäinen gui-viritelmä swingillä netbeanssin työkaluilla
+18:40-19:00 github-säätöä kotona.
 
