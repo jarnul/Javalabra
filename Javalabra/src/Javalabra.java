@@ -35,6 +35,7 @@ public class Javalabra extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jButton1.setText("Aloita peli");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -54,7 +55,7 @@ public class Javalabra extends javax.swing.JFrame {
 
         jButton4.setText("Asetukset");
 
-        jLabel1.setFont(new java.awt.Font("Khmer OS", 0, 15)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Khmer OS", 0, 15));
         jLabel1.setText("Tetris!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
