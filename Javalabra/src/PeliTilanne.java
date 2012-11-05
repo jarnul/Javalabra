@@ -23,7 +23,12 @@ import java.awt.event.ActionListener;
 
 public class PeliTilanne extends javax.swing.JFrame implements ActionListener {
     private Javalabra menu;
+    //Status-table for game, for every x,y co-ordinate the table has a int-value between 0 and 4,
+    //0 is empty square, 1 is black square, 2 is black square that is falling down and 3 is moving square that can't fall anymore,
+    //and it will be changed to 1.
     private int[][] status;
+    //For every x,y co-ordinate rotations-table includes how to rotate current block in x and y dimensions.
+    private int[][][][] rotations;
     private int width;
     private int height;
     private int squareWidth;
@@ -33,6 +38,8 @@ public class PeliTilanne extends javax.swing.JFrame implements ActionListener {
         initComponents();
     }
     
+    /** Creates new form PeliTilanne and fills the game-status table status and rotations-table*/
+    
     public PeliTilanne(Javalabra handle) {
         initComponents();
         menu = handle;
@@ -40,6 +47,12 @@ public class PeliTilanne extends javax.swing.JFrame implements ActionListener {
         this.width=12;
         this.height=15;
         this.status = new int[this.width][this.height];
+        for (int i=0;i<this.width;++i){
+            for (int j=0;j<this.height;++j){
+                this.status[i][j]=0;
+            }
+        }
+        this.rotations = new int[this.width][this.height][][]
         for (int i=0;i<this.width;++i){
             for (int j=0;j<this.height;++j){
                 this.status[i][j]=0;
@@ -122,6 +135,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 public void paint(Graphics g) {
    
    super.paint(g);
+   //Two loops to go trough status-table, and draw all the blocks
    for (int i=0;i<this.status.length;++i){
        for(int j=0;j<this.status[i].length;++j){
            if (status[i][j]>0) {
@@ -169,8 +183,8 @@ public void actionPerformed(ActionEvent e) {
                     //Code to handle if block underneath is empty, moving or solid
                     if (this.status[i][j+1]==0){
                         this.status[i][j]=0;
-                        //Status is set to 4 indicating a block has moved to a co-ordinate during current actionlistener-update
-                        this.status[i][j+1]=4;
+                        //Status is set to 3 indicating a block has moved to a co-ordinate during current actionlistener-update
+                        this.status[i][j+1]=3;
                     }
                     else if (this.status[i][j+1]==1){
                         this.status[i][j]=1;
@@ -185,7 +199,7 @@ public void actionPerformed(ActionEvent e) {
                 }
                 movingBlocks=true;
             }
-            if (this.status[i][j]==4){
+            if (this.status[i][j]==3){
                 this.status[i][j]=2;
             }
 
