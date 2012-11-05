@@ -16,6 +16,10 @@ public class gameLogic {
     //width and heigth of the tetris-game
     private int width;
     private int height;
+    //Boolean to tell if there are moving blocks
+    private boolean movingBlocks;
+    private gameBlock currentBlock;
+
     
     public gameLogic() {
         this.width=12;
@@ -23,7 +27,22 @@ public class gameLogic {
         //fill up this.status and this.rotations
         this.status = new int[this.width][this.height];
         fillTables(this.status);
+        this.movingBlocks=false;
+        
     }
+
+    /*
+     * Method to generate random block
+     */
+    
+    private gameBlock generateBlock() {
+        //code to generate random block
+        return new gameBlock(2);
+    }
+        
+    /*
+     * Method for filling table
+     */
     
     private void fillTables(int[][] temp) {
         for (int i=0;i<temp.length;++i){
@@ -32,6 +51,10 @@ public class gameLogic {
             }
         }
     }
+    
+    /*
+     * Method for filling table
+     */
     
     private void fillTables(int[][] temp, int oldNumber, int newNumber){
         for (int i=0;i<temp.length;++i){
@@ -44,84 +67,105 @@ public class gameLogic {
     }
     
     
+    /*
+     * Method for updating game-status, usually bringing block down for one row
+     */
+    
     public void updateGame() {
-        //Check if there are blocks on the top row (losing condition)
-        for (int i=0;i<this.status.length;++i){
-            if (this.status[i][0]==1){
-                //code when the game is lost
-            }
-        }
         
-
-        //Check if there are blocks moving
-        boolean movingBlocks=false;
-        for (int i=0;i<this.status.length;++i){
-            for(int j=this.status[i].length-1;j>-1;--j){
-                if (this.status[i][j]==2) { //if block is moving
-                    //Code to tell block to fall down one row
-                    if (this.status[i].length>j+1) {
-                        //Code to handle if block underneath is empty, moving or solid
-                        if (this.status[i][j+1]==0){
-                            //Block underneath is empty, so mark block there
-                            this.status[i][j]=0;
-                            this.status[i][j+1]=2;
-                        }
-                        //Here block underneath is solid
-                        else {
-                            this.status[i][j]=1;
-                        }
-                        
+        //Code to generate new block and to put it in game
+        if(!this.movingBlocks){
+            this.currentBlock=generateBlock();
+            int[][] tempBlock=this.currentBlock.getBlockStructure();
+            for (int i=0;i<tempBlock.length;++i){
+                for (int j=0;j<tempBlock[i].length;++j){
+                    if (this.status[i][j]==0){
+                        this.status[i][j]=tempBlock[i][j];
                     }
-                    //If the moving block is at the bottom
                     else{
-                        this.status[i][j]=1;
+                        //Code when the game is lost
                     }
-                    
-                    movingBlocks=true;
                 }
             }
+            this.movingBlocks=true;
         }
         
-
-        //Code to generate a new block
-        if(!movingBlocks){
-            this.status[5][6]=2;
-            this.status[5][5]=2;
+        //Code to check if block can be moved
+        else{
+            int[][] tempBlock=this.currentBlock.getBlockStructure();
+            boolean tempBreak=true;
+            for (int i=0;i<tempBlock.length;++i){
+                for (int j=tempBlock[i].length-1;j>-1;--j){
+                    //Checks if block can be moved down by one
+                    if (tempBlock[i][j]==2){
+                        //If checks if moved block is in the vertical bounds, done for all the blocks in current moving block
+                        if (j+this.currentBlock.getBlockYco()<this.status[i].length-1 && this.status[this.currentBlock.getBlockXco()+i][this.currentBlock.getBlockYco()+j+1]!=1) {
+                               //Currently analyzed block can be moved down
+                        }
+                        else {
+                            tempBreak=false;
+                            this.movingBlocks=false;
+                            clearMovingBlocks(1);
+                            break;
+                        }
+                    }
+                }
+            }
+            //If all the squares in the block can be moved down
+            if (tempBreak){
+                moveBlockDown();
+            }
         }
     }
-
-    //Code to rotate moving pieces
-    public void rotateRight(){
-        boolean firstMove=false;
-        int coordinateFix=0;
+    
+    /*
+     * Method to turn all 2's into given integer
+     */
+    
+    private void clearMovingBlocks(int filler) {
         for (int i=0;i<this.status.length;++i){
-            for (int j=0;j<this.status[i].length;++j){
-                //Rotation is done by switching around the co-ordinates and moving the piece
-                if (this.status[i][j]==2 && i>j){
-                     if(!firstMove){
-                         firstMove=true;
-                         coordinateFix=Math.abs(i-j);
-                     }
-                     this.status[j+coordinateFix-1][i-coordinateFix]=3;
-                     this.status[i][j]=0;
+            for (int j=0;j<this.status[i].length;++j) {
+                if (this.status[i][j]==2){
+                    this.status[i][j]=filler;
                 }
-                else if (this.status[i][j]==2 && j>i){
-                    if(!firstMove){
-                         firstMove=true;
-                         coordinateFix=Math.abs(i-j);
-                     }
-                    this.status[j-coordinateFix-1][i+coordinateFix]=3;
-                    this.status[i][j]=0;
-                }
-                /*else if (this.status[i][j]==2 && j==i){
-                    if(firstMove){
-                        firstMove=true;
-                        coordinateFix=0;
-                    }
-                }*/
             }
         }
-        fillTables(this.status,3,2);
+    }
+    
+    /*
+     * Method to move current block down by one move
+     */
+    
+    private void moveBlockDown() {
+        int[][] temp = this.currentBlock.getBlockStructure();
+        for (int i=0;i<temp.length;++i){
+            for (int j=temp[i].length-1;j>-1;--j){
+                if (temp[i][j]==2){
+                    this.status[i+this.currentBlock.getBlockXco()][j+this.currentBlock.getBlockYco()+1]=2;
+                    this.status[i+this.currentBlock.getBlockXco()][j+this.currentBlock.getBlockYco()]=0;
+                }
+            }
+        }
+        this.currentBlock.addBlockYco(); 
+    }
+
+    /*
+     * Method to rotate pieces
+     */
+    
+    public void rotatePiece() {
+        clearMovingBlocks(0);
+        this.currentBlock.rotate();
+        fillIn(this.currentBlock);
+    }
+    
+    private void fillIn(gameBlock temp){
+        int[][] tempBlock = temp.getBlockStructure();
+        for (int i=0;i<tempBlock.length;++i){
+            for (int j=0;j<tempBlock[i].length;++j) {
+                this.status[i+temp.getBlockXco()][j+temp.getBlockYco()]=tempBlock[i][j];
+            }
+        }
     }
     
     public int[][] getGameStatus(){

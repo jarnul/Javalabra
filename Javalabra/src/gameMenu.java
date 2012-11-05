@@ -15,11 +15,9 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
-import javax.swing.JFrame;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 
 
 public class gameMenu extends javax.swing.JFrame implements ActionListener {
@@ -147,7 +145,7 @@ private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_form
 }//GEN-LAST:event_formKeyPressed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    this.currentGame.rotateRight();// TODO add your handling code here:
+    this.currentGame.rotatePiece();// TODO add your handling code here:
     repaint();
 }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -156,6 +154,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
  * after set times.
  */
 
+@Override
 public void actionPerformed(ActionEvent e) {
     this.currentGame.updateGame(); 
     repaint();
