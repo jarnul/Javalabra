@@ -19,19 +19,13 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 
 public class PeliTilanne extends javax.swing.JFrame implements ActionListener {
     private Javalabra menu;
-    //Status-table for game, for every x,y co-ordinate the table has a int-value between 0 and 4,
-    //0 is empty square, 1 is black square, 2 is black square that is falling down and 3 is moving square that can't fall anymore,
-    //and it will be changed to 1.
-    private int[][] status;
-    //For every x,y co-ordinate rotations-table includes how to rotate current block in x and y dimensions.
-    private int[][][][] rotations;
-    private int width;
-    private int height;
     private int squareWidth;
+    private gameLogic currentGame;
     
     /** Creates new form PeliTilanne */
     public PeliTilanne() {
@@ -44,20 +38,7 @@ public class PeliTilanne extends javax.swing.JFrame implements ActionListener {
         initComponents();
         menu = handle;
         this.squareWidth=20;
-        this.width=12;
-        this.height=15;
-        this.status = new int[this.width][this.height];
-        for (int i=0;i<this.width;++i){
-            for (int j=0;j<this.height;++j){
-                this.status[i][j]=0;
-            }
-        }
-        this.rotations = new int[this.width][this.height][][]
-        for (int i=0;i<this.width;++i){
-            for (int j=0;j<this.height;++j){
-                this.status[i][j]=0;
-            }
-        }
+        this.currentGame=new gameLogic();
     }
 
     /** This method is called from within the constructor to
@@ -136,9 +117,10 @@ public void paint(Graphics g) {
    
    super.paint(g);
    //Two loops to go trough status-table, and draw all the blocks
-   for (int i=0;i<this.status.length;++i){
-       for(int j=0;j<this.status[i].length;++j){
-           if (status[i][j]>0) {
+   int[][] tempStatus=this.currentGame.getGameStatus();
+   for (int i=0;i<tempStatus.length;++i){
+       for(int j=0;j<tempStatus[i].length;++j){
+           if (tempStatus[i][j]>0) {
                 g.setColor(Color.black);
                 g.fillRect (20*i+50, 20*j+50, this.squareWidth, this.squareWidth);
            }
@@ -147,6 +129,7 @@ public void paint(Graphics g) {
            }
        }
    }
+
 }
 
 /*
@@ -154,7 +137,6 @@ public void paint(Graphics g) {
  */
 
 private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-    repaint();
     Timer timer = new Timer(1000, this);
     timer.start(); 
 }//GEN-LAST:event_formKeyPressed
@@ -165,53 +147,9 @@ private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_form
  */
 
 public void actionPerformed(ActionEvent e) {
-    
-    //Check if there are blocks on the top row (losing condition)
-    for (int i=0;i<this.status.length;++i){
-        if (this.status[i][0]==1){
-            //code when the game is lost
-        }
-    }
-    
-    //Check if there are blocks moving
-    boolean movingBlocks=false;
-    for (int i=0;i<this.status.length;++i){
-        for(int j=0;j<this.status[i].length;++j){
-            if (this.status[i][j]==2) {
-                //Code to tell block to fall down one row
-                if (this.status[i].length>j+1) {
-                    //Code to handle if block underneath is empty, moving or solid
-                    if (this.status[i][j+1]==0){
-                        this.status[i][j]=0;
-                        //Status is set to 3 indicating a block has moved to a co-ordinate during current actionlistener-update
-                        this.status[i][j+1]=3;
-                    }
-                    else if (this.status[i][j+1]==1){
-                        this.status[i][j]=1;
-                    }
-                    else {
-                        this.status[i][j]=0;
-                        this.status[i][j+1]=2;
-                    }
-                }
-                else{
-                    this.status[i][j]=1;
-                }
-                movingBlocks=true;
-            }
-            if (this.status[i][j]==3){
-                this.status[i][j]=2;
-            }
-
-        }
-    }
-    
-    //Code to generate a new block
-    if(!movingBlocks){
-        this.status[0][0]=2;
-    }
-
+    this.currentGame.updateGame(); 
     repaint();
+    
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
