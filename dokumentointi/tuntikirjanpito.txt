@@ -17,3 +17,4 @@
 
 5.11:
 2h pelilogiikan siirto omaan luokkaan, ensimmäiset yritykset palikkojen rotaatioon
+3h rotaation tekemiseen erilaisia tekniikoita, lopulta ensimmäinen hyvin toimiva ratkaisu valmiiksi
