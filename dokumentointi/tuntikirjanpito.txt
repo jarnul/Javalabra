@@ -7,3 +7,13 @@
 
 
 30.10:
+20min pientä säätöä gitin kanssa.
+
+3.11:
+2h ensimmäinen grafiikkatesti, tetris-kentän renderöinti graphics-paketilla
+
+4.11:
+2h ensimmäinen tetris-logiikan toimintaa mallintava koodi
+
+5.11:
+2h pelilogiikan siirto omaan luokkaan, ensimmäiset yritykset palikkojen rotaatioon
