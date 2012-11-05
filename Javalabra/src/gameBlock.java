@@ -97,6 +97,14 @@ public class gameBlock {
         return this.yCoordinate;
     }
     
+    public void setBlockXco(int x) {
+        this.xCoordinate=x;
+    }
+    
+    public void setBlockYco(int y) {
+        this.yCoordinate=y;
+    }
+    
     public void addBlockYco(){
         ++this.yCoordinate;
     }
