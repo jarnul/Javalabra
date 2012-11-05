@@ -65,6 +65,11 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
         jButton1.setText("Tauko");
         jButton1.setFocusPainted(false);
         jButton1.setFocusable(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Lopeta");
         jButton2.setFocusPainted(false);
@@ -140,6 +145,11 @@ private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_form
     Timer timer = new Timer(1000, this);
     timer.start(); 
 }//GEN-LAST:event_formKeyPressed
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    this.currentGame.rotateRight();// TODO add your handling code here:
+    repaint();
+}//GEN-LAST:event_jButton1ActionPerformed
 
 /*
  * Method for implementing abstract class ActionListener, updates the game-status
