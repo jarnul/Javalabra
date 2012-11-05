@@ -14,17 +14,27 @@ public class gameLogic {
     //and it will be changed to 1.
     private int[][] status;
     //For every x,y co-ordinate rotations-table includes how to rotate current block in x and y dimensions.
-    private int[][][][] rotations;
+    private int[][] xRotation;
+    private int[][] yRotation;
     private int width;
     private int height;
     
     public gameLogic() {
         this.width=12;
         this.height=15;
+        //fill up this.status and this.rotations
         this.status = new int[this.width][this.height];
-        for (int i=0;i<this.width;++i){
-            for (int j=0;j<this.height;++j){
-                this.status[i][j]=0;
+        this.xRotation = new int[this.width][this.height];
+        this.yRotation = new int[this.width][this.height];
+        fillTables(this.status);
+        fillTables(this.xRotation);
+        fillTables(this.yRotation);
+    }
+    
+    public void fillTables(int[][] temp) {
+        for (int i=0;i<temp.length;++i){
+            for (int j=0;j<temp[i].length;++j){
+                temp[i][j]=0;
             }
         }
     }
@@ -75,6 +85,17 @@ public class gameLogic {
         //Code to generate a new block
         if(!movingBlocks){
             this.status[0][0]=2;
+            this.status[0][1]=2;
+        }
+    }
+    
+    public void rotateRight(){
+        for (int i=0;i<this.width;++i){
+            for(int j=0;j<this.height;++j){
+                int temp=this.status[i][j];
+                this.status[i][j]=this.status[this.xRotation[i][j]][this.yRotation[i][j]];
+                this.status[this.xRotation[i][j]][this.yRotation[i][j]]=temp;
+            }
         }
     }
     
