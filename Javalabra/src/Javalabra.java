@@ -98,9 +98,9 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton3ActionPerformed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    PeliTilanne peli = new PeliTilanne(this);
+    gameMenu game = new gameMenu(this);
     this.setVisible(false);
-    peli.setVisible(true);
+    game.setVisible(true);
 }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
