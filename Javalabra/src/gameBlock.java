@@ -138,20 +138,30 @@ public class gameBlock {
      * Method to rotate pieces
      */
     
-    public void rotate() {
-        if(this.blockType!=-4 && this.blockType!=-5){
-            this.blockStructure=buildBlock(-1*this.blockType);
-            this.blockType=-1*this.blockType;
+    public void rotate(){
+        int[][] rotated = new int[this.blockStructure[0].length][this.blockStructure.length];
+        for (int i=0;i<rotated.length;++i){
+            for (int j=0;j<rotated[i].length;++j){
+                rotated[i][j]=this.blockStructure[j][i];
+            }
         }
-        else if (this.blockType==-4){
-            this.blockStructure=buildBlock(5);
-            this.blockType=5;
-        }
-        else {
-            this.blockStructure=buildBlock(4);
-            this.blockType=4;
-        }
+        this.blockStructure=rotated;
     }
+    
+//    public void rotate() {
+//        if(this.blockType!=-4 && this.blockType!=-5){
+//            this.blockStructure=buildBlock(-1*this.blockType);
+//            this.blockType=-1*this.blockType;
+//        }
+//        else if (this.blockType==-4){
+//            this.blockStructure=buildBlock(5);
+//            this.blockType=5;
+//        }
+//        else {
+//            this.blockStructure=buildBlock(4);
+//            this.blockType=4;
+//        }
+//    }
     
     public int getBlockType(){
         return this.blockType;
