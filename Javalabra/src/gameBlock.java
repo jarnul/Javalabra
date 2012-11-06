@@ -25,57 +25,80 @@ public class gameBlock {
     }
     
     /*
+     * Methods to create different blocks
+     */
+    
+    private int[][] createLineBlock(){
+         int[][] temp = new int[1][4];
+         for (int i=0;i<4;++i){
+            temp[0][i]=2;
+         }
+         return temp;
+    }
+    
+    private int[][] createSquidBlock(){
+         int[][] temp = new int[4][4];
+         fillTable(temp);
+         temp[0][0]=2;
+         for (int i=0;i<temp[1].length;++i){
+              temp[1][i]=2;
+         }
+         return temp;
+    }
+    
+    private int[][] createSquareBlock(){
+        int[][] temp = new int[2][2];
+        fillTable(temp);
+        for (int i=0;i<2;++i){
+            for (int j=0;j<2;++j){
+                   temp[i][j]=2;
+            }
+        }
+        return temp;
+    }
+    
+    private int[][] createPointyBlock(){
+        int[][] temp = new int[3][2];
+        fillTable(temp);
+        temp[1][0]=2;
+        for(int i=0;i<3;++i){
+            temp[i][1]=2;
+        }
+        return temp;
+    }
+    
+    private int[][] createPointyDownBlock(){
+        int[][] temp = new int[3][2];
+        fillTable(temp);
+        temp[1][1]=2;
+        for (int i=0;i<3;++i){
+            temp[i][0]=2;
+        }
+        return temp;
+    }
+    
+    
+     /*
      * Method for generating different kinds of blocks, block * (-1) is the rotated block of a given block
      */
     
     private int[][] buildBlock(int type){
-        int[][] temp;
         switch (type) {
         
             case 1: {
-                temp = new int[1][4];
-                for (int i=0;i<4;++i){
-                    temp[0][i]=2;
-                }
-                return temp;
+                return createLineBlock();
             }
             case 2: {
-                temp = new int[4][4];
-                fillTable(temp);
-                temp[0][0]=2;
-                for (int i=0;i<temp[1].length;++i){
-                    temp[1][i]=2;
-                }
-                return temp;
-            
+                return createSquidBlock();
             }
             case 3: {
-                temp = new int[2][2];
-                fillTable(temp);
-                for (int i=0;i<2;++i){
-                    for (int j=0;j<2;++j){
-                        temp[i][j]=2;
-                    }
-                }
-                return temp;
+                return createSquareBlock();
             }
             case 4: {
-                temp = new int[3][2];
-                fillTable(temp);
-                temp[1][0]=2;
-                for(int i=0;i<3;++i){
-                    temp[i][1]=2;
-                }
-                return temp;
+                return createPointyBlock();
             }
             case 5: {
-                temp = new int[3][2];
-                fillTable(temp);
-                temp[1][1]=2;
-                for (int i=0;i<3;++i){
-                    temp[i][0]=2;
-                }
-                return temp;
+                return createPointyDownBlock();
             }
 
             default: {
