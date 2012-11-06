@@ -66,7 +66,6 @@ public class gameLogic {
         }
     }
     
-    
     /*
      * Method for updating game-status, usually bringing block down for one row
      */
