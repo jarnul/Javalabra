@@ -82,4 +82,16 @@ public class gameLogicTest {
       }
       assertEquals(temp ,  testBlock.getBlockStructure());
   }
+    @Test
+    public void gameBlockTypeTest(){
+        assertEquals(testBlock.getBlockType(), 1);
+    
+    }
+    
+    @Test
+    public void gameBlockTypeTestTwo(){
+        testBlock.rotate();
+        assertEquals(testBlock.getBlockType(), -1);
+    
+    }
 }

@@ -89,6 +89,10 @@ public class gameBlock {
         this.blockType=-1*this.blockType;
     }
     
+    public int getBlockType(){
+        return this.blockType;
+    }
+    
     public int getBlockXco(){
         return this.xCoordinate;
     }
