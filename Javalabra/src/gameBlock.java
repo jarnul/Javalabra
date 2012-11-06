@@ -39,13 +39,6 @@ public class gameBlock {
                 }
                 return temp;
             }
-            case -1: {
-                temp = new int[4][1];
-                for (int i=0;i<temp.length;++i){
-                    temp[i][0]=2;
-                }
-                return temp;
-            }
             case 2: {
                 temp = new int[4][4];
                 fillTable(temp);
@@ -55,15 +48,6 @@ public class gameBlock {
                 }
                 return temp;
             
-            }
-            case -2: {
-                temp = new int[4][4];
-                fillTable(temp);
-                temp[3][2]=2;
-                for (int i=0;i<4;++i){
-                    temp[i][3]=2;
-                } 
-                return temp;
             }
             case 3: {
                 temp = new int[2][2];
@@ -75,24 +59,12 @@ public class gameBlock {
                 }
                 return temp;
             }
-            case -3: {
-                return buildBlock(3);
-            }
             case 4: {
                 temp = new int[3][2];
                 fillTable(temp);
                 temp[1][0]=2;
                 for(int i=0;i<3;++i){
                     temp[i][1]=2;
-                }
-                return temp;
-            }
-            case -4:{
-                temp = new int[2][3];
-                fillTable(temp);
-                temp[0][1]=2;
-                for (int i=0;i<3;++i){
-                    temp[1][i]=2;
                 }
                 return temp;
             }
@@ -105,17 +77,7 @@ public class gameBlock {
                 }
                 return temp;
             }
-            case -5: {
-                temp = new int[2][3];
-                fillTable(temp);
-                temp[1][1]=2;
-                for (int i=0;i<3;++i){
-                    temp[0 ][i]=2;
-                }
-                return temp;
-            }
 
-                
             default: {
                 return null;
             }
