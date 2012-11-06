@@ -25,7 +25,7 @@ public class gameBlock {
     }
     
     /*
-     * Method for generating different kinds of blocks
+     * Method for generating different kinds of blocks, block * (-1) is the rotated block of a given block
      */
     
     private int[][] buildBlock(int type){
@@ -65,6 +65,56 @@ public class gameBlock {
                 } 
                 return temp;
             }
+            case 3: {
+                temp = new int[2][2];
+                fillTable(temp);
+                for (int i=0;i<2;++i){
+                    for (int j=0;j<2;++j){
+                        temp[i][j]=2;
+                    }
+                }
+                return temp;
+            }
+            case -3: {
+                return buildBlock(3);
+            }
+            case 4: {
+                temp = new int[3][2];
+                fillTable(temp);
+                temp[1][0]=2;
+                for(int i=0;i<3;++i){
+                    temp[i][1]=2;
+                }
+                return temp;
+            }
+            case -4:{
+                temp = new int[2][3];
+                fillTable(temp);
+                temp[0][1]=2;
+                for (int i=0;i<3;++i){
+                    temp[1][i]=2;
+                }
+                return temp;
+            }
+            case 5: {
+                temp = new int[3][2];
+                fillTable(temp);
+                temp[1][1]=2;
+                for (int i=0;i<3;++i){
+                    temp[i][0]=2;
+                }
+                return temp;
+            }
+            case -5: {
+                temp = new int[2][3];
+                fillTable(temp);
+                temp[1][1]=2;
+                for (int i=0;i<3;++i){
+                    temp[0 ][i]=2;
+                }
+                return temp;
+            }
+
                 
             default: {
                 return null;
@@ -84,9 +134,23 @@ public class gameBlock {
         }
     }
     
+    /*
+     * Method to rotate pieces
+     */
+    
     public void rotate() {
-        this.blockStructure=buildBlock(-1*this.blockType);
-        this.blockType=-1*this.blockType;
+        if(this.blockType!=-4 && this.blockType!=-5){
+            this.blockStructure=buildBlock(-1*this.blockType);
+            this.blockType=-1*this.blockType;
+        }
+        else if (this.blockType==-4){
+            this.blockStructure=buildBlock(5);
+            this.blockType=5;
+        }
+        else {
+            this.blockStructure=buildBlock(4);
+            this.blockType=4;
+        }
     }
     
     public int getBlockType(){

@@ -37,7 +37,7 @@ public class gameLogic {
     
     private gameBlock generateBlock() {
         //code to generate random block
-        return new gameBlock(2);
+        return new gameBlock(4);
     }
         
     /*
