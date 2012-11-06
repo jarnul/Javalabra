@@ -91,7 +91,7 @@ public class gameLogicTest {
     @Test
     public void gameBlockTypeTestTwo(){
         testBlock.rotate();
-        assertEquals(testBlock.getBlockType(), -1);
+        assertEquals(testBlock.getBlockType(), 1);
     
     }
     

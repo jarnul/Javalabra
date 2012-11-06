@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="jarno-desktop" name="gameLogicTest" tests="10" time="0.08" timestamp="2012-11-06T16:36:04">
+<testsuite errors="0" failures="0" hostname="jarno-desktop" name="gameLogicTest" tests="10" time="0.066" timestamp="2012-11-06T17:02:34">
   <properties>
     <property name="default.javac.source" value="1.6" />
     <property name="file.encoding.pkg" value="sun.io" />
@@ -86,7 +86,7 @@
     <property name="ant.project.default-target" value="default" />
     <property name="libs.hibernate-persistence.javadoc" value="" />
     <property name="libs.ejb3-persistence.classpath" value="/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/ejb3-persistence.jar" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner gameLogicTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/jarno/Javalabra/Javalabra/build/test/results/TEST-gameLogicTest.xml crashfile=/home/jarno/Javalabra/Javalabra/build/junitvmwatcher5325911746547006339.properties propsfile=/home/jarno/Javalabra/Javalabra/build/junit8486973529737740086.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner gameLogicTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/jarno/Javalabra/Javalabra/build/test/results/TEST-gameLogicTest.xml crashfile=/home/jarno/Javalabra/Javalabra/build/junitvmwatcher2139559994263454351.properties propsfile=/home/jarno/Javalabra/Javalabra/build/junit8432612883745244491.properties" />
     <property name="built-jar.properties" value="/home/jarno/Javalabra/Javalabra/build/built-jar.properties" />
     <property name="libs.junit.src" value="" />
     <property name="ant.junit.enabletestlistenerevents" value="true" />
@@ -279,16 +279,16 @@
     <property name="sun.arch.data.model" value="64" />
     <property name="mkdist.disabled" value="false" />
   </properties>
-  <testcase classname="gameLogicTest" name="gameLogicConstructorTester" time="0.004" />
+  <testcase classname="gameLogicTest" name="gameLogicConstructorTester" time="0.005" />
   <testcase classname="gameLogicTest" name="gameBlockGetXtester" time="0.0" />
-  <testcase classname="gameLogicTest" name="gameBlockGetYtester" time="0.001" />
+  <testcase classname="gameLogicTest" name="gameBlockGetYtester" time="0.0" />
   <testcase classname="gameLogicTest" name="gameBlockGetXtesterTwo" time="0.0" />
   <testcase classname="gameLogicTest" name="gameBlockGetXtesterThree" time="0.0" />
   <testcase classname="gameLogicTest" name="gameBlockGetYtesterTwo" time="0.0" />
-  <testcase classname="gameLogicTest" name="gameBlockConstructorTester" time="0.001" />
+  <testcase classname="gameLogicTest" name="gameBlockConstructorTester" time="0.0" />
   <testcase classname="gameLogicTest" name="gameBlockTypeTest" time="0.0" />
-  <testcase classname="gameLogicTest" name="gameBlockTypeTestTwo" time="0.001" />
-  <testcase classname="gameLogicTest" name="gameLogicUpdateTest" time="0.0" />
+  <testcase classname="gameLogicTest" name="gameBlockTypeTestTwo" time="0.0" />
+  <testcase classname="gameLogicTest" name="gameLogicUpdateTest" time="0.001" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
