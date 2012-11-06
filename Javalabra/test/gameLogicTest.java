@@ -94,4 +94,12 @@ public class gameLogicTest {
         assertEquals(testBlock.getBlockType(), -1);
     
     }
+    
+    @Test
+    public void gameLogicUpdateTest(){
+        int[][] temp = testGame.getGameStatus();
+        testGame.updateGame();
+        int[][] temp2 = testGame.getGameStatus();
+        assertEquals(temp.length,temp2.length);
+    }
 }
