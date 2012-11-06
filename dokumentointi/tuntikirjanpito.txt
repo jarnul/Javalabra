@@ -20,4 +20,5 @@
 3h rotaation tekemiseen erilaisia tekniikoita, lopulta ensimmäinen hyvin toimiva ratkaisu valmiiksi
 
 6.11:
-1h loput JUnit-testit, lisää palikoita lisätty gameBlock-luokkaan
+1h loput JUnit-testit (yhtä lukuunottamatta), lisää palikoita lisätty gameBlock-luokkaan
+30min viimeinen JUnit-testi lisätty, rotaatiometodi uusiksi (matriisien transpoosilla)
