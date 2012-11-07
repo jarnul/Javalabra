@@ -26,6 +26,13 @@ public class gameBlock {
         this.yCoordinate = 0;
         this.rotationDegree = 0;
     }
+    
+    public gameBlock(gameBlock copy){
+        this(copy.getBlockType());
+        this.xCoordinate=copy.getBlockXco();
+        this.yCoordinate=copy.getBlockYco();
+        this.rotationDegree=copy.getRotationDegree();
+    }
 
     /*
      * Methods to create different blocks
@@ -179,6 +186,7 @@ public class gameBlock {
     /*
      * Method to rotate pieces using matrix-transposes
      */
+    
     public void rotate() {
         //Creates the transpose-matrix of this.blockStructure
         int[][] rotated;
@@ -193,6 +201,25 @@ public class gameBlock {
             rotationDegreeOdd();
         }
         this.blockStructure = rotated;
+    }
+    
+    /*
+     * Method to return next rotation for inspection
+     */
+    
+    public int[][] getNextRotationStructure(){
+        int[][] rotated;
+        //rotationDegree is used in case block must be transposed from different origins (as with pointyBlock for example)
+        if (this.rotationDegree == 0 || this.rotationDegree == 2) {
+            rotated = matrixTranspose(this.blockStructure);
+            //Special cases for pointyblocks and squidblocks
+            rotationDegreeEven();
+
+        } else {
+            rotated = matrixTransposeSkewed(this.blockStructure);
+            rotationDegreeOdd();
+        }
+        return rotated;
     }
 
     public int getBlockType() {
@@ -218,8 +245,22 @@ public class gameBlock {
     public void addBlockYco() {
         ++this.yCoordinate;
     }
+    
+    public int getRotationDegree() {
+        return this.rotationDegree;
+    }
 
     public int[][] getBlockStructure() {
-        return this.blockStructure;
+        return copyTable(this.blockStructure);
+    }
+    
+    private int[][] copyTable(int[][] temp) {
+        int[][] copy = new int[temp.length][temp[0].length];
+        for (int i=0;i<temp.length;++i){
+            for(int j=0;j<temp[i].length;++j){
+                copy[i][j]=temp[i][j];
+            }
+        }
+        return copy;
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="jarno-desktop" name="gameLogicTest" tests="10" time="0.072" timestamp="2012-11-07T11:10:45">
+<testsuite errors="0" failures="0" hostname="jarno-desktop" name="gameLogicTest" tests="10" time="0.129" timestamp="2012-11-07T13:12:42">
   <properties>
     <property name="default.javac.source" value="1.6" />
     <property name="file.encoding.pkg" value="sun.io" />
@@ -86,7 +86,7 @@
     <property name="ant.project.default-target" value="default" />
     <property name="libs.hibernate-persistence.javadoc" value="" />
     <property name="libs.ejb3-persistence.classpath" value="/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/ejb3-persistence.jar" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner gameLogicTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/jarno/Javalabra/Javalabra/build/test/results/TEST-gameLogicTest.xml crashfile=/home/jarno/Javalabra/Javalabra/build/junitvmwatcher6552783030279151262.properties propsfile=/home/jarno/Javalabra/Javalabra/build/junit6041013472039504177.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner gameLogicTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/jarno/Javalabra/Javalabra/build/test/results/TEST-gameLogicTest.xml crashfile=/home/jarno/Javalabra/Javalabra/build/junitvmwatcher4155497461768853287.properties propsfile=/home/jarno/Javalabra/Javalabra/build/junit5586887337276219439.properties" />
     <property name="built-jar.properties" value="/home/jarno/Javalabra/Javalabra/build/built-jar.properties" />
     <property name="libs.junit.src" value="" />
     <property name="ant.junit.enabletestlistenerevents" value="true" />
@@ -112,8 +112,8 @@
     <property name="javadoc.private" value="false" />
     <property name="annotation.processing.processors.list" value="" />
     <property name="sun.desktop" value="gnome" />
-    <property name="build.test.classes.dir" value="build/test/classes" />
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="build.test.classes.dir" value="build/test/classes" />
     <property name="libs.jaxb.src" value="" />
     <property name="libs.MySQLDriver.javadoc" value="" />
     <property name="netbeans.dynamic.classpath" value="/home/jarno/netbeans-7.0.1/platform/core/core.jar:/home/jarno/netbeans-7.0.1/platform/core/org-openide-filesystems.jar:/home/jarno/netbeans-7.0.1/platform/core/locale/org-openide-filesystems_ja.jar:/home/jarno/netbeans-7.0.1/platform/core/locale/core_ja.jar:/home/jarno/netbeans-7.0.1/platform/core/locale/core_zh_CN.jar:/home/jarno/netbeans-7.0.1/platform/core/locale/core_pt_BR.jar:/home/jarno/netbeans-7.0.1/platform/core/locale/core_ru.jar:/home/jarno/netbeans-7.0.1/platform/core/locale/org-openide-filesystems_ru.jar:/home/jarno/netbeans-7.0.1/platform/core/locale/org-openide-filesystems_pt_BR.jar:/home/jarno/netbeans-7.0.1/platform/core/locale/org-openide-filesystems_zh_CN.jar:/home/jarno/netbeans-7.0.1/nb/core/org-netbeans-upgrader.jar:/home/jarno/netbeans-7.0.1/nb/core/locale/core_nb_ja.jar:/home/jarno/netbeans-7.0.1/nb/core/locale/core_nb_pt_BR.jar:/home/jarno/netbeans-7.0.1/nb/core/locale/org-netbeans-upgrader_ru.jar:/home/jarno/netbeans-7.0.1/nb/core/locale/core_nb_ru.jar:/home/jarno/netbeans-7.0.1/nb/core/locale/org-netbeans-upgrader_ja.jar:/home/jarno/netbeans-7.0.1/nb/core/locale/org-netbeans-upgrader_pt_BR.jar:/home/jarno/netbeans-7.0.1/nb/core/locale/core_nb.jar:/home/jarno/netbeans-7.0.1/nb/core/locale/core_nb_zh_CN.jar:/home/jarno/netbeans-7.0.1/nb/core/locale/org-netbeans-upgrader_zh_CN.jar" />
@@ -159,8 +159,8 @@
     <property name="org.openide.version" value="deprecated" />
     <property name="libs.beans-binding.src" value="" />
     <property name="libs.junit.classpath" value="/home/jarno/netbeans-7.0.1/java/modules/ext/junit-3.8.2.jar" />
-    <property name="java.library.path" value="/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk-amd64/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib" />
     <property name="ap.supported.internal" value="true" />
+    <property name="java.library.path" value="/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk-amd64/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib" />
     <property name="libs.toplink.javadoc" value="" />
     <property name="libs.PostgreSQLDriver.javadoc" value="" />
     <property name="libs.eclipselinkmodelgen.maven-pom" value="" />
@@ -183,8 +183,8 @@
     <property name="libs.CopyLibs.javadoc" value="" />
     <property name="libs.PostgreSQLDriver.classpath" value="/home/jarno/netbeans-7.0.1/ide/modules/ext/postgresql-8.3-603.jdbc3.jar" />
     <property name="junit.forkmode" value="perTest" />
-    <property name="libs.junit_4.classpath" value="/home/jarno/netbeans-7.0.1/platform/modules/ext/junit-4.8.2.jar" />
     <property name="libs.jaxws21.maven-pom" value="" />
+    <property name="libs.junit_4.classpath" value="/home/jarno/netbeans-7.0.1/platform/modules/ext/junit-4.8.2.jar" />
     <property name="build.dir" value="build" />
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64" />
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
@@ -196,18 +196,19 @@
     <property name="libs.hibernate-support.src" value="" />
     <property name="run.jvmargs.ide" value="" />
     <property name="annotation.processing.enabled" value="true" />
+    <property name="run.jvmargs" value="" />
     <property name="nb.junit.single" value="false" />
     <property name="build.generated.sources.dir" value="build/generated-sources" />
-    <property name="run.jvmargs" value="" />
     <property name="build.compiler.emacs" value="true" />
     <property name="ant.project.name" value="Javalabra" />
     <property name="libs.spring-framework.classpath" value="/home/jarno/netbeans-7.0.1/ide/modules/ext/commons-logging-1.1.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/cglib-2.2.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/spring/spring-2.5.6.SEC01.jar" />
     <property name="libs.swing-layout.classpath" value="/home/jarno/netbeans-7.0.1/platform/modules/ext/swing-layout-1.0.4.jar" />
+    <property name="org.openide.awt.SwingBrowserImpl.do-not-block-awt" value="false" />
     <property name="java.vm.specification.version" value="1.0" />
     <property name="work.dir" value="/home/jarno/Javalabra/Javalabra" />
     <property name="libs.jaxb.classpath" value="/home/jarno/netbeans-7.0.1/ide/modules/ext/jaxb/jaxb-impl.jar:/home/jarno/netbeans-7.0.1/ide/modules/ext/jaxb/jaxb-xjc.jar:/home/jarno/netbeans-7.0.1/ide/modules/ext/jaxb/jaxb1-impl.jar:/home/jarno/netbeans-7.0.1/ide/modules/ext/jaxb/activation.jar:/home/jarno/netbeans-7.0.1/ide/modules/ext/jaxb/api/jaxb-api.jar:/home/jarno/netbeans-7.0.1/ide/modules/ext/jaxb/api/jsr173_api.jar" />
-    <property name="manifest.available+main.class-mkdist.available" value="true" />
     <property name="javadoc.use" value="true" />
+    <property name="manifest.available+main.class-mkdist.available" value="true" />
     <property name="sun.cpu.isalist" value="" />
     <property name="java.ext.dirs" value="/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/ext:/usr/java/packages/lib/ext" />
     <property name="os.version" value="3.2.0-27-generic" />
@@ -225,33 +226,33 @@
     <property name="compile.on.save" value="true" />
     <property name="libs.hibernate-support.classpath" value="/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/antlr-2.7.6.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/asm.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/asm-attrs.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/cglib-2.1.3.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/commons-collections-2.1.1.jar:/home/jarno/netbeans-7.0.1/ide/modules/ext/commons-logging-1.1.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/dom4j-1.6.1.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/ehcache-1.2.3.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/jdbc2_0-stdext.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/jta.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/hibernate3.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/hibernate-tools.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/hibernate-annotations.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/hibernate-commons-annotations.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/hibernate-entitymanager.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/javassist.jar" />
     <property name="ignore.failing.tests" value="true" />
-    <property name="endorsed.classpath.cmd.line.arg" value="-Xbootclasspath/p:&apos;/home/jarno/Javalabra/Javalabra/${endorsed.classpath}&apos;" />
     <property name="libs.eclipselinkmodelgen.javadoc" value="" />
+    <property name="endorsed.classpath.cmd.line.arg" value="-Xbootclasspath/p:&apos;/home/jarno/Javalabra/Javalabra/${endorsed.classpath}&apos;" />
     <property name="jar.index" value="false" />
     <property name="libs.spring-framework300.javadoc" value="" />
     <property name="netbeans.automatic.build" value="true" />
     <property name="libs.MySQLDriver.src" value="" />
     <property name="java.vm.version" value="20.0-b12" />
-    <property name="java.class.path" value="/home/jarno/netbeans-7.0.1/java/modules/ext/beansbinding-1.2.1.jar:/home/jarno/Javalabra/Javalabra/build/classes:/home/jarno/netbeans-7.0.1/platform/modules/ext/junit-4.8.2.jar:/home/jarno/Javalabra/Javalabra/build/test/classes:/home/jarno/netbeans-7.0.1/java/ant/lib/ant-launcher.jar:/home/jarno/netbeans-7.0.1/java/ant/lib/ant.jar:/home/jarno/netbeans-7.0.1/java/ant/lib/ant-junit.jar:/home/jarno/netbeans-7.0.1/java/ant/lib/ant-junit4.jar" />
     <property name="libs.hibernate-persistence.classpath" value="/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/antlr-2.7.6.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/asm.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/asm-attrs.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/cglib-2.1.3.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/commons-collections-2.1.1.jar:/home/jarno/netbeans-7.0.1/ide/modules/ext/commons-logging-1.1.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/dom4j-1.6.1.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/ehcache-1.2.3.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/jdbc2_0-stdext.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/jta.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/hibernate3.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/hibernate-tools.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/hibernate-annotations.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/hibernate-commons-annotations.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/hibernate-entitymanager.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/javassist.jar:/home/jarno/netbeans-7.0.1/java/modules/ext/hibernate/ejb3-persistence.jar" />
     <property name="annotation.processing.processor.options" value="" />
+    <property name="java.class.path" value="/home/jarno/netbeans-7.0.1/java/modules/ext/beansbinding-1.2.1.jar:/home/jarno/Javalabra/Javalabra/build/classes:/home/jarno/netbeans-7.0.1/platform/modules/ext/junit-4.8.2.jar:/home/jarno/Javalabra/Javalabra/build/test/classes:/home/jarno/netbeans-7.0.1/java/ant/lib/ant-launcher.jar:/home/jarno/netbeans-7.0.1/java/ant/lib/ant.jar:/home/jarno/netbeans-7.0.1/java/ant/lib/ant-junit.jar:/home/jarno/netbeans-7.0.1/java/ant/lib/ant-junit4.jar" />
     <property name="os.arch" value="amd64" />
     <property name="javac.deprecation" value="false" />
     <property name="build.classes.excludes" value="**/*.java,**/*.form" />
     <property name="dist.dir" value="dist" />
-    <property name="netbeans.user" value="/home/jarno/.netbeans/7.0" />
     <property name="debug.classpath" value="/home/jarno/netbeans-7.0.1/java/modules/ext/beansbinding-1.2.1.jar:build/classes" />
+    <property name="netbeans.user" value="/home/jarno/.netbeans/7.0" />
     <property name="sun.java.launcher" value="SUN_STANDARD" />
     <property name="jar.index.metainf" value="false" />
     <property name="annotation.processing.enabled.in.editor" value="false" />
     <property name="ant.core.lib" value="/home/jarno/netbeans-7.0.1/java/ant/lib/ant.jar" />
     <property name="java.vm.specification.vendor" value="Sun Microsystems Inc." />
-    <property name="do.depend" value="false" />
     <property name="ant.file.Javalabra-impl" value="/home/jarno/Javalabra/Javalabra/nbproject/build-impl.xml" />
+    <property name="do.depend" value="false" />
     <property name="file.separator" value="/" />
     <property name="java.runtime.version" value="1.6.0_24-b24" />
-    <property name="debug.test.classpath" value="/home/jarno/netbeans-7.0.1/java/modules/ext/beansbinding-1.2.1.jar:build/classes:/home/jarno/netbeans-7.0.1/platform/modules/ext/junit-4.8.2.jar:build/test/classes" />
     <property name="sun.boot.class.path" value="/home/jarno/Javalabra/Javalabra/${endorsed.classpath}:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/resources.jar:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/rt.jar:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/jsse.jar:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/jce.jar:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/charsets.jar:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/netx.jar:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/plugin.jar:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/rhino.jar:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/modules/jdk.boot.jar:/usr/lib/jvm/java-6-openjdk-amd64/jre/classes" />
+    <property name="debug.test.classpath" value="/home/jarno/netbeans-7.0.1/java/modules/ext/beansbinding-1.2.1.jar:build/classes:/home/jarno/netbeans-7.0.1/platform/modules/ext/junit-4.8.2.jar:build/test/classes" />
     <property name="nb.junit.batch" value="true" />
     <property name="libs.beans-binding.classpath" value="/home/jarno/netbeans-7.0.1/java/modules/ext/beansbinding-1.2.1.jar" />
     <property name="have.tests" value="true" />
@@ -263,8 +264,8 @@
     <property name="javadoc.notree" value="false" />
     <property name="libs.spring-framework300.maven-pom" value="" />
     <property name="libs.jaxws21.javadoc" value="/home/jarno/netbeans-7.0.1/java/docs/jaxws-api-doc.zip" />
-    <property name="default.javac.target" value="1.6" />
     <property name="javac.classpath" value="/home/jarno/netbeans-7.0.1/java/modules/ext/beansbinding-1.2.1.jar" />
+    <property name="default.javac.target" value="1.6" />
     <property name="javadoc.additionalparam" value="" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="do.archive+manifest.available" value="true" />
@@ -277,16 +278,16 @@
     <property name="libs.swing-app-framework.src" value="" />
     <property name="java.specification.version" value="1.6" />
     <property name="libs.JWSAntTasks.javadoc" value="" />
-    <property name="sun.arch.data.model" value="64" />
     <property name="mkdist.disabled" value="false" />
+    <property name="sun.arch.data.model" value="64" />
   </properties>
-  <testcase classname="gameLogicTest" name="gameLogicConstructorTester" time="0.004" />
+  <testcase classname="gameLogicTest" name="gameLogicConstructorTester" time="0.003" />
   <testcase classname="gameLogicTest" name="gameBlockGetXtester" time="0.0" />
   <testcase classname="gameLogicTest" name="gameBlockGetYtester" time="0.0" />
-  <testcase classname="gameLogicTest" name="gameBlockGetXtesterTwo" time="0.0" />
+  <testcase classname="gameLogicTest" name="gameBlockGetXtesterTwo" time="0.001" />
   <testcase classname="gameLogicTest" name="gameBlockGetXtesterThree" time="0.0" />
   <testcase classname="gameLogicTest" name="gameBlockGetYtesterTwo" time="0.0" />
-  <testcase classname="gameLogicTest" name="gameBlockConstructorTester" time="0.001" />
+  <testcase classname="gameLogicTest" name="gameBlockConstructorTester" time="0.0" />
   <testcase classname="gameLogicTest" name="gameBlockTypeTest" time="0.0" />
   <testcase classname="gameLogicTest" name="gameBlockTypeTestTwo" time="0.0" />
   <testcase classname="gameLogicTest" name="gameLogicUpdateTest" time="0.0" />

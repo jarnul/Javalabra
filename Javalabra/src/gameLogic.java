@@ -35,7 +35,7 @@ public class gameLogic {
      */
     private gameBlock generateBlock() {
         //code to generate random block
-        return new gameBlock(4);
+        return new gameBlock(1);
     }
 
     /*
@@ -95,7 +95,7 @@ public class gameLogic {
                         } else {
                             tempBreak = false;
                             this.movingBlocks = false;
-                            clearMovingBlocks(1);
+                            clearMovingBlocks(this.status, 1);
                             break;
                         }
                     }
@@ -111,11 +111,11 @@ public class gameLogic {
     /*
      * Method to turn all 2's into given integer
      */
-    private void clearMovingBlocks(int filler) {
-        for (int i = 0; i < this.status.length; ++i) {
-            for (int j = 0; j < this.status[i].length; ++j) {
-                if (this.status[i][j] == 2) {
-                    this.status[i][j] = filler;
+    private void clearMovingBlocks(int[][] temp, int filler) {
+        for (int i = 0; i < temp.length; ++i) {
+            for (int j = 0; j < temp[i].length; ++j) {
+                if (temp[i][j] == 2) {
+                    temp[i][j] = filler;
                 }
             }
         }
@@ -141,18 +141,64 @@ public class gameLogic {
      * Method to rotate pieces
      */
     public void rotatePiece() {
-        clearMovingBlocks(0);
-        this.currentBlock.rotate();
-        fillIn(this.currentBlock);
+        int[][] temp = copyTable(this.status);
+        clearMovingBlocks(this.status, 0);
+        int[][] tempTable = this.currentBlock.getNextRotationStructure();
+        int tempX = this.currentBlock.getBlockXco();
+        int tempY = this.currentBlock.getBlockYco();
+        if (!checkForCollision(tempTable, tempX, tempY)) {
+            this.currentBlock.rotate();
+            fillIn(this.currentBlock);
+        } else {
+            this.status = temp;
+        }
     }
 
-    private void fillIn(gameBlock temp) {
+    /*
+     * Method to copy table
+     */
+    private int[][] copyTable(int[][] temp) {
+        int[][] copy = new int[temp.length][temp[0].length];
+        for (int i = 0; i < temp.length; ++i) {
+            for (int j = 0; j < temp[i].length; ++j) {
+                copy[i][j] = temp[i][j];
+            }
+        }
+        return copy;
+    }
+
+    /*
+     * Method for adding given block to the game-status
+     */
+    private boolean fillIn(gameBlock temp) {
         int[][] tempBlock = temp.getBlockStructure();
         for (int i = 0; i < tempBlock.length; ++i) {
             for (int j = 0; j < tempBlock[i].length; ++j) {
-                this.status[i + temp.getBlockXco()][j + temp.getBlockYco()] = tempBlock[i][j];
+                if (this.status[i + temp.getBlockXco()][j + temp.getBlockYco()] == 0 && tempBlock[i][j] == 2) {
+                    this.status[i + temp.getBlockXco()][j + temp.getBlockYco()] = tempBlock[i][j];
+                }
             }
         }
+        return true;
+    }
+
+    /*
+     * Method to check if block collides with solid block or edges on game-status
+     */
+    private boolean checkForCollision(int[][] tempBlock, int tempX, int tempY) {
+        clearMovingBlocks(tempBlock, 1);
+        for (int i = 0; i < tempBlock.length; ++i) {
+            for (int j = 0; j < tempBlock[i].length; ++j) {
+                if (i + tempX < this.status.length && j + tempY < this.status[0].length) {
+                    if (this.status[i + tempX][j + tempY] == 1 && tempBlock[i][j] == 1) {
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public int[][] getGameStatus() {
