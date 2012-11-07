@@ -108,23 +108,45 @@ public class gameLogic {
             }
         }
     }
-    
-    private void checkFullRows(){
-        int fullRowIndex=-1;
-        for (int j=0;j<this.status[0].length;++j){
-            boolean fullRow=true;
-            for (int i=0;i<this.status.length;++i){
-                if(this.status[i][j]!=1){
-                    fullRow=false;
+
+    private void checkFullRows() {
+        int fullRowIndex = -1;
+        for (int j = 0; j < this.status[0].length; ++j) {
+            boolean fullRow = true;
+            for (int i = 0; i < this.status.length; ++i) {
+                if (this.status[i][j] != 1) {
+                    fullRow = false;
                 }
             }
-            if (fullRow){
-                fullRowIndex=j;
+            if (fullRow) {
+                fullRowIndex = j;
             }
+            eliminateFullRow(fullRowIndex);
         }
-        if(fullRowIndex!=-1){
-            for (int j=0;j<this.status.length;++j){
-                this.status[j][fullRowIndex]=0;
+
+    }
+    
+    /*
+     * Method to eliminate full row, if index is -1, no row is eliminated
+     */
+
+    private void eliminateFullRow(int index) {
+        if (index != -1) {
+            for (int j = 0; j < this.status.length; ++j) {
+                this.status[j][index] = 0;
+            }
+            bringStatusDown(index);
+            //Method to add score here
+        }
+    }
+
+    /*
+     * Method to bring all the rows abowe eliminated row down by one
+     */
+    private void bringStatusDown(int index) {
+        for (int i = 0; i < this.status.length; ++i) {
+            for (int j = index; j > 0; --j) {
+                this.status[i][j] = this.status[i][j - 1];
             }
         }
     }
