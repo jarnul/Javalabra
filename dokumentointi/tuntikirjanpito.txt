@@ -22,3 +22,6 @@
 6.11:
 1h loput JUnit-testit (yhtä lukuunottamatta), lisää palikoita lisätty gameBlock-luokkaan
 30min viimeinen JUnit-testi lisätty, rotaatiometodi uusiksi (matriisien transpoosilla)
+
+7.11:
+2h30min Rotaation parannus, virhetarkistusta
