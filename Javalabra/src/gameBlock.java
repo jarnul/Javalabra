@@ -12,6 +12,7 @@ public class gameBlock {
     private int[][] blockStructure;
     private int xCoordinate;
     private int yCoordinate;
+    private int rotationDegree;
     
     public gameBlock() {
         this(1);
@@ -22,6 +23,7 @@ public class gameBlock {
         this.blockStructure=buildBlock(type);
         this.xCoordinate=0;
         this.yCoordinate=0;
+        this.rotationDegree=0;
     }
     
     /*
@@ -108,7 +110,7 @@ public class gameBlock {
     }
     
     /*
-     * Method to fill a int[][] with 0's
+     * Method to fill a int[][]-table with 0's
      */
     
     private void fillTable(int[][] temp){
@@ -120,16 +122,74 @@ public class gameBlock {
     }
     
     /*
+     * Method for regular Matrix Transpose
+     */
+    
+    private int[][] matrixTranspose(int[][] temp){
+         int[][] rotated = new int[temp[0].length][temp.length];
+         for (int i=0;i<rotated.length;++i){
+                for (int j=0;j<rotated[i].length;++j){
+                    rotated[i][j]=temp[j][i];
+                }
+         }
+         return rotated;
+    }
+    
+    /*
+     * Method for Matrix transpose about different origin
+     */
+    
+    private int[][] matrixTransposeSkewed(int[][] temp){
+        int[][] rotated = new int[temp[0].length][temp.length];
+        for (int i=0;i<rotated.length;++i){
+                for (int j=0;j<rotated[i].length;++j){
+                    rotated[rotated.length-i-1][rotated[i].length-j-1]=this.blockStructure[j][i];
+                }
+            }
+        return rotated;
+    }
+    
+    /*
      * Method to rotate pieces
      */
     
     public void rotate(){
         //Creates the transpose-matrix of this.blockStructure
-        int[][] rotated = new int[this.blockStructure[0].length][this.blockStructure.length];
-        for (int i=0;i<rotated.length;++i){
-            for (int j=0;j<rotated[i].length;++j){
-                rotated[i][j]=this.blockStructure[j][i];
+        int[][] rotated;
+        //rotationDegree is used in case block must be transposed from different origins (as with pointyBlock for example)
+        if (this.rotationDegree==0 || this.rotationDegree==2){
+            rotated=matrixTranspose(this.blockStructure);
+            if (this.blockType==4){
+                 if (this.rotationDegree==2){
+                     ++this.xCoordinate;
+                     this.rotationDegree=3;
+                 }
+                 else {
+                    this.rotationDegree=1;   
+                 }
+
             }
+            else if (this.blockType==2){
+                this.rotationDegree=1;
+            }
+        }
+        
+        else {
+            rotated=matrixTransposeSkewed(this.blockStructure);
+            if (this.blockType==4){
+                if(this.rotationDegree==1){
+                    ++this.yCoordinate;
+                    this.rotationDegree=2;
+                }
+                else{
+                    --this.xCoordinate;
+                    this.rotationDegree=0;
+                }
+            }
+            else if (this.blockType==2){
+                this.rotationDegree=0;
+            }
+            
         }
         this.blockStructure=rotated;
     }
