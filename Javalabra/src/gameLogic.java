@@ -138,21 +138,43 @@ public class gameLogic {
     }
 
     /*
-     * Method to rotate pieces
+     * Method to rotate or move pieces, 0 rotates piece, 1 moves piece left, 2 moves piece right
      */
-    public void rotatePiece() {
+    public void movePiece(int move) {
         int[][] temp = copyTable(this.status);
         clearMovingBlocks(this.status, 0);
-        int[][] tempTable = this.currentBlock.getNextRotationStructure();
+        int[][] tempTable;
         int tempX = this.currentBlock.getBlockXco();
         int tempY = this.currentBlock.getBlockYco();
-        if (!checkForCollision(tempTable, tempX, tempY)) {
-            this.currentBlock.rotate();
-            fillIn(this.currentBlock);
-        } else {
-            this.status = temp;
+        if (move == 0) {
+            tempTable = this.currentBlock.getNextRotationStructure();
+            if (!checkForCollision(tempTable, tempX, tempY)) {
+                this.currentBlock.rotate();
+                fillIn(this.currentBlock);
+            } else {
+                this.status = temp;
+            }
+        } else if (move == 1) {
+            tempTable = this.currentBlock.getBlockStructure();
+            if (!checkForCollision(tempTable, tempX + 1, tempY)) {
+                this.currentBlock.addXco();
+                fillIn(this.currentBlock);
+            } else {
+                this.status = temp;
+            }
+        } else if (move == 2) {
+            tempTable = this.currentBlock.getBlockStructure();
+            if (!checkForCollision(tempTable, tempX - 1, tempY)) {
+                this.currentBlock.subtractXco();
+                fillIn(this.currentBlock);
+            } else {
+                this.status = temp;
+            }
+
         }
+
     }
+
 
     /*
      * Method to copy table
@@ -189,7 +211,7 @@ public class gameLogic {
         clearMovingBlocks(tempBlock, 1);
         for (int i = 0; i < tempBlock.length; ++i) {
             for (int j = 0; j < tempBlock[i].length; ++j) {
-                if (i + tempX < this.status.length && j + tempY < this.status[0].length) {
+                if (i + tempX < this.status.length && i + tempX > -1 && j + tempY < this.status[0].length) {
                     if (this.status[i + tempX][j + tempY] == 1 && tempBlock[i][j] == 1) {
                         return true;
                     }

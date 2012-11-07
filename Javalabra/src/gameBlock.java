@@ -254,6 +254,16 @@ public class gameBlock {
         return copyTable(this.blockStructure);
     }
     
+    public void subtractXco(){
+        if (this.xCoordinate>0){
+            --this.xCoordinate;
+        }
+    }
+    
+    public void addXco(){
+        ++this.xCoordinate;
+    }
+    
     private int[][] copyTable(int[][] temp) {
         int[][] copy = new int[temp.length][temp[0].length];
         for (int i=0;i<temp.length;++i){

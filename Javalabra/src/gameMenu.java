@@ -17,6 +17,7 @@ import java.awt.Graphics;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 public class gameMenu extends javax.swing.JFrame implements ActionListener {
 
@@ -79,7 +80,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(327, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -133,13 +134,21 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
      * Method for keypress
      */
 private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-    Timer timer = new Timer(1000, this);
-    timer.start();
+    if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+        this.currentGame.movePiece(2);
+    }
+    if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
+        this.currentGame.movePiece(1);
+    }
+    if (evt.getKeyCode() == KeyEvent.VK_UP) {
+        this.currentGame.movePiece(0);
+    }
+    repaint();
 }//GEN-LAST:event_formKeyPressed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    this.currentGame.rotatePiece();// TODO add your handling code here:
-    repaint();
+    Timer timer = new Timer(1000, this);
+    timer.start();
 }//GEN-LAST:event_jButton1ActionPerformed
 
     /*
