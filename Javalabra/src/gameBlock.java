@@ -38,8 +38,8 @@ public class gameBlock {
      * Methods to create different blocks
      */
     private int[][] createLineBlock() {
-        int[][] temp = new int[1][4];
-        for (int i = 0; i < 4; ++i) {
+        int[][] temp = new int[1][11];
+        for (int i = 0; i < 11; ++i) {
             temp[0][i] = 2;
         }
         return temp;

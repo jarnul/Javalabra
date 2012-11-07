@@ -81,6 +81,7 @@ public class gameLogic {
                 }
             }
             this.movingBlocks = true;
+            checkFullRows();
         } //Code to check if block can be moved
         else {
             int[][] tempBlock = this.currentBlock.getBlockStructure();
@@ -104,6 +105,26 @@ public class gameLogic {
             //If all the squares in the block can be moved down
             if (tempBreak) {
                 moveBlockDown();
+            }
+        }
+    }
+    
+    private void checkFullRows(){
+        int fullRowIndex=-1;
+        for (int j=0;j<this.status[0].length;++j){
+            boolean fullRow=true;
+            for (int i=0;i<this.status.length;++i){
+                if(this.status[i][j]!=1){
+                    fullRow=false;
+                }
+            }
+            if (fullRow){
+                fullRowIndex=j;
+            }
+        }
+        if(fullRowIndex!=-1){
+            for (int j=0;j<this.status.length;++j){
+                this.status[j][fullRowIndex]=0;
             }
         }
     }
