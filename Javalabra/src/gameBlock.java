@@ -39,6 +39,7 @@ public class gameBlock {
      */
     private int[][] createLineBlock() {
         int[][] temp = new int[1][4];
+        fillTable(temp);
         for (int i = 0; i < 4; ++i) {
             temp[0][i] = 2;
         }
@@ -46,9 +47,9 @@ public class gameBlock {
     }
 
     private int[][] createSquidBlock() {
-        int[][] temp = new int[2][4];
+        int[][] temp = new int[2][3];
         fillTable(temp);
-        temp[0][3] = 2;
+        temp[0][2] = 2;
         for (int i = 0; i < temp[1].length; ++i) {
             temp[1][i] = 2;
         }
@@ -88,6 +89,7 @@ public class gameBlock {
 
     private int[][] createReverseSnakeBlock() {
         int[][] temp = new int[3][2];
+        fillTable(temp);
         temp[0][0] = 2;
         temp[1][0] = 2;
         temp[1][1] = 2;
@@ -96,9 +98,9 @@ public class gameBlock {
     }
 
     private int[][] createReverseSquidBlock() {
-        int[][] temp = new int[2][4];
+        int[][] temp = new int[2][3];
         fillTable(temp);
-        temp[1][3] = 2;
+        temp[1][2] = 2;
         for (int i = 0; i < temp[1].length; ++i) {
             temp[0][i] = 2;
         }
