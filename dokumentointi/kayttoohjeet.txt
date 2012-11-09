@@ -1,1 +1,4 @@
-Nyt ohjelma ei tee muuta kuin avaa JForm-ikkunan, ja sulkeutuu "Lopeta" nappulasta.
+Ohjelma avaa pelivalikon, jossa tällä hetkellä ainoa toimiva nappula on "Start game".
+Peli alkaa pelivalikossa "Start"-nappulasta, kaikkien nappuloiden toiminnot toimivat, ja peliä ohjataan nuolinäppäimillä.
+
+Ylöspäin kääntää palikkaa, alaspäin nopeuttaa palikan alastuloa, oikea liikuttaa oikealla ja vasen vasemmalle
