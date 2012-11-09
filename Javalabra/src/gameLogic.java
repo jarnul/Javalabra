@@ -35,7 +35,7 @@ public class gameLogic {
      */
     private gameBlock generateBlock() {
         //code to generate random block
-        return new gameBlock(1);
+        return new gameBlock(7);
     }
 
     /*
@@ -125,11 +125,10 @@ public class gameLogic {
         }
 
     }
-    
+
     /*
      * Method to eliminate full row, if index is -1, no row is eliminated
      */
-
     private void eliminateFullRow(int index) {
         if (index != -1) {
             for (int j = 0; j < this.status.length; ++j) {
@@ -181,7 +180,8 @@ public class gameLogic {
     }
 
     /*
-     * Method to rotate or move pieces, 0 rotates piece, 1 moves piece left, 2 moves piece right
+     * Method to rotate or move pieces, 0 rotates piece, 1 moves piece left, 2
+     * moves piece right
      */
     public void movePiece(int move) {
         int[][] temp = copyTable(this.status);
@@ -248,7 +248,8 @@ public class gameLogic {
     }
 
     /*
-     * Method to check if block collides with solid block or edges on game-status
+     * Method to check if block collides with solid block or edges on
+     * game-status
      */
     private boolean checkForCollision(int[][] tempBlock, int tempX, int tempY) {
         clearMovingBlocks(tempBlock, 1);
