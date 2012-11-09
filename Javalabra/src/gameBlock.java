@@ -38,8 +38,8 @@ public class gameBlock {
      * Methods to create different blocks
      */
     private int[][] createLineBlock() {
-        int[][] temp = new int[1][11];
-        for (int i = 0; i < 11; ++i) {
+        int[][] temp = new int[1][4];
+        for (int i = 0; i < 4; ++i) {
             temp[0][i] = 2;
         }
         return temp;
@@ -178,7 +178,7 @@ public class gameBlock {
     }
 
     /*
-     * Methods to fix rotation degrees for special blocks
+     * Methods to fix rotation degrees for special block pointy block
      */
     private void rotationDegreeEven() {
         if (this.blockType == 4) {
@@ -188,9 +188,10 @@ public class gameBlock {
             } else {
                 this.rotationDegree = 1;
             }
+
         }
     }
-
+    
     private void rotationDegreeOdd() {
         if (this.blockType == 4) {
             if (this.rotationDegree == 1) {
@@ -227,6 +228,9 @@ public class gameBlock {
      */
     public int[][] getNextRotationStructure() {
         int[][] rotated;
+        int tempRotation=this.rotationDegree;
+        int tempXco=this.xCoordinate;
+        int tempYco=this.yCoordinate;
         //rotationDegree is used in case block must be transposed from different origins (as with pointyBlock for example)
         if (this.rotationDegree == 0 || this.rotationDegree == 2) {
             rotated = matrixTranspose(this.blockStructure);
@@ -237,6 +241,9 @@ public class gameBlock {
             rotated = matrixTransposeSkewed(this.blockStructure);
             rotationDegreeOdd();
         }
+        this.rotationDegree=tempRotation;
+        this.xCoordinate=tempXco;
+        this.yCoordinate=tempYco;
         return rotated;
     }
 

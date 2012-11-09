@@ -35,7 +35,9 @@ public class gameLogic {
      */
     private gameBlock generateBlock() {
         //code to generate random block
-        return new gameBlock(7);
+        //double random = Math.random()*7;
+        //return new gameBlock((int)random+1);
+        return new gameBlock(4);
     }
 
     /*

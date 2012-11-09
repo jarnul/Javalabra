@@ -84,6 +84,8 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
         });
 
         jButton3.setText("Start");
+        jButton3.setFocusPainted(false);
+        jButton3.setFocusable(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -159,6 +161,9 @@ private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_form
     }
     if (evt.getKeyCode() == KeyEvent.VK_UP) {
         this.currentGame.movePiece(0);
+    }
+    if (evt.getKeyCode() == KeyEvent.VK_DOWN){
+        this.currentGame.updateGame();
     }
     repaint();
 }//GEN-LAST:event_formKeyPressed
