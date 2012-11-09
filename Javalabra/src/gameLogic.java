@@ -21,13 +21,16 @@ public class gameLogic {
     private gameBlock currentBlock;
 
     public gameLogic() {
-        this.width = 12;
-        this.height = 15;
+        this(12,15);
+    }
+    
+    public gameLogic(int width, int height){
+        this.width = width;
+        this.height = height;
         //fill up this.status and this.rotations
         this.status = new int[this.width][this.height];
         fillTables(this.status);
         this.movingBlocks = false;
-
     }
 
     /*

@@ -180,7 +180,7 @@ public class gameBlock {
     }
 
     /*
-     * Methods to fix rotation degrees for special block pointy block
+     * Methods to fix rotation degrees for special blocks
      */
     private void rotationDegreeEven() {
         if (this.blockType == 4) {
@@ -191,6 +191,8 @@ public class gameBlock {
                 this.rotationDegree = 1;
             }
 
+        } else if (this.blockType == 2 || this.blockType == 6) {
+            this.rotationDegree = 1;
         }
     }
     
@@ -203,6 +205,8 @@ public class gameBlock {
                 --this.xCoordinate;
                 this.rotationDegree = 0;
             }
+        } else if (this.blockType == 2 || this.blockType == 6) {
+            this.rotationDegree = 0;
         }
     }
 

@@ -25,6 +25,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
     private int squareWidth;
     private gameLogic currentGame;
     private Timer timer;
+    private int[][] lastStatus;
 
     /**
      * Creates new form gameMenu
@@ -41,7 +42,15 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
         initComponents();
         menu = handle;
         this.squareWidth = 20;
-        this.currentGame = new gameLogic();
+        int gameWidth=12;
+        int gameHeight=15;
+        this.currentGame = new gameLogic(gameWidth,gameHeight);
+        this.lastStatus = new int[gameWidth][gameHeight];
+        for (int i=0;i<this.lastStatus.length;++i){
+            for (int j=0;j<this.lastStatus[i].length;++j){
+                this.lastStatus[i][j]=0;
+            }
+        }
     }
 
     /**
@@ -134,15 +143,18 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     public void paint(Graphics g) {
 
         super.paint(g);
-        //Two loops to go trough status-table, and draw all the blocks
+        //Two loops to go through status-table, and draw all the blocks
         int[][] tempStatus = this.currentGame.getGameStatus();
         for (int i = 0; i < tempStatus.length; ++i) {
             for (int j = 0; j < tempStatus[i].length; ++j) {
-                if (tempStatus[i][j] > 0) {
-                    g.setColor(Color.black);
-                    g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
-                } else {
-                    g.clearRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
+                //If so that only blocks that change are drawn
+                if (tempStatus[i][j]!=this.lastStatus[i][j]){
+                    if (tempStatus[i][j] > 0) {
+                        g.setColor(Color.black);
+                        g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
+                    } else {
+                        g.clearRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
+                    }
                 }
             }
         }
