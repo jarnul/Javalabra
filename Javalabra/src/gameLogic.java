@@ -67,9 +67,10 @@ public class gameLogic {
     }
 
     /*
-     * Method for updating game-status, usually bringing block down for one row
+     * Method for updating game-status, usually bringing block down for one row,
+     * returns an int which tells how many rows were removed (0 is none)
      */
-    public void updateGame() {
+    public int updateGame() {
 
         //Code to generate new block and to put it in game
         if (!this.movingBlocks) {
@@ -85,7 +86,7 @@ public class gameLogic {
                 }
             }
             this.movingBlocks = true;
-            checkFullRows();
+            return(checkFullRows());
         } //Code to check if block can be moved
         else {
             int[][] tempBlock = this.currentBlock.getBlockStructure();
@@ -110,10 +111,12 @@ public class gameLogic {
             if (tempBreak) {
                 moveBlockDown();
             }
+            return 0;
         }
     }
 
-    private void checkFullRows() {
+    private int checkFullRows() {
+        int eliminatedRows=0;
         int fullRowIndex = -1;
         for (int j = 0; j < this.status[0].length; ++j) {
             boolean fullRow = true;
@@ -124,9 +127,11 @@ public class gameLogic {
             }
             if (fullRow) {
                 fullRowIndex = j;
+                ++eliminatedRows;
             }
             eliminateFullRow(fullRowIndex);
         }
+        return eliminatedRows;
 
     }
 
