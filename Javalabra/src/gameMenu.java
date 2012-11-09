@@ -27,6 +27,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
     private Timer timer;
     private int[][] lastStatus;
     private int score;
+    private boolean gameOver;
 
     /**
      * Creates new form gameMenu
@@ -46,6 +47,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
         int gameWidth=12;
         int gameHeight=15;
         this.score=0;
+        this.gameOver=false;
         this.currentGame = new gameLogic(gameWidth,gameHeight);
         this.lastStatus = new int[gameWidth][gameHeight];
         for (int i=0;i<this.lastStatus.length;++i){
@@ -177,19 +179,22 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
      * Method for keypress
      */
 private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-    if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
-        this.currentGame.movePiece(2);
+    if (!this.gameOver){
+        if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+            this.currentGame.movePiece(2);
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
+            this.currentGame.movePiece(1);
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            this.currentGame.movePiece(0);
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_DOWN){
+            updateGameStatus();
+        }
+        repaint();
     }
-    if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
-        this.currentGame.movePiece(1);
-    }
-    if (evt.getKeyCode() == KeyEvent.VK_UP) {
-        this.currentGame.movePiece(0);
-    }
-    if (evt.getKeyCode() == KeyEvent.VK_DOWN){
-        updateGameStatus();
-    }
-    repaint();
+
 }//GEN-LAST:event_formKeyPressed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -213,8 +218,15 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
     
     private void updateGameStatus(){
-        this.score=this.score + 10*this.currentGame.updateGame();
-        jTextPane1.setText(Integer.toString(this.score));
+        int score=this.currentGame.updateGame();
+        if (score >-1) {
+            this.score=this.score + 10*this.currentGame.updateGame();
+            jTextPane1.setText(Integer.toString(this.score));
+        }
+        else {
+            this.timer.stop();
+            this.gameOver=true;
+        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

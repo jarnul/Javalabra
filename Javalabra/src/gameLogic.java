@@ -68,7 +68,8 @@ public class gameLogic {
 
     /*
      * Method for updating game-status, usually bringing block down for one row,
-     * returns an int which tells how many rows were removed (0 is none)
+     * returns an int which tells how many rows were removed (0 is none),
+     * -1 is returned if game is lost
      */
     public int updateGame() {
 
@@ -82,6 +83,7 @@ public class gameLogic {
                         this.status[i][j] = tempBlock[i][j];
                     } else {
                         //Code when the game is lost
+                        return -1;
                     }
                 }
             }
