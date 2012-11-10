@@ -220,7 +220,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private void updateGameStatus(){
         int score=this.currentGame.updateGame();
         if (score >-1) {
-            this.score=this.score + 10*this.currentGame.updateGame();
+            this.score=this.score + 10*score;
             jTextPane1.setText(Integer.toString(this.score));
         }
         else {
