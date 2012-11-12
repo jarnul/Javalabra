@@ -40,6 +40,7 @@ public class gameLogic {
         //code to generate random block
         double random = Math.random() * 7;
         return new gameBlock((int) random + 1);
+        //return new gameBlock(7);
     }
 
     /*
@@ -289,7 +290,7 @@ public class gameLogic {
      * Method to check if block collides with solid block or edges on
      * game-status
      */
-    private boolean checkForCollision(int[][] tempBlock, int tempX, int tempY) {
+    protected boolean checkForCollision(int[][] tempBlock, int tempX, int tempY) {
         clearMovingBlocks(tempBlock, 1);
         for (int i = 0; i < tempBlock.length; ++i) {
             for (int j = 0; j < tempBlock[i].length; ++j) {

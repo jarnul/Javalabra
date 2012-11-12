@@ -61,4 +61,28 @@ public class gameLogicTest {
         }
         assertEquals(testGame.updateGame(), 1);
     }
+    
+    @Test
+    //Testing if game-status collides with block
+    public void gameLogicCollisionTest(){
+        for (int i=0;i<testGame.status.length;++i){
+            testGame.status[i][testGame.status[0].length-1]=1;
+        }
+        gameBlock test = new gameBlock(1);
+        test.setBlockYco(testGame.getGameStatus()[0].length-4);
+        boolean collision = testGame.checkForCollision(test.getBlockStructure(), test.getBlockXco(), test.getBlockYco());
+        assertEquals(collision, true);
+    }
+    
+    @Test
+    //Testing if game-status collides with block
+    public void gameLogicCollisionTestTwo(){
+        for (int i=0;i<testGame.status.length;++i){
+            testGame.status[i][testGame.status[0].length-1]=1;
+        }
+        gameBlock test = new gameBlock(1);
+        test.setBlockYco(testGame.getGameStatus()[0].length-5);
+        boolean collision = testGame.checkForCollision(test.getBlockStructure(), test.getBlockXco(), test.getBlockYco());
+        assertEquals(collision, false);
+    }
 }

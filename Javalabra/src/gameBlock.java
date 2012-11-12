@@ -220,6 +220,9 @@ public class gameBlock {
             this.rotationDegree = 1;
             this.blockStructure=mirrorBlockXaxis(); 
         }
+        else if (this.blockType == 5 || this.blockType == 7){
+            this.blockStructure=mirrorBlockYaxis();
+        }
     }
     
     private void rotationDegreeOdd() {
