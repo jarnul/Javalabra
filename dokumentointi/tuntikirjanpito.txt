@@ -25,3 +25,6 @@
 
 7.11:
 2h30min Rotaation parannus, virhetarkistusta
+
+12.11:
+3h rotaatioissa korjailua, uusia ja parempia JUnit-testejä yms.
