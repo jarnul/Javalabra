@@ -21,10 +21,10 @@ public class gameLogic {
     private gameBlock currentBlock;
 
     public gameLogic() {
-        this(12,15);
+        this(12, 15);
     }
-    
-    public gameLogic(int width, int height){
+
+    public gameLogic(int width, int height) {
         this.width = width;
         this.height = height;
         //fill up this.status and this.rotations
@@ -38,8 +38,8 @@ public class gameLogic {
      */
     private gameBlock generateBlock() {
         //code to generate random block
-        double random = Math.random()*7;
-        return new gameBlock((int)random+1);
+        double random = Math.random() * 7;
+        return new gameBlock((int) random + 1);
     }
 
     /*
@@ -68,29 +68,42 @@ public class gameLogic {
 
     /*
      * Method for updating game-status, usually bringing block down for one row,
-     * returns an int which tells how many rows were removed (0 is none),
-     * -1 is returned if game is lost
+     * returns an int which tells how many rows were removed (0 is none), -1 is
+     * returned if game is lost
      */
     public int updateGame() {
 
         //Code to generate new block and to put it in game
         if (!this.movingBlocks) {
-            this.currentBlock = generateBlock();
-            int[][] tempBlock = this.currentBlock.getBlockStructure();
-            for (int i = 0; i < tempBlock.length; ++i) {
-                for (int j = 0; j < tempBlock[i].length; ++j) {
-                    if (this.status[i][j] == 0) {
-                        this.status[i][j] = tempBlock[i][j];
-                    } else {
-                        //Code when the game is lost
-                        return -1;
-                    }
-                }
-            }
-            this.movingBlocks = true;
-            return(checkFullRows());
+            return updateGameNoMovingRows();
         } //Code to check if block can be moved
         else {
+            return updateGameMovingRows();
+        }
+    }
+    
+    /*
+     * Method to update game status when there are moving rows
+     */
+
+    private int updateGameNoMovingRows() {
+        this.currentBlock = generateBlock();
+        int[][] tempBlock = this.currentBlock.getBlockStructure();
+        for (int i = 0; i < tempBlock.length; ++i) {
+            for (int j = 0; j < tempBlock[i].length; ++j) {
+                if (this.status[i][j] == 0) {
+                    this.status[i][j] = tempBlock[i][j];
+                } else {
+                    //Code when the game is lost
+                    return -1;
+                }
+            }
+        }
+        this.movingBlocks = true;
+        return (checkFullRows());
+    }
+    
+    private int updateGameMovingRows(){
             int[][] tempBlock = this.currentBlock.getBlockStructure();
             boolean tempBreak = true;
             for (int i = 0; i < tempBlock.length; ++i) {
@@ -114,11 +127,10 @@ public class gameLogic {
                 moveBlockDown();
             }
             return 0;
-        }
     }
 
     private int checkFullRows() {
-        int eliminatedRows=0;
+        int eliminatedRows = 0;
         int fullRowIndex = -1;
         for (int j = 0; j < this.status[0].length; ++j) {
             boolean fullRow = true;
