@@ -56,6 +56,16 @@ public class gameLogic {
     }
     
     /*
+     * Method to generate random block
+     */
+    private gameBlock generateBlock() {
+        //code to generate random block
+        //double random = Math.random() * 7;
+        //return new gameBlock((int) random + 1);
+        return new gameBlock(4);
+    }
+    
+    /*
      * Method to rotate or move pieces, 0 rotates piece, 1 moves piece left, 2
      * moves piece right
      */
@@ -98,22 +108,13 @@ public class gameLogic {
     
     private void rotatePiece(int[][] tempTable, int[][] temp, int tempX, int tempY) {
             tempTable = this.currentBlock.getNextRotationStructure();
-            if (!checkForCollision(tempTable, tempX, tempY)) {
+            //Includes ad-hoc fix for bug with block type 4 being at the left edge of gamescreen and trying to rotate
+            if (!checkForCollision(tempTable, tempX, tempY) && !(this.currentBlock.getRotationDegree()==3 && this.currentBlock.getBlockXco()==0)) {
                 this.currentBlock.rotate();
                 fillIn(this.currentBlock);
             } else {
                 this.status = temp;
             }
-    }
-
-    /*
-     * Method to generate random block
-     */
-    private gameBlock generateBlock() {
-        //code to generate random block
-        double random = Math.random() * 7;
-        return new gameBlock((int) random + 1);
-        //return new gameBlock(7);
     }
 
     /*
@@ -300,7 +301,8 @@ public class gameLogic {
         clearMovingBlocks(tempBlock, 1);
         for (int i = 0; i < tempBlock.length; ++i) {
             for (int j = 0; j < tempBlock[i].length; ++j) {
-                if (i + tempX < this.status.length && i + tempX > -1 && j + tempY < this.status[0].length) {
+                //Testing if the block is in the bounds of gamestatus
+                if (i + tempX < this.status.length && i + tempX > -1 && j + tempY < this.status[0].length && tempX > -1) {
                     if (this.status[i + tempX][j + tempY] == 1 && tempBlock[i][j] == 1) {
                         return true;
                     }

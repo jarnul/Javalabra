@@ -5,9 +5,8 @@ package gameLogic;
  * and open the template in the editor.
  */
 
-import gameLogic.gameBlock;
+import static org.junit.Assert.assertEquals;
 import org.junit.*;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -84,5 +83,17 @@ public class gameBlockTest {
     public void gameBlockTypeTestTwo(){
         testBlock.rotate();
         assertEquals(testBlock.getBlockType(), 1);
+    }
+    
+    @Test
+    public void gameBlockRotateTestBlock5(){
+        testBlock = new gameBlock(5);
+        int[][] tempBlock=testBlock.getNextRotationStructure();
+        int[][] temp = new int[2][3];
+        temp[1][0]=2;
+        temp[0][1]=2;
+        temp[1][1]=2;
+        temp[0][2]=2;
+        assertEquals(tempBlock, temp);
     }
 }

@@ -120,6 +120,41 @@ public class gameBlock {
     public void addXco() {
         ++this.xCoordinate;
     }
+    
+    /*
+     * Method for generating different kinds of blocks, block * (-1) is the
+     * rotated block of a given block
+     */
+    private int[][] buildBlock(int type) {
+        switch (type) {
+
+            case 1: {
+                return createLineBlock();
+            }
+            case 2: {
+                return createSquidBlock();
+            }
+            case 3: {
+                return createSquareBlock();
+            }
+            case 4: {
+                return createPointyBlock();
+            }
+            case 5: {
+                return createSnakeBlock();
+            }
+            case 6: {
+                return createReverseSquidBlock();
+            }
+            case 7: {
+                return createReverseSnakeBlock();
+            }
+
+            default: {
+                return null;
+            }
+        }
+    }
 
     /*
      * Methods to create different blocks
@@ -192,41 +227,6 @@ public class gameBlock {
             temp[0][i] = 2;
         }
         return temp;
-    }
-
-    /*
-     * Method for generating different kinds of blocks, block * (-1) is the
-     * rotated block of a given block
-     */
-    private int[][] buildBlock(int type) {
-        switch (type) {
-
-            case 1: {
-                return createLineBlock();
-            }
-            case 2: {
-                return createSquidBlock();
-            }
-            case 3: {
-                return createSquareBlock();
-            }
-            case 4: {
-                return createPointyBlock();
-            }
-            case 5: {
-                return createSnakeBlock();
-            }
-            case 6: {
-                return createReverseSquidBlock();
-            }
-            case 7: {
-                return createReverseSnakeBlock();
-            }
-
-            default: {
-                return null;
-            }
-        }
     }
 
     /*
