@@ -1,8 +1,11 @@
+package gameLogic;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 
+import gameLogic.gameBlock;
 import org.junit.*;
 import static org.junit.Assert.*;
 

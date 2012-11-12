@@ -1,3 +1,5 @@
+package Javalabra;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -23,7 +25,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
 
     private Javalabra menu;
     private int squareWidth;
-    private gameLogic currentGame;
+    private gameLogic.gameLogic currentGame;
     private Timer timer;
     private int[][] lastStatus;
     private int score;
@@ -48,7 +50,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
         int gameHeight=15;
         this.score=0;
         this.gameOver=false;
-        this.currentGame = new gameLogic(gameWidth,gameHeight);
+        this.currentGame = new gameLogic.gameLogic(gameWidth,gameHeight);
         this.lastStatus = new int[gameWidth][gameHeight];
         for (int i=0;i<this.lastStatus.length;++i){
             for (int j=0;j<this.lastStatus[i].length;++j){
