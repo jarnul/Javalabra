@@ -83,7 +83,7 @@ public class gameLogic {
     }
     
     /*
-     * Method to update game status when there are moving rows
+     * Method to update game status when there are no moving rows
      */
 
     private int updateGameNoMovingRows() {
@@ -102,6 +102,10 @@ public class gameLogic {
         this.movingBlocks = true;
         return (checkFullRows());
     }
+    
+    /*
+     * Method to update game when there are moving rows
+     */
     
     private int updateGameMovingRows(){
             int[][] tempBlock = this.currentBlock.getBlockStructure();
@@ -146,7 +150,6 @@ public class gameLogic {
             eliminateFullRow(fullRowIndex);
         }
         return eliminatedRows;
-
     }
 
     /*
@@ -209,10 +212,41 @@ public class gameLogic {
     public void movePiece(int move) {
         int[][] temp = copyTable(this.status);
         clearMovingBlocks(this.status, 0);
-        int[][] tempTable;
+        int[][] tempTable = this.currentBlock.getBlockStructure();
         int tempX = this.currentBlock.getBlockXco();
         int tempY = this.currentBlock.getBlockYco();
         if (move == 0) {
+            rotatePiece(tempTable,temp,tempX,tempY);
+        } else if (move == 1) {
+            movePieceLeft(tempTable,temp,tempX,tempY);
+        } else if (move == 2) {
+            movePieceRight(tempTable,temp,tempX,tempY);
+        }
+    }
+    
+    /*
+     * Methods to rotate or move blocks
+     */
+    
+    private void movePieceRight(int[][] tempTable, int[][] temp, int tempX, int tempY){
+            if (!checkForCollision(tempTable, tempX - 1, tempY)) {
+                this.currentBlock.subtractXco();
+                fillIn(this.currentBlock);
+            } else {
+                this.status = temp;
+            }
+    }
+    
+    private void movePieceLeft(int[][] tempTable, int[][] temp, int tempX, int tempY){
+            if (!checkForCollision(tempTable, tempX + 1, tempY)) {
+                this.currentBlock.addXco();
+                fillIn(this.currentBlock);
+            } else {
+                this.status = temp;
+            }
+    }
+    
+    private void rotatePiece(int[][] tempTable, int[][] temp, int tempX, int tempY) {
             tempTable = this.currentBlock.getNextRotationStructure();
             if (!checkForCollision(tempTable, tempX, tempY)) {
                 this.currentBlock.rotate();
@@ -220,25 +254,6 @@ public class gameLogic {
             } else {
                 this.status = temp;
             }
-        } else if (move == 1) {
-            tempTable = this.currentBlock.getBlockStructure();
-            if (!checkForCollision(tempTable, tempX + 1, tempY)) {
-                this.currentBlock.addXco();
-                fillIn(this.currentBlock);
-            } else {
-                this.status = temp;
-            }
-        } else if (move == 2) {
-            tempTable = this.currentBlock.getBlockStructure();
-            if (!checkForCollision(tempTable, tempX - 1, tempY)) {
-                this.currentBlock.subtractXco();
-                fillIn(this.currentBlock);
-            } else {
-                this.status = temp;
-            }
-
-        }
-
     }
 
 
