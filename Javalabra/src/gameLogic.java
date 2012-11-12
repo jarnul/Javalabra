@@ -32,6 +32,77 @@ public class gameLogic {
         fillTables(this.status);
         this.movingBlocks = false;
     }
+    
+    /*
+     * Method for updating game-status, usually bringing block down for one row,
+     * returns an int which tells how many rows were removed (0 is none), -1 is
+     * returned if game is lost
+     */
+    public int updateGame() {
+
+        //Code to generate new block and to put it in game
+        if (!this.movingBlocks) {
+            return updateGameNoMovingRows();
+        } //Code to check if block can be moved
+        else {
+            return updateGameMovingRows();
+        }
+    }
+    
+    public int[][] getGameStatus() {
+        return this.status;
+    }
+    
+    /*
+     * Method to rotate or move pieces, 0 rotates piece, 1 moves piece left, 2
+     * moves piece right
+     */
+    public void movePiece(int move) {
+        int[][] temp = copyTable(this.status);
+        clearMovingBlocks(this.status, 0);
+        int[][] tempTable = this.currentBlock.getBlockStructure();
+        int tempX = this.currentBlock.getBlockXco();
+        int tempY = this.currentBlock.getBlockYco();
+        if (move == 0) {
+            rotatePiece(tempTable,temp,tempX,tempY);
+        } else if (move == 1) {
+            movePieceLeft(tempTable,temp,tempX,tempY);
+        } else if (move == 2) {
+            movePieceRight(tempTable,temp,tempX,tempY);
+        }
+    }
+    
+    /*
+     * Methods to rotate or move blocks
+     */
+    
+    private void movePieceRight(int[][] tempTable, int[][] temp, int tempX, int tempY){
+            if (!checkForCollision(tempTable, tempX - 1, tempY)) {
+                this.currentBlock.subtractXco();
+                fillIn(this.currentBlock);
+            } else {
+                this.status = temp;
+            }
+    }
+    
+    private void movePieceLeft(int[][] tempTable, int[][] temp, int tempX, int tempY){
+            if (!checkForCollision(tempTable, tempX + 1, tempY)) {
+                this.currentBlock.addXco();
+                fillIn(this.currentBlock);
+            } else {
+                this.status = temp;
+            }
+    }
+    
+    private void rotatePiece(int[][] tempTable, int[][] temp, int tempX, int tempY) {
+            tempTable = this.currentBlock.getNextRotationStructure();
+            if (!checkForCollision(tempTable, tempX, tempY)) {
+                this.currentBlock.rotate();
+                fillIn(this.currentBlock);
+            } else {
+                this.status = temp;
+            }
+    }
 
     /*
      * Method to generate random block
@@ -64,22 +135,6 @@ public class gameLogic {
                     temp[i][j] = newNumber;
                 }
             }
-        }
-    }
-
-    /*
-     * Method for updating game-status, usually bringing block down for one row,
-     * returns an int which tells how many rows were removed (0 is none), -1 is
-     * returned if game is lost
-     */
-    public int updateGame() {
-
-        //Code to generate new block and to put it in game
-        if (!this.movingBlocks) {
-            return updateGameNoMovingRows();
-        } //Code to check if block can be moved
-        else {
-            return updateGameMovingRows();
         }
     }
     
@@ -206,57 +261,6 @@ public class gameLogic {
         this.currentBlock.addBlockYco();
     }
 
-    /*
-     * Method to rotate or move pieces, 0 rotates piece, 1 moves piece left, 2
-     * moves piece right
-     */
-    public void movePiece(int move) {
-        int[][] temp = copyTable(this.status);
-        clearMovingBlocks(this.status, 0);
-        int[][] tempTable = this.currentBlock.getBlockStructure();
-        int tempX = this.currentBlock.getBlockXco();
-        int tempY = this.currentBlock.getBlockYco();
-        if (move == 0) {
-            rotatePiece(tempTable,temp,tempX,tempY);
-        } else if (move == 1) {
-            movePieceLeft(tempTable,temp,tempX,tempY);
-        } else if (move == 2) {
-            movePieceRight(tempTable,temp,tempX,tempY);
-        }
-    }
-    
-    /*
-     * Methods to rotate or move blocks
-     */
-    
-    private void movePieceRight(int[][] tempTable, int[][] temp, int tempX, int tempY){
-            if (!checkForCollision(tempTable, tempX - 1, tempY)) {
-                this.currentBlock.subtractXco();
-                fillIn(this.currentBlock);
-            } else {
-                this.status = temp;
-            }
-    }
-    
-    private void movePieceLeft(int[][] tempTable, int[][] temp, int tempX, int tempY){
-            if (!checkForCollision(tempTable, tempX + 1, tempY)) {
-                this.currentBlock.addXco();
-                fillIn(this.currentBlock);
-            } else {
-                this.status = temp;
-            }
-    }
-    
-    private void rotatePiece(int[][] tempTable, int[][] temp, int tempX, int tempY) {
-            tempTable = this.currentBlock.getNextRotationStructure();
-            if (!checkForCollision(tempTable, tempX, tempY)) {
-                this.currentBlock.rotate();
-                fillIn(this.currentBlock);
-            } else {
-                this.status = temp;
-            }
-    }
-
 
     /*
      * Method to copy table
@@ -304,9 +308,5 @@ public class gameLogic {
             }
         }
         return false;
-    }
-
-    public int[][] getGameStatus() {
-        return this.status;
     }
 }

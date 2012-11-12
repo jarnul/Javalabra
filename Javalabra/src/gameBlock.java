@@ -33,6 +33,91 @@ public class gameBlock {
         this.yCoordinate = copy.getBlockYco();
         this.rotationDegree = copy.getRotationDegree();
     }
+    
+        /*
+     * Method to rotate pieces using matrix-transposes
+     */
+    public void rotate() {
+        //Creates the transpose-matrix of this.blockStructure
+        int[][] rotated;
+        //rotationDegree is used in case block must be transposed from different origins (as with pointyBlock for example)
+        if (this.rotationDegree == 0 || this.rotationDegree == 2) {
+            rotated = matrixTranspose(this.blockStructure);
+            //Special cases for pointyblocks and squidblocks
+            rotationDegreeEven();
+
+        } else {
+            rotated = matrixTransposeSkewed(this.blockStructure);
+            rotationDegreeOdd();
+        }
+        this.blockStructure = rotated;
+    }
+
+    /*
+     * Method to return next rotation for inspection
+     */
+    public int[][] getNextRotationStructure() {
+        int[][] rotated;
+        int tempRotation=this.rotationDegree;
+        int tempXco=this.xCoordinate;
+        int tempYco=this.yCoordinate;
+        //rotationDegree is used in case block must be transposed from different origins (as with pointyBlock for example)
+        if (this.rotationDegree == 0 || this.rotationDegree == 2) {
+            rotated = matrixTranspose(this.blockStructure);
+            //Special cases for pointyblocks and squidblocks
+            rotationDegreeEven();
+
+        } else {
+            rotated = matrixTransposeSkewed(this.blockStructure);
+            rotationDegreeOdd();
+        }
+        this.rotationDegree=tempRotation;
+        this.xCoordinate=tempXco;
+        this.yCoordinate=tempYco;
+        return rotated;
+    }
+
+    public int getBlockType() {
+        return this.blockType;
+    }
+
+    public int getBlockXco() {
+        return this.xCoordinate;
+    }
+
+    public int getBlockYco() {
+        return this.yCoordinate;
+    }
+
+    public void setBlockXco(int x) {
+        this.xCoordinate = x;
+    }
+
+    public void setBlockYco(int y) {
+        this.yCoordinate = y;
+    }
+
+    public void addBlockYco() {
+        ++this.yCoordinate;
+    }
+
+    public int getRotationDegree() {
+        return this.rotationDegree;
+    }
+
+    public int[][] getBlockStructure() {
+        return copyTable(this.blockStructure);
+    }
+
+    public void subtractXco() {
+        if (this.xCoordinate > 0) {
+            --this.xCoordinate;
+        }
+    }
+
+    public void addXco() {
+        ++this.xCoordinate;
+    }
 
     /*
      * Methods to create different blocks
@@ -238,91 +323,6 @@ public class gameBlock {
             this.rotationDegree = 0;
             this.blockStructure=mirrorBlockYaxis();
         }
-    }
-
-    /*
-     * Method to rotate pieces using matrix-transposes
-     */
-    public void rotate() {
-        //Creates the transpose-matrix of this.blockStructure
-        int[][] rotated;
-        //rotationDegree is used in case block must be transposed from different origins (as with pointyBlock for example)
-        if (this.rotationDegree == 0 || this.rotationDegree == 2) {
-            rotated = matrixTranspose(this.blockStructure);
-            //Special cases for pointyblocks and squidblocks
-            rotationDegreeEven();
-
-        } else {
-            rotated = matrixTransposeSkewed(this.blockStructure);
-            rotationDegreeOdd();
-        }
-        this.blockStructure = rotated;
-    }
-
-    /*
-     * Method to return next rotation for inspection
-     */
-    public int[][] getNextRotationStructure() {
-        int[][] rotated;
-        int tempRotation=this.rotationDegree;
-        int tempXco=this.xCoordinate;
-        int tempYco=this.yCoordinate;
-        //rotationDegree is used in case block must be transposed from different origins (as with pointyBlock for example)
-        if (this.rotationDegree == 0 || this.rotationDegree == 2) {
-            rotated = matrixTranspose(this.blockStructure);
-            //Special cases for pointyblocks and squidblocks
-            rotationDegreeEven();
-
-        } else {
-            rotated = matrixTransposeSkewed(this.blockStructure);
-            rotationDegreeOdd();
-        }
-        this.rotationDegree=tempRotation;
-        this.xCoordinate=tempXco;
-        this.yCoordinate=tempYco;
-        return rotated;
-    }
-
-    public int getBlockType() {
-        return this.blockType;
-    }
-
-    public int getBlockXco() {
-        return this.xCoordinate;
-    }
-
-    public int getBlockYco() {
-        return this.yCoordinate;
-    }
-
-    public void setBlockXco(int x) {
-        this.xCoordinate = x;
-    }
-
-    public void setBlockYco(int y) {
-        this.yCoordinate = y;
-    }
-
-    public void addBlockYco() {
-        ++this.yCoordinate;
-    }
-
-    public int getRotationDegree() {
-        return this.rotationDegree;
-    }
-
-    public int[][] getBlockStructure() {
-        return copyTable(this.blockStructure);
-    }
-
-    public void subtractXco() {
-        if (this.xCoordinate > 0) {
-            --this.xCoordinate;
-        }
-    }
-
-    public void addXco() {
-        ++this.xCoordinate;
     }
 
     private int[][] copyTable(int[][] temp) {
