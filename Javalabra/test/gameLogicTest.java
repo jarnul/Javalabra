@@ -19,7 +19,6 @@ public class gameLogicTest {
     public gameLogicTest() {
     }
     gameLogic testGame;
-    gameBlock testBlock;
 
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -32,7 +31,6 @@ public class gameLogicTest {
     @Before
     public void setUp() {
         testGame = new gameLogic(); 
-        testBlock = new gameBlock();
     }
     
     @After
@@ -46,54 +44,6 @@ public class gameLogicTest {
       int[][] temp = new int[12][15];
       assertEquals(temp ,  testGame.getGameStatus());
   }
-    @Test
-    public void gameBlockGetXtester() {
-        assertEquals(testBlock.getBlockXco(), 0);
-    }
-    
-    @Test
-    public void gameBlockGetYtester() {
-        assertEquals(testBlock.getBlockYco(), 0);
-    }
-    
-    @Test
-    public void gameBlockGetXtesterTwo() {
-        testBlock.addBlockYco();
-        assertEquals(testBlock.getBlockYco(), 1);
-    }
-    
-    @Test
-    public void gameBlockGetXtesterThree() {
-        testBlock.setBlockXco(5);
-        assertEquals(testBlock.getBlockXco(), 5);
-    }
-    
-    @Test
-    public void gameBlockGetYtesterTwo() {
-        testBlock.setBlockYco(10);
-        assertEquals(testBlock.getBlockYco(), 10);
-    }
-    
-    @Test
-      public void gameBlockConstructorTester() {   
-      int[][] temp = new int[1][4];
-      for (int i=0;i<4;++i){
-             temp[0][i]=2;
-      }
-      assertEquals(temp ,  testBlock.getBlockStructure());
-  }
-    @Test
-    public void gameBlockTypeTest(){
-        assertEquals(testBlock.getBlockType(), 1);
-    
-    }
-    
-    @Test
-    public void gameBlockTypeTestTwo(){
-        testBlock.rotate();
-        assertEquals(testBlock.getBlockType(), 1);
-    
-    }
     
     @Test
     public void gameLogicUpdateTest(){
@@ -101,5 +51,14 @@ public class gameLogicTest {
         testGame.updateGame();
         int[][] temp2 = testGame.getGameStatus();
         assertEquals(temp.length,temp2.length);
+    }
+    
+    @Test
+    //Testing if row is eliminated correctly
+    public void gameLogicRowEliminated(){
+        for (int i=0;i<testGame.status.length;++i){
+            testGame.status[i][testGame.status[0].length-1]=1;
+        }
+        assertEquals(testGame.updateGame(), 1);
     }
 }

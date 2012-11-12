@@ -12,7 +12,7 @@ public class gameLogic {
     //Status-table for game, for every x,y co-ordinate the table has a int-value between 0 and 4,
     //0 is empty square, 1 is black square and 2 is black square that is falling down
     //and it will be changed to 1.
-    private int[][] status;
+    protected int[][] status;
     //width and heigth of the tetris-game
     private int width;
     private int height;

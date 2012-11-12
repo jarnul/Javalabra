@@ -178,6 +178,31 @@ public class gameBlock {
         }
         return rotated;
     }
+    
+    /*
+     * Method to mirror block
+     */
+    
+    private int[][] mirrorBlockXaxis(){
+        int[][] temp = new int[this.blockStructure.length][this.blockStructure[0].length];
+        for (int i=0;i<temp.length;++i){
+            for (int j=0;j<temp[i].length;++j){
+                temp[i][j] = this.blockStructure[this.blockStructure.length-1-i][j];
+            }
+        }
+        return temp;
+    }
+    
+    private int[][] mirrorBlockYaxis(){
+        int[][] temp = new int[this.blockStructure.length][this.blockStructure[0].length];
+        for (int i=0;i<temp.length;++i){
+            for (int j=0;j<temp[i].length;++j){
+                temp[i][j] = this.blockStructure[i][this.blockStructure[0].length-1-j];
+            }
+        }
+        return temp;
+    }
+    
 
     /*
      * Methods to fix rotation degrees for special blocks
@@ -193,6 +218,7 @@ public class gameBlock {
 
         } else if (this.blockType == 2 || this.blockType == 6) {
             this.rotationDegree = 1;
+            this.blockStructure=mirrorBlockXaxis(); 
         }
     }
     
@@ -207,6 +233,7 @@ public class gameBlock {
             }
         } else if (this.blockType == 2 || this.blockType == 6) {
             this.rotationDegree = 0;
+            this.blockStructure=mirrorBlockYaxis();
         }
     }
 
