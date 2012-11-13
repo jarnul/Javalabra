@@ -30,6 +30,12 @@ public class gameFiles {
     public gameFiles(String player) {
         this(player, 0);
     }
+    
+    public void setScore(int score){
+        if (this.score<score){
+            this.score=score;
+        }
+    }
 
     public boolean saveScore() {
         int temp = readScoreFromFile();
@@ -41,10 +47,27 @@ public class gameFiles {
         }
     }
     
+    /*
+     * Method to read score from scores.txt file, returns -1 if score couldn't be read
+     */
+    
     public int readHighScore(){
         return readScoreFromFile();
     }
+    
+    public int getScore(){
+        return this.score;
+    }
+    
+    public String getNick(){
+        return this.player;
+    }
+    
 
+    
+    /*
+     * Method to read high score from scores.txt file
+     */
     private int readScoreFromFile() {
         try {
             // Open the file that is the first 
@@ -69,6 +92,9 @@ public class gameFiles {
         }
     }
 
+    /*
+     * Method to write given score to scores.txt file
+     */
     private boolean saveToFile(int highScore, String player) {
         try {
             // Create file 

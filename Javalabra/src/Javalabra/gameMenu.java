@@ -20,6 +20,7 @@ import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 
 public class gameMenu extends javax.swing.JFrame implements ActionListener {
 
@@ -30,6 +31,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
     private int[][] lastStatus;
     private int score;
     private boolean gameOver;
+    private gameFiles files;
 
     /**
      * Creates new form gameMenu
@@ -50,6 +52,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
         int gameHeight=15;
         this.score=0;
         this.gameOver=false;
+        this.files = new gameFiles("Player", 0);
         this.currentGame = new gameLogic.gameLogic(gameWidth,gameHeight);
         this.lastStatus = new int[gameWidth][gameHeight];
         for (int i=0;i<this.lastStatus.length;++i){
@@ -228,6 +231,12 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         else {
             this.timer.stop();
             this.gameOver=true;
+            files.setScore(this.score);
+            files.saveScore();
+            JOptionPane.showMessageDialog(this,
+            "Game over!",
+            "GG",
+            JOptionPane.INFORMATION_MESSAGE);
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

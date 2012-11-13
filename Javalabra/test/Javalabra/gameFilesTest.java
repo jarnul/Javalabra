@@ -38,7 +38,7 @@ public class gameFilesTest {
     // The methods must be annotated with annotation @Test. For example:
     //
     @Test
-    public void hello() {
+    public void gameFilesWriteAndReadFromFile() {
         testFile = new gameFiles("test", 500);
         testFile.saveScore();
         assertEquals(500, testFile.readHighScore());

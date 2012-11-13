@@ -1,5 +1,7 @@
 package Javalabra;
 
+import javax.swing.JOptionPane;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -111,8 +113,11 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        gameFiles pelaaja = new gameFiles("jarnul", 100);// TODO add your handling code here:
-        pelaaja.saveScore();
+        gameFiles player = new gameFiles("jarnul", 0);// TODO add your handling code here:
+        JOptionPane.showMessageDialog(this,
+        player.getNick() + ": " + Integer.toString(player.readHighScore()),
+        "High score",
+        JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
