@@ -11,9 +11,11 @@ package gameLogic;
 public class gameAI {
 
     private gameLogic currentGame;
+    private int targetHeight;
 
     public gameAI(gameLogic currentGame) {
         this.currentGame = currentGame;
+        this.targetHeight = 0;
     }
     
     /*
@@ -48,6 +50,7 @@ public class gameAI {
                     int highPoint=highestX(fillInStatus(testBlock, copyTable(this.currentGame.getGameStatus()), i, j));
                     if (lowest>highPoint){
                         lowest=highPoint;
+                        this.targetHeight=highPoint;
                         xCo=i;
                     }
                 }
