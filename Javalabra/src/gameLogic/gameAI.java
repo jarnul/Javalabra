@@ -9,25 +9,30 @@ package gameLogic;
  * @author jzvaris
  */
 public class gameAI {
-    
-    public gameAI(){
 
+    private gameLogic currentGame;
+
+    public gameAI(gameLogic currentGame) {
+        this.currentGame = currentGame;
     }
-    
-    public void updateGame(gameLogic currentGame){
-        if (lowestX(currentGame) < currentGame.getBlockXco()) {
-            currentGame.movePiece(2);
+
+    public void updateGame() {
+        int temp=0;
+        while (lowestX() != this.currentGame.getBlockXco() && temp<6) {
+            if (lowestX() < this.currentGame.getBlockXco()) {
+                this.currentGame.movePiece(2);
+            } else if (lowestX() > this.currentGame.getBlockXco()) {
+                this.currentGame.movePiece(1);
+            }
+            ++temp;
         }
-        else if (lowestX(currentGame) > currentGame.getBlockXco()) {
-            currentGame.movePiece(1);
-        }
-        currentGame.updateGame();
+        this.currentGame.updateGame();
     }
-    
-    private int lowestX(gameLogic currentGame) {
-        for (int i=0;i<currentGame.getGameStatus().length;++i){
-            for (int j=currentGame.getGameStatus()[i].length-1;j>-1;--j){
-                if (currentGame.getGameStatus()[i][j]==0){
+
+    private int lowestX() {
+        for (int j = this.currentGame.getGameStatus()[0].length - 1; j > -1; --j) {
+            for (int i = 0; i < this.currentGame.getGameStatus().length; ++i) {
+                if (this.currentGame.getGameStatus()[i][j] == 0) {
                     return i;
                 }
             }
