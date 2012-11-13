@@ -59,6 +59,10 @@ public class gameLogic {
         return this.currentBlock.getBlockXco();
     }
     
+    public int getCurrentBlockType(){
+        return this.currentBlock.getBlockType();
+    }
+    
     /*
      * Method to rotate or move pieces, 0 rotates piece, 1 moves piece left, 2
      * moves piece right
