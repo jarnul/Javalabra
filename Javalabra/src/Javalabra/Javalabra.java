@@ -126,9 +126,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    gameMenuAI game = new gameMenuAI(this);
-    this.setVisible(false);
-    game.setVisible(true);// TODO add your handling code here:
+    // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
