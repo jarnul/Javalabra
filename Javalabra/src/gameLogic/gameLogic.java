@@ -55,13 +55,8 @@ public class gameLogic {
         return this.status;
     }
     
-    /*
-     * Method to generate random block
-     */
-    private gameBlock generateBlock() {
-        //code to generate random block
-        double random = Math.random() * 7;
-        return new gameBlock((int) random + 1);
+    public int getBlockXco(){
+        return this.currentBlock.getBlockXco();
     }
     
     /*
@@ -81,6 +76,15 @@ public class gameLogic {
         } else if (move == 2) {
             movePieceRight(tempTable,temp,tempX,tempY);
         }
+    }
+    
+    /*
+     * Method to generate random block
+     */
+    private gameBlock generateBlock() {
+        //code to generate random block
+        double random = Math.random() * 7;
+        return new gameBlock((int) random + 1);
     }
     
     /*

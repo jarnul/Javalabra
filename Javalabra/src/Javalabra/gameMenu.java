@@ -219,7 +219,6 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     public void actionPerformed(ActionEvent e) {
         updateGameStatus();
         repaint();
-
     }
     
     private void updateGameStatus(){
@@ -239,6 +238,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             JOptionPane.INFORMATION_MESSAGE);
         }
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
