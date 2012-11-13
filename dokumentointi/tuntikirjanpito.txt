@@ -28,3 +28,6 @@
 
 12.11:
 3h rotaatioissa korjailua, uusia ja parempia JUnit-testejä yms.
+
+13.11:
+2h gamefiles-luokka, bugienkorjausta
