@@ -42,13 +42,13 @@ public class gameAI {
     
     private int tryAllSpots(gameBlock testBlock){
         int upperlimit=highestX(this.currentGame.getGameStatus());
-        int lowest=this.currentGame.getGameStatus()[0].length;
+        int lowest=0;
         int xCo=0;
         for (int i=0;i<this.currentGame.getGameStatus().length;++i){
             for (int j=this.currentGame.getGameStatus()[0].length-1;j>upperlimit-1;--j){
                 if (!checkForCollisionAi(testBlock.getBlockStructure(), this.currentGame.getGameStatus(), i, j)) {
                     int highPoint=highestX(fillInStatus(testBlock, copyTable(this.currentGame.getGameStatus()), i, j));
-                    if (lowest>highPoint){
+                    if (lowest<highPoint){
                         lowest=highPoint;
                         this.targetHeight=highPoint;
                         xCo=i;
@@ -120,6 +120,7 @@ public class gameAI {
                 }
             }
         }
+        clearSolidBlocks(tempBlock,2);
         return false;
     }
         
@@ -131,6 +132,16 @@ public class gameAI {
             for (int j = 0; j < temp[i].length; ++j) {
                 if (temp[i][j] == 2) {
                     temp[i][j] = filler;
+                }
+            }
+        }
+    }
+
+    private void clearSolidBlocks(int[][] temp, int filler){
+        for (int i=0;i<temp.length;++i){
+            for (int j=0;j<temp[0].length;++j){
+                if(temp[i][j]==1){
+                    temp[i][j]=2;
                 }
             }
         }
