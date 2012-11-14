@@ -11,58 +11,78 @@ package gameLogic;
 public class gameAI {
 
     private gameLogic currentGame;
-    private int targetHeight;
+    private int numberOfRotations;
 
     public gameAI(gameLogic currentGame) {
         this.currentGame = currentGame;
-        this.targetHeight = 0;
+        this.numberOfRotations = 0;
     }
-    
+
     /*
      * Method that moves block to desired spot
      */
-
     public void updateGame() {
-        int temp=0;
-        int goalX=tryAllSpots(new gameBlock(this.currentGame.getCurrentBlockType()));
-        while (goalX != this.currentGame.getBlockXco() && temp<6) {
-            if (goalX < this.currentGame.getBlockXco()) {
-                this.currentGame.movePiece(2);
-            } else if (goalX > this.currentGame.getBlockXco()) {
-                this.currentGame.movePiece(1);
+        if (this.currentGame.getBlockYco() > 0) {
+            int temp = 0;
+            int goalX = tryAllSpots(new gameBlock(this.currentGame.getCurrentBlockType()));
+            while (goalX != this.currentGame.getBlockXco() && temp < this.currentGame.getGameStatus().length && this.currentGame.getBlockYco() < 2) {
+                if (goalX < this.currentGame.getBlockXco()) {
+                    this.currentGame.movePiece(2);
+                } else if (goalX > this.currentGame.getBlockXco()) {
+                    this.currentGame.movePiece(1);
+                }
+                ++temp;
             }
-            ++temp;
+            this.currentGame.updateGame();
+        } else {
+            tryAllSpots(new gameBlock(this.currentGame.getCurrentBlockType()));
+            while (this.numberOfRotations > 0) {
+                this.currentGame.movePiece(0);
+                --this.numberOfRotations;
+            }
+            this.currentGame.updateGame();
         }
-        this.currentGame.updateGame();
     }
-    
+
+    private boolean movingBlocks(int[][] gameTable) {
+        for (int i = 0; i < gameTable.length; ++i) {
+            for (int j = 0; j < gameTable[0].length; ++j) {
+                if (gameTable[i][j] == 2) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     /*
      * Method to try block in all possible spots
      */
-    
-    private int tryAllSpots(gameBlock testBlock){
-        int upperlimit=highestX(this.currentGame.getGameStatus());
-        int lowest=0;
-        int xCo=0;
-        for (int i=0;i<this.currentGame.getGameStatus().length;++i){
-            for (int j=this.currentGame.getGameStatus()[0].length-1;j>upperlimit-1;--j){
-                if (!checkForCollisionAi(testBlock.getBlockStructure(), this.currentGame.getGameStatus(), i, j)) {
-                    int highPoint=highestX(fillInStatus(testBlock, copyTable(this.currentGame.getGameStatus()), i, j));
-                    if (lowest<highPoint){
-                        lowest=highPoint;
-                        this.targetHeight=highPoint;
-                        xCo=i;
+    private int tryAllSpots(gameBlock testBlock) {
+        int upperlimit = highestX(this.currentGame.getGameStatus());
+        int lowest = 0;
+        int xCo = 0;
+        int[][] gameTableNoExtraMovingBlock = clearMovingBlocks(copyTable(this.currentGame.getGameStatus()), 0);
+        for (int i = 0; i < this.currentGame.getGameStatus().length; ++i) {
+            for (int j = this.currentGame.getGameStatus()[0].length - 1; j > upperlimit - 1; --j) {
+                for (int k = 0; k < 4; ++k) {
+                    if (!checkForCollisionAi(testBlock.getBlockStructure(), gameTableNoExtraMovingBlock, i, j) && canFreeFall(testBlock.getBlockStructure(), gameTableNoExtraMovingBlock, i, upperlimit, j)) {
+                        if (lowest < j) {
+                            lowest = j;
+                            xCo = i;
+                            this.numberOfRotations = k;
+                        }
                     }
+                    testBlock.rotate();
                 }
             }
         }
         return xCo;
     }
-    
+
     /*
      * Method to find the lowest X-coordinate which is empty
      */
-
     private int lowestX(int[][] gameTable) {
         for (int j = gameTable[0].length - 1; j > -1; --j) {
             for (int i = 0; i < gameTable.length; ++i) {
@@ -73,27 +93,26 @@ public class gameAI {
         }
         return -1;
     }
-    
+
     /*
      * Method to find the highest row that is not empty
      */
-    
     private int highestX(int[][] gameTable) {
         for (int j = gameTable[0].length - 1; j > -1; --j) {
-            boolean empty=true;
+            boolean empty = true;
             for (int i = 0; i < gameTable.length; ++i) {
-                if(gameTable[i][j]==1) {
-                    empty=false;
+                if (gameTable[i][j] == 1 || gameTable[i][j] == 2) {
+                    empty = false;
                     break;
                 }
             }
-            if (empty==true){
+            if (empty == true) {
                 return j;
             }
         }
         return -1;
     }
-    
+
     private int[][] fillInStatus(gameBlock temp, int[][] gameTable, int x, int y) {
         int[][] tempBlock = temp.getBlockStructure();
         for (int i = 0; i < tempBlock.length; ++i) {
@@ -106,7 +125,18 @@ public class gameAI {
         return gameTable;
     }
     
-        protected boolean checkForCollisionAi(int[][] tempBlock, int[][] gameTable, int tempX, int tempY) {
+    private boolean canFreeFall(int[][] tempBlock, int[][] gameTable, int x, int y, int targetHeight) {
+        for (int i=0;i<tempBlock.length;++i){
+            for(int j=y;j<targetHeight+1;++j){
+                if(gameTable[x+i][j]==1){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    protected boolean checkForCollisionAi(int[][] tempBlock, int[][] gameTable, int tempX, int tempY) {
         clearMovingBlocks(tempBlock, 1);
         for (int i = 0; i < tempBlock.length; ++i) {
             for (int j = 0; j < tempBlock[i].length; ++j) {
@@ -120,14 +150,14 @@ public class gameAI {
                 }
             }
         }
-        clearSolidBlocks(tempBlock,2);
+        clearSolidBlocks(tempBlock, 2);
         return false;
     }
-        
+
     /*
      * Method to turn all 2's into given integer
      */
-    private void clearMovingBlocks(int[][] temp, int filler) {
+    private int[][] clearMovingBlocks(int[][] temp, int filler) {
         for (int i = 0; i < temp.length; ++i) {
             for (int j = 0; j < temp[i].length; ++j) {
                 if (temp[i][j] == 2) {
@@ -135,18 +165,19 @@ public class gameAI {
                 }
             }
         }
+        return temp;
     }
 
-    private void clearSolidBlocks(int[][] temp, int filler){
-        for (int i=0;i<temp.length;++i){
-            for (int j=0;j<temp[0].length;++j){
-                if(temp[i][j]==1){
-                    temp[i][j]=2;
+    private void clearSolidBlocks(int[][] temp, int filler) {
+        for (int i = 0; i < temp.length; ++i) {
+            for (int j = 0; j < temp[0].length; ++j) {
+                if (temp[i][j] == 1) {
+                    temp[i][j] = 2;
                 }
             }
         }
     }
-    
+
     private int[][] copyTable(int[][] temp) {
         int[][] copy = new int[temp.length][temp[0].length];
         for (int i = 0; i < temp.length; ++i) {
