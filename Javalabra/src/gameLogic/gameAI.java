@@ -73,7 +73,9 @@ public class gameAI {
                             this.numberOfRotations = k;
                         }
                     }
-                    testBlock.rotate();
+                    if (testBlock.getBlockType() != 4) {
+                        testBlock.rotate();
+                    }
                 }
             }
         }
@@ -124,11 +126,11 @@ public class gameAI {
         }
         return gameTable;
     }
-    
+
     private boolean canFreeFall(int[][] tempBlock, int[][] gameTable, int x, int y, int targetHeight) {
-        for (int i=0;i<tempBlock.length;++i){
-            for(int j=y;j<targetHeight+1;++j){
-                if(gameTable[x+i][j]==1){
+        for (int i = 0; i < tempBlock.length; ++i) {
+            for (int j = y; j < targetHeight + 1; ++j) {
+                if (gameTable[x + i][j] == 1) {
                     return false;
                 }
             }
