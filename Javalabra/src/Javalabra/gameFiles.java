@@ -18,6 +18,12 @@ public class gameFiles {
     public gameFiles() {
         this("Default", 0);
     }
+    
+    /**
+     * 
+     * @param player name of the player that will be saved in file
+     * @param score the given score of player
+     */
 
     public gameFiles(String player, int score) {
         this.score = score;
@@ -26,16 +32,31 @@ public class gameFiles {
         }
         this.player = player;
     }
+    
+    /**
+     * 
+     * @param player name of the player that will be saved in file
+     */
 
     public gameFiles(String player) {
         this(player, 0);
     }
+    
+    /**
+     * 
+     * @param score set the score for this gameFiles-object
+     */
     
     public void setScore(int score){
         if (this.score<score){
             this.score=score;
         }
     }
+    
+    /**
+     * 
+     * @return true if saveScore was successful, else false
+     */
 
     public boolean saveScore() {
         int temp = readScoreFromFile();
@@ -47,17 +68,29 @@ public class gameFiles {
         }
     }
     
-    /*
+    /**
      * Method to read score from scores.txt file, returns -1 if score couldn't be read
+     * 
+     * @return highscore read from file
      */
     
     public int readHighScore(){
         return readScoreFromFile();
     }
     
+    /**
+     * 
+     * @return the score of this gameFiles-object
+     */
+    
     public int getScore(){
         return this.score;
     }
+    
+    /**
+     * 
+     * @return the name of this player
+     */
     
     public String getNick(){
         return this.player;

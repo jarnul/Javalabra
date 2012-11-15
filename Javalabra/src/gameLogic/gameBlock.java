@@ -20,6 +20,11 @@ public class gameBlock {
     public gameBlock() {
         this(1);
     }
+    
+    /**
+     * 
+     * @param type int to tell which kind of block to build: 0 is lineblock, 2 is Squidblock, 3 is squareblock, 4 is pointyblock, 5 is snakeblock, 6 is reversesquidblock, 7 is reversesnakeblock
+     */
 
     public gameBlock(int type) {
         this.blockType = type;
@@ -29,6 +34,11 @@ public class gameBlock {
         this.rotationDegree = 0;
     }
 
+    
+    /**
+     * 
+     * @param copy another gameblock-instance, which will be copied
+     */
     public gameBlock(gameBlock copy) {
         this(copy.getBlockType());
         this.xCoordinate = copy.getBlockXco();
@@ -36,8 +46,8 @@ public class gameBlock {
         this.rotationDegree = copy.getRotationDegree();
     }
     
-        /*
-     * Method to rotate pieces using matrix-transposes
+    /**
+     * Method to rotate piece using matrix-transposes
      */
     public void rotate() {
         //Creates the transpose-matrix of this.blockStructure
@@ -55,8 +65,10 @@ public class gameBlock {
         this.blockStructure = rotated;
     }
 
-    /*
+    /**
      * Method to return next rotation for inspection
+     * 
+     * @return returns the int[][] table of the piece that given piece would be if it was rotated
      */
     public int[][] getNextRotationStructure() {
         int[][] rotated;
@@ -79,43 +91,87 @@ public class gameBlock {
         return rotated;
     }
 
+    
+    /**
+     * 
+     * @return blocktype of this block
+     */
     public int getBlockType() {
         return this.blockType;
     }
+    
+    /**
+     * 
+     * @return the x-coordinate of this block
+     */
 
     public int getBlockXco() {
         return this.xCoordinate;
     }
 
+    
+    /**
+     * 
+     * @return the y-coordinate of this block
+     */
     public int getBlockYco() {
         return this.yCoordinate;
     }
+    
+    /**
+     * 
+     * @param x the x-coordinate wanted for block
+     */
 
     public void setBlockXco(int x) {
         this.xCoordinate = x;
     }
+    /**
+     * 
+     * @param y the y-coordinate wanted for block
+     */
 
     public void setBlockYco(int y) {
         this.yCoordinate = y;
     }
+    
+    /**
+     * adds one to this blocks y-coordinate
+     */
 
     public void addBlockYco() {
         ++this.yCoordinate;
     }
+    /**
+     * 
+     * @return returns this blocks rotationdegree
+     */
 
     public int getRotationDegree() {
         return this.rotationDegree;
     }
+    /**
+     * 
+     * @return returns the int[][] table of current block
+     */
 
     public int[][] getBlockStructure() {
         return copyTable(this.blockStructure);
     }
+    
+    /**
+     * removes one from blocks current x-coordinate
+     */
 
     public void subtractXco() {
         if (this.xCoordinate > 0) {
             --this.xCoordinate;
         }
     }
+    
+    /**
+     * adds one to blocks current x-coordinate
+     */
 
     public void addXco() {
         ++this.xCoordinate;
@@ -124,6 +180,7 @@ public class gameBlock {
     /*
      * Method for generating different kinds of blocks, block * (-1) is the
      * rotated block of a given block
+     * 0 is lineblock, 2 is Squidblock, 3 is squareblock, 4 is pointyblock, 5 is snakeblock, 6 is reversesquidblock, 7 is reversesnakeblock
      */
     private int[][] buildBlock(int type) {
         switch (type) {

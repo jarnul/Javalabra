@@ -35,14 +35,14 @@ public class gameMenuAI extends javax.swing.JFrame implements ActionListener {
     private gameLogic.gameAI gameAI;
 
     /**
-     * Creates new form gameMenu
+     * Creates new form gameMenuAI, which is menu to show ai-playing
      */
     public gameMenuAI() {
         initComponents();
     }
 
     /**
-     * Creates new form gameMenu and fills the game-status table status and
+     * Creates new form gameMenuAI and fills the game-status table status and
      * rotations-table
      */
     public gameMenuAI(Javalabra handle) {
@@ -77,16 +77,9 @@ public class gameMenuAI extends javax.swing.JFrame implements ActionListener {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                formKeyPressed(evt);
-            }
-        });
 
         jButton1.setText("Pause");
         jButton1.setFocusPainted(false);
@@ -115,22 +108,16 @@ public class gameMenuAI extends javax.swing.JFrame implements ActionListener {
             }
         });
 
-        jTextPane1.setEditable(false);
-        jTextPane1.setFocusable(false);
-        jScrollPane1.setViewportView(jTextPane1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(309, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(327, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -142,9 +129,7 @@ public class gameMenuAI extends javax.swing.JFrame implements ActionListener {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
 
         pack();
@@ -183,28 +168,6 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     }
 
-    /*
-     * Method for keypress
-     */
-private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-    if (!this.gameOver){
-        if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
-            this.currentGame.movePiece(2);
-        }
-        if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
-            this.currentGame.movePiece(1);
-        }
-        if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            this.currentGame.movePiece(0);
-        }
-        if (evt.getKeyCode() == KeyEvent.VK_DOWN){
-            updateGameStatus();
-        }
-        repaint();
-    }
-
-}//GEN-LAST:event_formKeyPressed
-
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     this.timer.stop();
 }//GEN-LAST:event_jButton1ActionPerformed
@@ -224,29 +187,10 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         repaint();
     }
     
-    private void updateGameStatus(){
-        int tempScore=this.currentGame.updateGame();
-        if (tempScore >-1) {
-            this.score=this.score + 10*tempScore;
-            jTextPane1.setText(Integer.toString(this.score));
-        }
-        else {
-            this.timer.stop();
-            this.gameOver=true;
-            files.setScore(this.score);
-            files.saveScore();
-            JOptionPane.showMessageDialog(this,
-            "Game over!",
-            "GG",
-            JOptionPane.INFORMATION_MESSAGE);
-        }
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
