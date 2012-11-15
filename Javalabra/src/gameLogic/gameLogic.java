@@ -26,6 +26,14 @@ public class gameLogic {
         this(12, 15);
     }
 
+    /**
+     * Creates gameLogic with given width and height
+     *
+     * @param width Width of tetris-game
+     *
+     * @param height height of tetris-game
+     */
+
     public gameLogic(int width, int height) {
         this.width = width;
         this.height = height;
@@ -35,10 +43,12 @@ public class gameLogic {
         this.movingBlocks = false;
     }
     
-    /*
+    /**
      * Method for updating game-status, usually bringing block down for one row,
      * returns an int which tells how many rows were removed (0 is none), -1 is
      * returned if game is lost
+     *
+     * @return 0 or bigger tells how many rows were eliminated, -1 tells game over
      */
     public int updateGame() {
 
@@ -50,25 +60,43 @@ public class gameLogic {
             return updateGameMovingRows();
         }
     }
+
+    /**
+     *
+     * @return int[][]-table which has the current game, 0's are empty squares, 1's are solid blocks and 2's are currently moving blocks
+     */
     
     public int[][] getGameStatus() {
         return this.status;
     }
+
+    /**
+     *
+     * @return the x-coordinate of current moving blocks upper left corner
+     */
     
     public int getBlockXco(){
         return this.currentBlock.getBlockXco();
     }
-    
+
+    /**
+     *
+     * @return the y-coordinate of current moving blocks upper left corner
+     */
     public int getBlockYco(){
         return this.currentBlock.getBlockYco();
     }
-    
+
+    /**
+     *
+     * @return returns the type of block
+     */
     public int getCurrentBlockType(){
         return this.currentBlock.getBlockType();
     }
     
     
-    /*
+    /**
      * Method to rotate or move pieces, 0 rotates piece, 1 moves piece left, 2
      * moves piece right
      */
