@@ -19,8 +19,6 @@ import java.awt.Graphics;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import javax.swing.JOptionPane;
 
 public class gameMenuAI extends javax.swing.JFrame implements ActionListener {
 
@@ -29,9 +27,6 @@ public class gameMenuAI extends javax.swing.JFrame implements ActionListener {
     private gameLogic.gameLogic currentGame;
     private Timer timer;
     private int[][] lastStatus;
-    private int score;
-    private boolean gameOver;
-    private gameFiles files;
     private gameLogic.gameAI gameAI;
 
     /**
@@ -51,9 +46,6 @@ public class gameMenuAI extends javax.swing.JFrame implements ActionListener {
         this.squareWidth = 20;
         int gameWidth=12;
         int gameHeight=15;
-        this.score=0;
-        this.gameOver=false;
-        this.files = new gameFiles("Player", 0);
         this.currentGame = new gameLogic.gameLogic(gameWidth,gameHeight);
         this.currentGame.updateGame();
         this.gameAI=new gameLogic.gameAI(this.currentGame);

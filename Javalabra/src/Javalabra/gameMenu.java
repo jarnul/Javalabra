@@ -16,6 +16,7 @@ package Javalabra;
  */
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,6 +33,8 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
     private int score;
     private boolean gameOver;
     private gameFiles files;
+    private Image dbImage;
+    private Graphics dbg;
 
     /**
      * Creates new form gameMenu
@@ -48,16 +51,16 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
         initComponents();
         menu = handle;
         this.squareWidth = 20;
-        int gameWidth=12;
-        int gameHeight=15;
-        this.score=0;
-        this.gameOver=false;
+        int gameWidth = 12;
+        int gameHeight = 15;
+        this.score = 0;
+        this.gameOver = false;
         this.files = new gameFiles("Player", 0);
-        this.currentGame = new gameLogic.gameLogic(gameWidth,gameHeight);
+        this.currentGame = new gameLogic.gameLogic(gameWidth, gameHeight);
         this.lastStatus = new int[gameWidth][gameHeight];
-        for (int i=0;i<this.lastStatus.length;++i){
-            for (int j=0;j<this.lastStatus[i].length;++j){
-                this.lastStatus[i][j]=0;
+        for (int i = 0; i < this.lastStatus.length; ++i) {
+            for (int j = 0; j < this.lastStatus[i].length; ++j) {
+                this.lastStatus[i][j] = 0;
             }
         }
     }
@@ -159,32 +162,53 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
      * Method for drawing game-status
      */
     @Override
-    public void paint(Graphics g) {
+    public void update(Graphics g) {
+// initialize buffer 
+        if (dbImage == null) {
+            dbImage = createImage(this.getSize().width, this.getSize().height);
+            dbg = dbImage.getGraphics();
+        }
 
-        super.paint(g);
-        //Two loops to go through status-table, and draw all the blocks
+// clear screen in background 
+        dbg.setColor(getBackground());
+        dbg.fillRect(0, 0, this.getSize().width, this.getSize().height);
+
+// draw elements in background 
+        dbg.setColor(getForeground());
+        paint(dbg);
+
+// draw image on the screen 
+        g.drawImage(dbImage, 0, 0, this);
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        //super.paint(g);
+        drawGame(g);
+    }
+
+    /*
+     * Draw game in given graphics-object
+     */
+    private void drawGame(Graphics g) {
         int[][] tempStatus = this.currentGame.getGameStatus();
         for (int i = 0; i < tempStatus.length; ++i) {
             for (int j = 0; j < tempStatus[i].length; ++j) {
-                //If so that only blocks that change are drawn
-                if (tempStatus[i][j]!=this.lastStatus[i][j]){
-                    if (tempStatus[i][j] > 0) {
-                        g.setColor(Color.black);
-                        g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
-                    } else {
-                        g.clearRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
-                    }
+                if (tempStatus[i][j] > 0) {
+                    g.setColor(Color.black);
+                    g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
+                } else {
+                    g.clearRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
                 }
             }
         }
-
     }
 
     /*
      * Method for keypress
      */
 private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-    if (!this.gameOver){
+    if (!this.gameOver) {
         if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
             this.currentGame.movePiece(2);
         }
@@ -194,7 +218,7 @@ private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_form
         if (evt.getKeyCode() == KeyEvent.VK_UP) {
             this.currentGame.movePiece(0);
         }
-        if (evt.getKeyCode() == KeyEvent.VK_DOWN){
+        if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             updateGameStatus();
         }
         repaint();
@@ -220,25 +244,23 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         updateGameStatus();
         repaint();
     }
-    
-    private void updateGameStatus(){
-        int tempScore=this.currentGame.updateGame();
-        if (tempScore >-1) {
-            this.score=this.score + 10*tempScore;
+
+    private void updateGameStatus() {
+        int tempScore = this.currentGame.updateGame();
+        if (tempScore > -1) {
+            this.score = this.score + 10 * tempScore;
             jTextPane1.setText(Integer.toString(this.score));
-        }
-        else {
+        } else {
             this.timer.stop();
-            this.gameOver=true;
+            this.gameOver = true;
             files.setScore(this.score);
             files.saveScore();
             JOptionPane.showMessageDialog(this,
-            "Game over!",
-            "GG",
-            JOptionPane.INFORMATION_MESSAGE);
+                    "Game over!",
+                    "GG",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
