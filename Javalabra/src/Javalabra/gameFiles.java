@@ -69,6 +69,15 @@ public class gameFiles {
     }
     
     /**
+     * 
+     * @return boolean to tell if resetting score.txt succeeded
+     */
+    
+    public boolean resetScore() {
+        return saveToFile(0, "default");
+    }
+    
+    /**
      * Method to read score from scores.txt file, returns -1 if score couldn't be read
      * 
      * @return highscore read from file
