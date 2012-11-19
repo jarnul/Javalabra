@@ -349,9 +349,11 @@ public class gameBlock {
     
 
     /*
-     * Methods to fix rotation degrees for special blocks
+     * Methods to fix rotation degrees for special blocks (of type 4, 2, 5, 6 or 7)
      */
-    private void rotationDegreeEven() {
+    
+    
+    protected void rotationDegreeEven() {
         if (this.blockType == 4) {
             if (this.rotationDegree == 2) {
                 ++this.xCoordinate;
@@ -369,7 +371,7 @@ public class gameBlock {
         }
     }
     
-    private void rotationDegreeOdd() {
+    protected void rotationDegreeOdd() {
         if (this.blockType == 4) {
             if (this.rotationDegree == 1) {
                 ++this.yCoordinate;

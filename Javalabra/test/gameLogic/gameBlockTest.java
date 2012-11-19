@@ -96,4 +96,59 @@ public class gameBlockTest {
         temp[0][2]=2;
         assertEquals(tempBlock, temp);
     }
+    
+    
+    //Method to test rotationdegree for block 4
+    @Test
+    public void gameBlockRotationDegreeTest4(){
+        testBlock=new gameBlock(4);
+        testBlock.rotationDegreeEven();
+        assertEquals(testBlock.getRotationDegree(), 1);
+        testBlock.rotationDegreeOdd();
+        assertEquals(testBlock.getRotationDegree(), 2);
+        testBlock.rotationDegreeEven();
+        assertEquals(testBlock.getRotationDegree(), 3);
+        testBlock.rotationDegreeOdd();
+        assertEquals(testBlock.getRotationDegree(), 0);
+    }
+    //Method to test rotationdegree for block 5
+    
+    @Test
+    public void gameBlockRotationDegreeTest5(){
+        testBlock=new gameBlock(5);
+        testBlock.rotationDegreeEven();
+        assertEquals(testBlock.getRotationDegree(), 0);
+        testBlock.rotationDegreeOdd();
+        assertEquals(testBlock.getRotationDegree(), 0);
+        testBlock.rotationDegreeEven();
+        assertEquals(testBlock.getRotationDegree(), 0);
+        testBlock.rotationDegreeOdd();
+        assertEquals(testBlock.getRotationDegree(), 0);
+    }
+        //Method to test rotationdegree for block 6
+    @Test
+    public void gameBlockRotationDegreeTest6(){
+        testBlock=new gameBlock(6);
+        testBlock.rotationDegreeEven();
+        assertEquals(testBlock.getRotationDegree(), 1);
+        testBlock.rotationDegreeOdd();
+        assertEquals(testBlock.getRotationDegree(), 0);
+        testBlock.rotationDegreeEven();
+        assertEquals(testBlock.getRotationDegree(), 1);
+        testBlock.rotationDegreeOdd();
+        assertEquals(testBlock.getRotationDegree(), 0);
+    }
+        //Method to test rotationdegree for block 7
+    @Test
+    public void gameBlockRotationDegreeTest7(){
+        testBlock=new gameBlock(7);
+        testBlock.rotationDegreeEven();
+        assertEquals(testBlock.getRotationDegree(), 0);
+        testBlock.rotationDegreeOdd();
+        assertEquals(testBlock.getRotationDegree(), 0);
+        testBlock.rotationDegreeEven();
+        assertEquals(testBlock.getRotationDegree(), 0);
+        testBlock.rotationDegreeOdd();
+        assertEquals(testBlock.getRotationDegree(), 0);
+    }
 }

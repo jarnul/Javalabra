@@ -193,10 +193,15 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         int[][] tempStatus = this.currentGame.getGameStatus();
         for (int i = 0; i < tempStatus.length; ++i) {
             for (int j = 0; j < tempStatus[i].length; ++j) {
-                if (tempStatus[i][j] > 0) {
+                if (tempStatus[i][j] == 1) {
                     g.setColor(Color.black);
                     g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
-                } else {
+                }
+                else if(tempStatus[i][j]==2){
+                    g.setColor(Color.yellow);
+                    g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
+                }
+                else {
                     g.clearRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
                 }
             }
