@@ -122,10 +122,9 @@ public class gameLogicTest {
                 testGame.movePiece(rand);
                 testGame.updateGame();
             }
-            //fail( "My method didn't throw when I expected it to" );
+            
         } catch (IndexOutOfBoundsException e) {
-            assertEquals(0, 1);
+            fail( "indexes failed" );
         }
-
     }
 }

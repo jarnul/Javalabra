@@ -1,0 +1,2 @@
+Tunnettu bugi on, että joskus monta riviä eliminoidessa ilmestyy peliruudulle ylimääräisiä ruutuja ylälaitaan,
+mutta ne ovat vain graafisia artifakteja, ja häviävät peliä jatkaessa.
