@@ -1,8 +1,8 @@
 package Javalabra;
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in
+ * the editor.
  */
 
 /*
@@ -35,6 +35,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
     private gameFiles files;
     private Image dbImage;
     private Graphics dbg;
+    private int blockColor;
 
     /**
      * Creates new form gameMenu
@@ -55,6 +56,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
         int gameHeight = 15;
         this.score = 0;
         this.gameOver = false;
+        this.blockColor = 0;
         this.files = new gameFiles("Player", 0);
         this.currentGame = new gameLogic.gameLogic(gameWidth, gameHeight);
         this.lastStatus = new int[gameWidth][gameHeight];
@@ -79,6 +81,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -119,6 +122,15 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
         jTextPane1.setFocusable(false);
         jScrollPane1.setViewportView(jTextPane1);
 
+        jButton4.setText("Color");
+        jButton4.setFocusPainted(false);
+        jButton4.setFocusable(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,10 +138,12 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(327, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -143,7 +157,9 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,6 +171,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     this.setVisible(false);
     (this.menu).setVisible(true);
+    this.timer.stop();
 }//GEN-LAST:event_jButton2ActionPerformed
 
     /*
@@ -193,24 +210,46 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         int[][] tempStatus = this.currentGame.getGameStatus();
         for (int i = 0; i < tempStatus.length; ++i) {
             for (int j = 0; j < tempStatus[i].length; ++j) {
-                if (tempStatus[i][j] == 1) {
-                    g.setColor(Color.black);
-                    g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
+                if (this.blockColor == 0) {
+                    if (tempStatus[i][j] == 1) {
+                        g.setColor(Color.black);
+                        g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
+                    } else if (tempStatus[i][j] == 2) {
+                        g.setColor(Color.yellow);
+                        g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
+                    } else {
+                        g.clearRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
+                    }
                 }
-                else if(tempStatus[i][j]==2){
-                    g.setColor(Color.yellow);
-                    g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
+                else if (this.blockColor==1) {
+                    if (tempStatus[i][j] == 1) {
+                        g.setColor(Color.black);
+                        g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
+                    } else if (tempStatus[i][j] == 2) {
+                        g.setColor(Color.green);
+                        g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
+                    } else {
+                        g.clearRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
+                    }
                 }
-                else {
-                    g.clearRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
+                
+                else if (this.blockColor==2){
+                    if (tempStatus[i][j] == 1) {
+                        g.setColor(Color.black);
+                        g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
+                    } else if (tempStatus[i][j] == 2) {
+                        g.setColor(Color.magenta);
+                        g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
+                    } else {
+                        g.clearRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
+                    }
                 }
             }
         }
     }
-
-    /*
-     * Method for keypress
-     */
+        /*
+         * Method for keypress
+         */
 private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
     if (!this.gameOver) {
         if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -238,6 +277,19 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         this.timer = new Timer(1000, this);
         timer.start();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (this.blockColor==1){
+            this.blockColor=0;
+        }
+        else if (this.blockColor==0){
+            this.blockColor=2;
+        }
+        else if (this.blockColor==2){
+            this.blockColor=1;
+        }
+        repaint();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /*
      * Method for implementing abstract class ActionListener, updates the
@@ -269,6 +321,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
