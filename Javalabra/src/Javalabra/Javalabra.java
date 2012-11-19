@@ -64,7 +64,7 @@ public class Javalabra extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Settings");
+        jButton4.setText("AI-demo");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
