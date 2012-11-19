@@ -383,6 +383,10 @@ public class gameBlock {
             this.blockStructure=mirrorBlockYaxis();
         }
     }
+    
+    /*
+     * Method to create real copy from java-table
+     */
 
     private int[][] copyTable(int[][] temp) {
         int[][] copy = new int[temp.length][temp[0].length];

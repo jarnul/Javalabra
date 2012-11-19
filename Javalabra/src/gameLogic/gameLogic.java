@@ -231,6 +231,10 @@ public class gameLogic {
             }
             return 0;
     }
+    
+    /*
+     * Method to check if game has full rows
+     */
 
     private int checkFullRows() {
         int eliminatedRows = 0;
