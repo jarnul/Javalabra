@@ -37,6 +37,15 @@ public class gameFilesTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
+    
+    @Test
+    public void gameFilesReadIfScoresFileDisappeared(){
+        //Delete the scores.txt file in here, currently by hand
+        testFile = new gameFiles("test", 0);
+        assertEquals(testFile.readHighScore(), -1);
+        testFile.saveScore();
+    }
+        
     @Test
     public void gameFilesWriteAndReadFromFile() {
         testFile = new gameFiles("test", 500);

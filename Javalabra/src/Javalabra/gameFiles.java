@@ -120,7 +120,7 @@ public class gameFiles {
             in.close();
             return temp;
         } catch (Exception e) {//Catch exception if any
-            System.err.println("Error: " + e.getMessage());
+            //System.err.println("Error: " + e.getMessage());
             return -1;
         }
     }
