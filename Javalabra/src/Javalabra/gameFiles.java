@@ -5,7 +5,7 @@
 package Javalabra;
 
 /**
- *
+ *File handling, saving and reading high score from file
  * @author jzvaris
  */
 import java.io.*;

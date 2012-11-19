@@ -11,7 +11,7 @@ package Javalabra;
  * Created on Oct 30, 2012, 7:40:19 PM
  */
 /**
- *
+ *Class that renders tetris and uses AI to play it
  * @author jarno
  */
 import java.awt.Color;

@@ -5,7 +5,7 @@
 package gameLogic;
 
 /**
- *
+ *The classfile that includes the crude AI
  * @author jzvaris
  */
 public class gameAI {

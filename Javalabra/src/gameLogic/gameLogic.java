@@ -6,7 +6,7 @@ package gameLogic;
  */
 
 /**
- *
+ *Class that implements the core tetris-logic
  * @author jarno
  */
 public class gameLogic {

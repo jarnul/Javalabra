@@ -11,7 +11,7 @@ package Javalabra;
  * Created on Oct 30, 2012, 7:40:19 PM
  */
 /**
- *
+ *The main game-window which renders game and updates it by implementing abstract class ActionListener and using timer
  * @author jarno
  */
 import java.awt.Color;

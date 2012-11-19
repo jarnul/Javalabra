@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * Created on Oct 29, 2012, 6:48:16 PM
  */
 /**
- *
+ *The main menu of Tetris, opens all the other windows and panels.
  * @author jarno
  */
 public class Javalabra extends javax.swing.JFrame {

@@ -6,7 +6,7 @@ package gameLogic;
  */
 
 /**
- *
+ *Class for representing moving block
  * @author jarno
  */
 public class gameBlock {
