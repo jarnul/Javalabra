@@ -31,3 +31,6 @@
 
 13.11:
 2h gamefiles-luokka, bugienkorjausta
+
+19.11:
+2h näyttämistä, junittia, yms.
