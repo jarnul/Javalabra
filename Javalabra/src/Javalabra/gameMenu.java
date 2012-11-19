@@ -136,14 +136,13 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(327, Short.MAX_VALUE)
+                .addContainerGap(330, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1)))
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -174,32 +173,32 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     this.timer.stop();
 }//GEN-LAST:event_jButton2ActionPerformed
 
-    /*
-     * Method for drawing game-status
-     */
-    @Override
-    public void update(Graphics g) {
-// initialize buffer 
-        if (dbImage == null) {
-            dbImage = createImage(this.getSize().width, this.getSize().height);
-            dbg = dbImage.getGraphics();
-        }
-
-// clear screen in background 
-        dbg.setColor(getBackground());
-        dbg.fillRect(0, 0, this.getSize().width, this.getSize().height);
-
-// draw elements in background 
-        dbg.setColor(getForeground());
-        paint(dbg);
-
-// draw image on the screen 
-        g.drawImage(dbImage, 0, 0, this);
-    }
+//    /*
+//     * Method for drawing game-status
+//     */
+//    @Override
+//    public void update(Graphics g) {
+//        // initialize buffer 
+//        if (dbImage == null) {
+//            dbImage = createImage(this.getSize().width, this.getSize().height);
+//            dbg = dbImage.getGraphics();
+//        }
+//
+//        // clear screen in background 
+//        dbg.setColor(getBackground());
+//        dbg.fillRect(0, 0, this.getSize().width, this.getSize().height);
+//
+//        // draw elements in background 
+//        dbg.setColor(getForeground());
+//        paint(dbg);
+//
+//        // draw image on the screen 
+//        g.drawImage(dbImage, 0, 0, this);
+//    }
 
     @Override
     public void paint(Graphics g) {
-        //super.paint(g);
+        super.paint(g);
         drawGame(g);
     }
 
@@ -210,46 +209,35 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         int[][] tempStatus = this.currentGame.getGameStatus();
         for (int i = 0; i < tempStatus.length; ++i) {
             for (int j = 0; j < tempStatus[i].length; ++j) {
-                if (this.blockColor == 0) {
-                    if (tempStatus[i][j] == 1) {
-                        g.setColor(Color.black);
-                        g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
-                    } else if (tempStatus[i][j] == 2) {
-                        g.setColor(Color.yellow);
-                        g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
-                    } else {
-                        g.clearRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
-                    }
-                }
-                else if (this.blockColor==1) {
-                    if (tempStatus[i][j] == 1) {
-                        g.setColor(Color.black);
-                        g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
-                    } else if (tempStatus[i][j] == 2) {
-                        g.setColor(Color.green);
-                        g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
-                    } else {
-                        g.clearRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
-                    }
-                }
-                
-                else if (this.blockColor==2){
-                    if (tempStatus[i][j] == 1) {
-                        g.setColor(Color.black);
-                        g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
-                    } else if (tempStatus[i][j] == 2) {
-                        g.setColor(Color.magenta);
-                        g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
-                    } else {
-                        g.clearRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
-                    }
-                }
+                drawBlock(g, tempStatus, i, j);
             }
         }
     }
-        /*
-         * Method for keypress
-         */
+
+    /*
+     * Method to draw single block
+     */
+    private void drawBlock(Graphics g, int[][] tempStatus, int x, int y) {
+        if (tempStatus[x][y] == 1) {
+            g.setColor(Color.black);
+            g.fillRect(20 * x + 50, 20 * y + 50, this.squareWidth, this.squareWidth);
+        } else if (tempStatus[x][y] == 2) {
+            if (this.blockColor == 0) {
+                g.setColor(Color.yellow);
+            } else if (this.blockColor == 1) {
+                g.setColor(Color.blue);
+            } else {
+                g.setColor(Color.red);
+            }
+            g.fillRect(20 * x + 50, 20 * y + 50, this.squareWidth, this.squareWidth);
+        } else {
+            g.clearRect(20 * x + 50, 20 * y + 50, this.squareWidth, this.squareWidth);
+        }
+    }
+    
+    /*
+     * Method for keypress
+     */
 private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
     if (!this.gameOver) {
         if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -264,7 +252,7 @@ private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_form
         if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             updateGameStatus();
         }
-        repaint();
+        this.repaint();
     }
 
 }//GEN-LAST:event_formKeyPressed
@@ -279,16 +267,14 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (this.blockColor==1){
-            this.blockColor=0;
+        if (this.blockColor == 1) {
+            this.blockColor = 0;
+        } else if (this.blockColor == 0) {
+            this.blockColor = 2;
+        } else if (this.blockColor == 2) {
+            this.blockColor = 1;
         }
-        else if (this.blockColor==0){
-            this.blockColor=2;
-        }
-        else if (this.blockColor==2){
-            this.blockColor=1;
-        }
-        repaint();
+        this.repaint();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /*
@@ -298,7 +284,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     @Override
     public void actionPerformed(ActionEvent e) {
         updateGameStatus();
-        repaint();
+        this.repaint();
     }
 
     private void updateGameStatus() {
