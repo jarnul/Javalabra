@@ -34,3 +34,6 @@
 
 19.11:
 2h näyttämistä, junittia, yms.
+
+20.11:
+1h uudet sekvenssikaaviot, uusia junit-testejä

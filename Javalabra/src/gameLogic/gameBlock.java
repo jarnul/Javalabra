@@ -300,7 +300,7 @@ public class gameBlock {
     /*
      * Method for regular Matrix Transpose
      */
-    private int[][] matrixTranspose(int[][] temp) {
+    protected int[][] matrixTranspose(int[][] temp) {
         int[][] rotated = new int[temp[0].length][temp.length];
         for (int i = 0; i < rotated.length; ++i) {
             for (int j = 0; j < rotated[i].length; ++j) {

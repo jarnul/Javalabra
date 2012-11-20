@@ -151,4 +151,25 @@ public class gameBlockTest {
         testBlock.rotationDegreeOdd();
         assertEquals(testBlock.getRotationDegree(), 0);
     }
+    
+    @Test
+    public void gameBlockMatrixTranspose(){
+        testBlock=new gameBlock(1);
+        int[][] normalStruct=testBlock.matrixTranspose(testBlock.getBlockStructure());
+        int[][] transpose=new int[4][1];
+        for (int i=0;i<4;++i){
+            transpose[i][0]=2;
+        }
+        assertEquals(normalStruct, transpose);
+    }
+    @Test
+    public void gameBlockMatrixTransposeSkewed(){
+        testBlock=new gameBlock(1);
+        int[][] normalStruct=testBlock.matrixTranspose(testBlock.getBlockStructure());
+        int[][] transpose=new int[4][1];
+        for (int i=0;i<4;++i){
+            transpose[i][0]=2;
+        }
+        assertEquals(normalStruct, transpose);
+    }
 }
