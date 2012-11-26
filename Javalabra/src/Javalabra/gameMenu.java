@@ -177,7 +177,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     this.setVisible(false);
     (this.menu).setVisible(true);
-    if(this.timer!=null){
+    if (this.timer != null) {
         this.timer.stop();
     }
 }//GEN-LAST:event_jButton2ActionPerformed
@@ -240,7 +240,7 @@ private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_form
 }//GEN-LAST:event_formKeyPressed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    if(this.timer != null){
+    if (this.timer != null) {
         this.timer.stop();
     }
 }//GEN-LAST:event_jButton1ActionPerformed

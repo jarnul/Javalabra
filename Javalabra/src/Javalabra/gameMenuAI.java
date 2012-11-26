@@ -28,6 +28,7 @@ public class gameMenuAI extends javax.swing.JFrame implements ActionListener {
     private Timer timer;
     private int[][] lastStatus;
     private gameLogic.gameAI gameAI;
+    private int blockColor;
 
     /**
      * Creates new form gameMenuAI, which is menu to show ai-playing
@@ -44,15 +45,16 @@ public class gameMenuAI extends javax.swing.JFrame implements ActionListener {
         initComponents();
         menu = handle;
         this.squareWidth = 20;
-        int gameWidth=12;
-        int gameHeight=15;
-        this.currentGame = new gameLogic.gameLogic(gameWidth,gameHeight);
+        int gameWidth = 12;
+        this.blockColor = 0;
+        int gameHeight = 15;
+        this.currentGame = new gameLogic.gameLogic(gameWidth, gameHeight);
         this.currentGame.updateGame();
-        this.gameAI=new gameLogic.gameAI(this.currentGame);
+        this.gameAI = new gameLogic.gameAI(this.currentGame);
         this.lastStatus = new int[gameWidth][gameHeight];
-        for (int i=0;i<this.lastStatus.length;++i){
-            for (int j=0;j<this.lastStatus[i].length;++j){
-                this.lastStatus[i][j]=0;
+        for (int i = 0; i < this.lastStatus.length; ++i) {
+            for (int j = 0; j < this.lastStatus[i].length; ++j) {
+                this.lastStatus[i][j] = 0;
             }
         }
     }
@@ -69,6 +71,7 @@ public class gameMenuAI extends javax.swing.JFrame implements ActionListener {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -105,7 +108,8 @@ public class gameMenuAI extends javax.swing.JFrame implements ActionListener {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(327, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -121,7 +125,8 @@ public class gameMenuAI extends javax.swing.JFrame implements ActionListener {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addContainerGap(262, Short.MAX_VALUE))
+                .addContainerGap(271, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
         );
 
         pack();
@@ -137,28 +142,38 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton2ActionPerformed
 
     /*
-     * Method for drawing game-status
+     * Draw game in given graphics-object
      */
-    @Override
-    public void paint(Graphics g) {
-
-        super.paint(g);
-        //Two loops to go through status-table, and draw all the blocks
+    private void drawGame(Graphics g) {
         int[][] tempStatus = this.currentGame.getGameStatus();
         for (int i = 0; i < tempStatus.length; ++i) {
             for (int j = 0; j < tempStatus[i].length; ++j) {
-                //If so that only blocks that change are drawn
-                if (tempStatus[i][j]!=this.lastStatus[i][j]){
-                    if (tempStatus[i][j] > 0) {
-                        g.setColor(Color.black);
-                        g.fillRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
-                    } else {
-                        g.clearRect(20 * i + 50, 20 * j + 50, this.squareWidth, this.squareWidth);
-                    }
-                }
+                drawBlock(g, tempStatus, i, j);
             }
         }
+    }
 
+    /*
+     * Method to draw single block
+     */
+    private void drawBlock(Graphics g, int[][] tempStatus, int x, int y) {
+        if (tempStatus[x][y] == 1) {
+            g.setColor(Color.black);
+            g.fillRect(20 * x + 50, 20 * y + 50, this.squareWidth, this.squareWidth);
+        } else if (tempStatus[x][y] == 2) {
+            if (this.blockColor == 0) {
+                g.setColor(Color.yellow);
+            } else if (this.blockColor == 1) {
+                g.setColor(Color.blue);
+            } else {
+                g.setColor(Color.red);
+            }
+            g.fillRect(20 * x + 50, 20 * y + 50, this.squareWidth, this.squareWidth);
+        } else {
+            //The colour of the background
+            g.setColor(Color.darkGray);
+            g.fillRect(20 * x + 50, 20 * y + 50, this.squareWidth, this.squareWidth);
+        }
     }
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -177,13 +192,12 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     @Override
     public void actionPerformed(ActionEvent e) {
         gameAI.updateGame();
-        repaint();
+        drawGame(jLabel1.getGraphics());
     }
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

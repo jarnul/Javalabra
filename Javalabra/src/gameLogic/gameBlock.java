@@ -4,7 +4,6 @@ package gameLogic;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *Class for representing moving block. Normal rotate is done with rotate(), and other methods give means to edit this blocks x and y -coordinates.
  * Moving the block and filling it in game is left for gameLogic-object.
@@ -21,12 +20,11 @@ public class gameBlock {
     public gameBlock() {
         this(1);
     }
-    
+
     /**
      * Constructor for gameblock
      * @param type int to tell which kind of block to build: 0 is lineblock, 2 is Squidblock, 3 is squareblock, 4 is pointyblock, 5 is snakeblock, 6 is reversesquidblock, 7 is reversesnakeblock
      */
-
     public gameBlock(int type) {
         this.blockType = type;
         this.blockStructure = buildBlock(type);
@@ -35,7 +33,6 @@ public class gameBlock {
         this.rotationDegree = 0;
     }
 
-    
     /**
      * Creates a real copy of the gameBlock that is given in parameter
      * @param copy another gameblock-instance, which will be copied
@@ -46,7 +43,7 @@ public class gameBlock {
         this.yCoordinate = copy.getBlockYco();
         this.rotationDegree = copy.getRotationDegree();
     }
-    
+
     /**
      * Method to rotate piece using matrix-transposes
      */
@@ -73,9 +70,9 @@ public class gameBlock {
      */
     public int[][] getNextRotationStructure() {
         int[][] rotated;
-        int tempRotation=this.rotationDegree;
-        int tempXco=this.xCoordinate;
-        int tempYco=this.yCoordinate;
+        int tempRotation = this.rotationDegree;
+        int tempXco = this.xCoordinate;
+        int tempYco = this.yCoordinate;
         //rotationDegree is used in case block must be transposed from different origins (as with pointyBlock for example)
         if (this.rotationDegree == 0 || this.rotationDegree == 2) {
             rotated = matrixTranspose(this.blockStructure);
@@ -86,13 +83,12 @@ public class gameBlock {
             rotated = matrixTransposeSkewed(this.blockStructure);
             rotationDegreeOdd();
         }
-        this.rotationDegree=tempRotation;
-        this.xCoordinate=tempXco;
-        this.yCoordinate=tempYco;
+        this.rotationDegree = tempRotation;
+        this.xCoordinate = tempXco;
+        this.yCoordinate = tempYco;
         return rotated;
     }
 
-    
     /**
      * Gets this gameBlock-objects blocktype
      * @return blocktype of this block
@@ -100,17 +96,15 @@ public class gameBlock {
     public int getBlockType() {
         return this.blockType;
     }
-    
+
     /**
      * Gets this gameBlock-objects x-Coordinate
      * @return the x-coordinate of this block
      */
-
     public int getBlockXco() {
         return this.xCoordinate;
     }
 
-    
     /**
      * Gets this gameBlock-objects y-Coordinate
      * @return the y-coordinate of this block
@@ -118,67 +112,62 @@ public class gameBlock {
     public int getBlockYco() {
         return this.yCoordinate;
     }
-    
+
     /**
      * Sets this gameBlock-objects xCoordinate
      * @param x the x-coordinate wanted for block
      */
-
     public void setBlockXco(int x) {
         this.xCoordinate = x;
     }
+
     /**
      * Gets this gameBlock-objects yCoordinate
      * @param y the y-coordinate wanted for block
      */
-
     public void setBlockYco(int y) {
         this.yCoordinate = y;
     }
-    
+
     /**
      * adds one to this blocks y-coordinate
      */
-
     public void addBlockYco() {
         ++this.yCoordinate;
     }
+
     /**
      * Gets this gameBlock-objects rotationdegree
      * @return returns this blocks rotationdegree
      */
-
     public int getRotationDegree() {
         return this.rotationDegree;
     }
-    
+
     /**
      * Gets a real copy of this gameBlock-objects blockstructure
      * @return returns the int[][] table of current block
      */
-
     public int[][] getBlockStructure() {
         return copyTable(this.blockStructure);
     }
-    
+
     /**
      * removes one from blocks current x-coordinate
      */
-
     public void subtractXco() {
         if (this.xCoordinate > 0) {
             --this.xCoordinate;
         }
     }
-    
+
     /**
      * adds one to blocks current x-coordinate
      */
-
     public void addXco() {
         ++this.xCoordinate;
     }
-    
+
     /*
      * Method for generating different kinds of blocks, block * (-1) is the
      * rotated block of a given block
@@ -324,37 +313,34 @@ public class gameBlock {
         }
         return rotated;
     }
-    
+
     /*
      * Method to mirror block
      */
-    
-    private int[][] mirrorBlockXaxis(){
+    private int[][] mirrorBlockXaxis() {
         int[][] temp = new int[this.blockStructure.length][this.blockStructure[0].length];
-        for (int i=0;i<temp.length;++i){
-            for (int j=0;j<temp[i].length;++j){
-                temp[i][j] = this.blockStructure[this.blockStructure.length-1-i][j];
+        for (int i = 0; i < temp.length; ++i) {
+            for (int j = 0; j < temp[i].length; ++j) {
+                temp[i][j] = this.blockStructure[this.blockStructure.length - 1 - i][j];
             }
         }
         return temp;
     }
-    
-    private int[][] mirrorBlockYaxis(){
+
+    private int[][] mirrorBlockYaxis() {
         int[][] temp = new int[this.blockStructure.length][this.blockStructure[0].length];
-        for (int i=0;i<temp.length;++i){
-            for (int j=0;j<temp[i].length;++j){
-                temp[i][j] = this.blockStructure[i][this.blockStructure[0].length-1-j];
+        for (int i = 0; i < temp.length; ++i) {
+            for (int j = 0; j < temp[i].length; ++j) {
+                temp[i][j] = this.blockStructure[i][this.blockStructure[0].length - 1 - j];
             }
         }
         return temp;
     }
-    
+
 
     /*
      * Methods to fix rotation degrees for special blocks (of type 4, 2, 5, 6 or 7)
      */
-    
-    
     protected void rotationDegreeEven() {
         if (this.blockType == 4) {
             if (this.rotationDegree == 2) {
@@ -366,13 +352,12 @@ public class gameBlock {
 
         } else if (this.blockType == 2 || this.blockType == 6) {
             this.rotationDegree = 1;
-            this.blockStructure=mirrorBlockXaxis(); 
-        }
-        else if (this.blockType == 5 || this.blockType == 7){
-            this.blockStructure=mirrorBlockYaxis();
+            this.blockStructure = mirrorBlockXaxis();
+        } else if (this.blockType == 5 || this.blockType == 7) {
+            this.blockStructure = mirrorBlockYaxis();
         }
     }
-    
+
     protected void rotationDegreeOdd() {
         if (this.blockType == 4) {
             if (this.rotationDegree == 1) {
@@ -384,14 +369,13 @@ public class gameBlock {
             }
         } else if (this.blockType == 2 || this.blockType == 6) {
             this.rotationDegree = 0;
-            this.blockStructure=mirrorBlockYaxis();
+            this.blockStructure = mirrorBlockYaxis();
         }
     }
-    
+
     /*
      * Method to create real copy from java-table
      */
-
     private int[][] copyTable(int[][] temp) {
         int[][] copy = new int[temp.length][temp[0].length];
         for (int i = 0; i < temp.length; ++i) {

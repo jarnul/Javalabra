@@ -4,7 +4,6 @@ package gameLogic;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *Class that implements the core tetris-logic. updateGame updates the current game-situation i.e. drops moving block down by one, removes full rows etc.
  * getGameStatus returns int[][]-table with current game for graphics. movePiece moves or rotates currently moving block.
@@ -35,7 +34,6 @@ public class gameLogic {
      *
      * @param height height of tetris-game
      */
-
     public gameLogic(int width, int height) {
         this.width = width;
         this.height = height;
@@ -44,7 +42,7 @@ public class gameLogic {
         fillTables(this.status);
         this.movingBlocks = false;
     }
-    
+
     /**
      * Method for updating game-status, usually bringing block down for one row,
      * returns an int which tells how many rows were removed (0 is none), -1 is
@@ -67,7 +65,6 @@ public class gameLogic {
      * Gets this gameLogic-objects game status table.
      * @return int[][]-table which has the current game, 0's are empty squares, 1's are solid blocks and 2's are currently moving blocks
      */
-    
     public int[][] getGameStatus() {
         return this.status;
     }
@@ -76,8 +73,7 @@ public class gameLogic {
      *Gets this gameLogic-objects BlockXco
      * @return the x-coordinate of current moving blocks upper left corner
      */
-    
-    public int getBlockXco(){
+    public int getBlockXco() {
         return this.currentBlock.getBlockXco();
     }
 
@@ -85,7 +81,7 @@ public class gameLogic {
      *Gets this gameLogic-objects BlockYco
      * @return the y-coordinate of current moving blocks upper left corner
      */
-    public int getBlockYco(){
+    public int getBlockYco() {
         return this.currentBlock.getBlockYco();
     }
 
@@ -93,11 +89,10 @@ public class gameLogic {
      *Gets this gameLogic-objects currentBlocks blocktype
      * @return returns the type of block
      */
-    public int getCurrentBlockType(){
+    public int getCurrentBlockType() {
         return this.currentBlock.getBlockType();
     }
-    
-    
+
     /**
      * Method to rotate or move pieces, 0 rotates piece, 1 moves piece left, 2
      * moves piece right
@@ -110,14 +105,14 @@ public class gameLogic {
         int tempX = this.currentBlock.getBlockXco();
         int tempY = this.currentBlock.getBlockYco();
         if (move == 0) {
-            rotatePiece(tempTable,temp,tempX,tempY);
+            rotatePiece(tempTable, temp, tempX, tempY);
         } else if (move == 1) {
-            movePieceLeft(tempTable,temp,tempX,tempY);
+            movePieceLeft(tempTable, temp, tempX, tempY);
         } else if (move == 2) {
-            movePieceRight(tempTable,temp,tempX,tempY);
+            movePieceRight(tempTable, temp, tempX, tempY);
         }
     }
-    
+
     /*
      * Method to generate random block
      */
@@ -126,38 +121,37 @@ public class gameLogic {
         double random = Math.random() * 7;
         return new gameBlock((int) random + 1);
     }
-    
+
     /*
      * Methods to rotate or move blocks
      */
-    
-    protected void movePieceRight(int[][] tempTable, int[][] temp, int tempX, int tempY){
-            if (!checkForCollision(tempTable, tempX - 1, tempY)) {
-                this.currentBlock.subtractXco();
-                fillIn(this.currentBlock);
-            } else {
-                this.status = temp;
-            }
+    protected void movePieceRight(int[][] tempTable, int[][] temp, int tempX, int tempY) {
+        if (!checkForCollision(tempTable, tempX - 1, tempY)) {
+            this.currentBlock.subtractXco();
+            fillIn(this.currentBlock);
+        } else {
+            this.status = temp;
+        }
     }
-    
-    protected void movePieceLeft(int[][] tempTable, int[][] temp, int tempX, int tempY){
-            if (!checkForCollision(tempTable, tempX + 1, tempY)) {
-                this.currentBlock.addXco();
-                fillIn(this.currentBlock);
-            } else {
-                this.status = temp;
-            }
+
+    protected void movePieceLeft(int[][] tempTable, int[][] temp, int tempX, int tempY) {
+        if (!checkForCollision(tempTable, tempX + 1, tempY)) {
+            this.currentBlock.addXco();
+            fillIn(this.currentBlock);
+        } else {
+            this.status = temp;
+        }
     }
-    
+
     protected void rotatePiece(int[][] tempTable, int[][] temp, int tempX, int tempY) {
-            tempTable = this.currentBlock.getNextRotationStructure();
-            //Includes ad-hoc fix for bug with block type 4 being at the left edge of gamescreen and trying to rotate
-            if (!checkForCollision(tempTable, tempX, tempY) && !(this.currentBlock.getRotationDegree()==3 && this.currentBlock.getBlockXco()==0)) {
-                this.currentBlock.rotate();
-                fillIn(this.currentBlock);
-            } else {
-                this.status = temp;
-            }
+        tempTable = this.currentBlock.getNextRotationStructure();
+        //Includes ad-hoc fix for bug with block type 4 being at the left edge of gamescreen and trying to rotate
+        if (!checkForCollision(tempTable, tempX, tempY) && !(this.currentBlock.getRotationDegree() == 3 && this.currentBlock.getBlockXco() == 0)) {
+            this.currentBlock.rotate();
+            fillIn(this.currentBlock);
+        } else {
+            this.status = temp;
+        }
     }
 
     /*
@@ -170,13 +164,12 @@ public class gameLogic {
             }
         }
     }
-    
+
     /*
      * Method to update game status when there are no moving rows
      */
-
     protected int updateGameNoMovingRows() {
-        int movingRows=checkFullRows();
+        int movingRows = checkFullRows();
         this.currentBlock = generateBlock();
         int[][] tempBlock = this.currentBlock.getBlockStructure();
         for (int i = 0; i < tempBlock.length; ++i) {
@@ -192,41 +185,39 @@ public class gameLogic {
         this.movingBlocks = true;
         return movingRows;
     }
-    
+
     /*
      * Method to update game when there are moving rows
      */
-    
-    protected int updateGameMovingRows(){
-            int[][] tempBlock = this.currentBlock.getBlockStructure();
-            boolean tempBreak = true;
-            for (int i = 0; i < tempBlock.length; ++i) {
-                for (int j = tempBlock[i].length - 1; j > -1; --j) {
-                    //Checks if block can be moved down by one
-                    if (tempBlock[i][j] == 2) {
-                        //If checks if moved block is in the vertical bounds, done for all the blocks in current moving block
-                        if (j + this.currentBlock.getBlockYco() < this.status[i].length - 1 && this.status[this.currentBlock.getBlockXco() + i][this.currentBlock.getBlockYco() + j + 1] != 1) {
-                            //Currently analyzed block can be moved down
-                        } else {
-                            tempBreak = false;
-                            this.movingBlocks = false;
-                            clearMovingBlocks(this.status, 1);
-                            break;
-                        }
+    protected int updateGameMovingRows() {
+        int[][] tempBlock = this.currentBlock.getBlockStructure();
+        boolean tempBreak = true;
+        for (int i = 0; i < tempBlock.length; ++i) {
+            for (int j = tempBlock[i].length - 1; j > -1; --j) {
+                //Checks if block can be moved down by one
+                if (tempBlock[i][j] == 2) {
+                    //If checks if moved block is in the vertical bounds, done for all the blocks in current moving block
+                    if (j + this.currentBlock.getBlockYco() < this.status[i].length - 1 && this.status[this.currentBlock.getBlockXco() + i][this.currentBlock.getBlockYco() + j + 1] != 1) {
+                        //Currently analyzed block can be moved down
+                    } else {
+                        tempBreak = false;
+                        this.movingBlocks = false;
+                        clearMovingBlocks(this.status, 1);
+                        break;
                     }
                 }
             }
-            //If all the squares in the block can be moved down
-            if (tempBreak) {
-                moveBlockDown();
-            }
-            return 0;
+        }
+        //If all the squares in the block can be moved down
+        if (tempBreak) {
+            moveBlockDown();
+        }
+        return 0;
     }
-    
+
     /*
      * Method to check if game has full rows
      */
-
     private int checkFullRows() {
         int eliminatedRows = 0;
         int fullRowIndex = -1;

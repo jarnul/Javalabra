@@ -19,13 +19,12 @@ public class gameFiles {
     public gameFiles() {
         this("Default", 0);
     }
-    
+
     /**
      * Creates gameFiles-object that has players name and score
      * @param player name of the player that will be saved in file
      * @param score the given score of player
      */
-
     public gameFiles(String player, int score) {
         this.score = score;
         if (score < 0) {
@@ -33,30 +32,27 @@ public class gameFiles {
         }
         this.player = player;
     }
-    
+
     /**
      * Creates gameFiles-object that has players name and score
      * @param player name of the player that will be saved in file
      */
-
     public gameFiles(String player) {
         this(player, 0);
     }
-    
+
     /**
      * Sets this gameFiles objects score
      * @param score set the score for this gameFiles-object
      */
-    
-    public void setScore(int score){
-        this.score=score;
+    public void setScore(int score) {
+        this.score = score;
     }
-    
+
     /**
      * saves the score of the player in file if it is new high score
      * @return true if saveScore was successful, else false
      */
-
     public boolean saveScore() {
         int temp = readScoreFromFile();
         if (temp < this.score) {
@@ -66,46 +62,40 @@ public class gameFiles {
             return false;
         }
     }
-    
+
     /**
      * Saves 0 to the scores.txt
      * @return boolean to tell if resetting score.txt succeeded
      */
-    
     public boolean resetScore() {
         return saveToFile(0, "default");
     }
-    
+
     /**
      * Method to read score from scores.txt file, returns -1 if score couldn't be read
      * 
      * @return highscore read from file
      */
-    
-    public int readHighScore(){
+    public int readHighScore() {
         return readScoreFromFile();
     }
-    
+
     /**
      * Get this gameFile-objects score
      * @return the score of this gameFiles-object
      */
-    
-    public int getScore(){
+    public int getScore() {
         return this.score;
     }
-    
+
     /**
      * Gets the name of this gameFiles-object
      * @return the name of this player
      */
-    
-    public String getNick(){
+    public String getNick() {
         return this.player;
     }
-    
 
-    
     /*
      * Method to read high score from scores.txt file
      */

@@ -12,12 +12,11 @@ public class gameAI {
 
     private gameLogic currentGame;
     private int numberOfRotations;
-    
+
     /**
      * 
      * @param currentGame creates gameAI-object to handle given gameLogic-object
      */
-
     public gameAI(gameLogic currentGame) {
         this.currentGame = currentGame;
         this.numberOfRotations = 0;
@@ -48,11 +47,10 @@ public class gameAI {
             this.currentGame.updateGame();
         }
     }
-    
+
     /*
      * Method to tell if there are moving blocks on given gametable
      */
-
     private boolean movingBlocks(int[][] gameTable) {
         for (int i = 0; i < gameTable.length; ++i) {
             for (int j = 0; j < gameTable[0].length; ++j) {
@@ -123,11 +121,10 @@ public class gameAI {
         }
         return -1;
     }
-    
+
     /*
      * Method to add gameBlock to given gameTable at coordinates x and y of gametable
      */
-
     private int[][] fillInStatus(gameBlock temp, int[][] gameTable, int x, int y) {
         int[][] tempBlock = temp.getBlockStructure();
         for (int i = 0; i < tempBlock.length; ++i) {
@@ -139,39 +136,45 @@ public class gameAI {
         }
         return gameTable;
     }
-    
+
     /*
      * Method to tell if given block can fall from given coordinates to given height
      */
-
     private boolean canFreeFall(int[][] tempBlock, int[][] gameTable, int x, int y, int targetHeight) {
-        for (int i = 0; i < tempBlock.length; ++i) {
-            for (int j = y; j < targetHeight + 1; ++j) {
-                if (gameTable[x + i][j] == 1) {
-                    return false;
+        try {
+            for (int i = 0; i < tempBlock.length; ++i) {
+                for (int j = y; j < targetHeight + 1; ++j) {
+                    if (gameTable[x + i][j] == 1) {
+                        return false;
+                    }
                 }
             }
+            return true;
+        } catch (IndexOutOfBoundsException e) {
+            return false;
         }
-        return true;
     }
-    
+
     /*
      * Method to check if there are collisions on given gametable with adding given block to given x and y co-ordinates
      */
-
     protected boolean checkForCollisionAi(int[][] tempBlock, int[][] gameTable, int tempX, int tempY) {
         clearMovingBlocks(tempBlock, 1);
-        for (int i = 0; i < tempBlock.length; ++i) {
-            for (int j = 0; j < tempBlock[i].length; ++j) {
-                //Testing if the block is in the bounds of gamestatus
-                if (i + tempX < gameTable.length && i + tempX > -1 && j + tempY < gameTable[0].length && tempX > -1) {
-                    if (gameTable[i + tempX][j + tempY] == 1 && tempBlock[i][j] == 1) {
+        try {
+            for (int i = 0; i < tempBlock.length; ++i) {
+                for (int j = 0; j < tempBlock[i].length; ++j) {
+                    //Testing if the block is in the bounds of gamestatus
+                    if (i + tempX < gameTable.length && i + tempX > -1 && j + tempY < gameTable[0].length && tempX > -1) {
+                        if (gameTable[i + tempX][j + tempY] == 1 && tempBlock[i][j] == 1) {
+                            return true;
+                        }
+                    } else {
                         return true;
                     }
-                } else {
-                    return true;
                 }
             }
+        } catch (IndexOutOfBoundsException e) {
+            return true;
         }
         clearSolidBlocks(tempBlock, 2);
         return false;
@@ -190,11 +193,10 @@ public class gameAI {
         }
         return temp;
     }
-    
+
     /*
      * Method to change cells of value 1 to given value in int[][]-table
      */
-
     private void clearSolidBlocks(int[][] temp, int filler) {
         for (int i = 0; i < temp.length; ++i) {
             for (int j = 0; j < temp[0].length; ++j) {
@@ -204,11 +206,10 @@ public class gameAI {
             }
         }
     }
-    
+
     /*
      * returns copied version of given int[][]-table
      */
-
     private int[][] copyTable(int[][] temp) {
         int[][] copy = new int[temp.length][temp[0].length];
         for (int i = 0; i < temp.length; ++i) {
