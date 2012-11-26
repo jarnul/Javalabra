@@ -11,7 +11,7 @@ package Javalabra;
  * Created on Oct 30, 2012, 7:40:19 PM
  */
 /**
- *The main game-window which renders game and updates it by implementing abstract class ActionListener and using timer
+ *The main game-window which renders game and updates it by implementing abstract class ActionListener and using timer.
  * @author jarno
  */
 import java.awt.Color;
@@ -36,6 +36,8 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
     private Image dbImage;
     private Graphics dbg;
     private int blockColor;
+    private int gameWidth;
+    private int gameHeight;
 
     /**
      * Creates new form gameMenu
@@ -52,8 +54,8 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
         initComponents();
         menu = handle;
         this.squareWidth = 20;
-        int gameWidth = 12;
-        int gameHeight = 15;
+        this.gameWidth = 12;
+        this.gameHeight = 15;
         this.score = 0;
         this.gameOver = false;
         this.blockColor = 0;
@@ -65,6 +67,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
                 this.lastStatus[i][j] = 0;
             }
         }
+        repaint();
     }
 
     /**
@@ -231,7 +234,9 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             }
             g.fillRect(20 * x + 50, 20 * y + 50, this.squareWidth, this.squareWidth);
         } else {
-            g.clearRect(20 * x + 50, 20 * y + 50, this.squareWidth, this.squareWidth);
+            //The colour of the background
+            g.setColor(Color.orange);
+            g.fillRect(20 * x + 50, 20 * y + 50, this.squareWidth, this.squareWidth);
         }
     }
     
@@ -298,9 +303,13 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             files.setScore(this.score);
             files.saveScore();
             JOptionPane.showMessageDialog(this,
-                    "Game over!",
-                    "GG",
+                    "Your score was "+this.score,
+                    "Game Over",
                     JOptionPane.INFORMATION_MESSAGE);
+            this.gameOver=false;
+            this.currentGame = new gameLogic.gameLogic(this.gameWidth, this.gameHeight);
+            this.score=0;
+            jTextPane1.setText(Integer.toString(this.score));
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

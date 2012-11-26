@@ -139,4 +139,28 @@ public class gameLogicTest {
         }
         assertEquals(testGame.updateGame(), -1);
     }
+    @Test
+    public void gameLogicMovePieceRightTest(){
+        int[][] testTable=testGame.getGameStatus();
+        int[][] testBlock=new gameBlock(1).getBlockStructure();
+        try {
+            testGame.movePieceRight(testTable, testBlock, 100, 100);
+            testGame.movePieceRight(testTable, testBlock, -100, -100);   
+        
+        } catch (IndexOutOfBoundsException e) {
+            fail( "indexes failed" );
+        }
+        
+    }
+    @Test
+    public void gameLogicMovePieceLeftTest(){
+        int[][] testTable=testGame.getGameStatus();
+        int[][] testBlock=new gameBlock(1).getBlockStructure();
+        try {
+            testGame.movePieceLeft(testTable, testBlock, 100, 100);            
+            testGame.movePieceLeft(testTable, testBlock, -100, -100);   
+        } catch (IndexOutOfBoundsException e) {
+            fail( "indexes failed" );
+        }
+    }
 }

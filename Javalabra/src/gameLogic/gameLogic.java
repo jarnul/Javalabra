@@ -6,7 +6,9 @@ package gameLogic;
  */
 
 /**
- *Class that implements the core tetris-logic
+ *Class that implements the core tetris-logic. updateGame updates the current game-situation i.e. drops moving block down by one, removes full rows etc.
+ * getGameStatus returns int[][]-table with current game for graphics. movePiece moves or rotates currently moving block.
+ * Implementing getGameStatus, updateGame and rotate are the minimum to make a functioning tetris-game with graphics.
  * @author jarno
  */
 public class gameLogic {
@@ -128,7 +130,7 @@ public class gameLogic {
      * Methods to rotate or move blocks
      */
     
-    private void movePieceRight(int[][] tempTable, int[][] temp, int tempX, int tempY){
+    protected void movePieceRight(int[][] tempTable, int[][] temp, int tempX, int tempY){
             if (!checkForCollision(tempTable, tempX - 1, tempY)) {
                 this.currentBlock.subtractXco();
                 fillIn(this.currentBlock);
@@ -137,7 +139,7 @@ public class gameLogic {
             }
     }
     
-    private void movePieceLeft(int[][] tempTable, int[][] temp, int tempX, int tempY){
+    protected void movePieceLeft(int[][] tempTable, int[][] temp, int tempX, int tempY){
             if (!checkForCollision(tempTable, tempX + 1, tempY)) {
                 this.currentBlock.addXco();
                 fillIn(this.currentBlock);
@@ -146,7 +148,7 @@ public class gameLogic {
             }
     }
     
-    private void rotatePiece(int[][] tempTable, int[][] temp, int tempX, int tempY) {
+    protected void rotatePiece(int[][] tempTable, int[][] temp, int tempX, int tempY) {
             tempTable = this.currentBlock.getNextRotationStructure();
             //Includes ad-hoc fix for bug with block type 4 being at the left edge of gamescreen and trying to rotate
             if (!checkForCollision(tempTable, tempX, tempY) && !(this.currentBlock.getRotationDegree()==3 && this.currentBlock.getBlockXco()==0)) {
@@ -167,25 +169,13 @@ public class gameLogic {
             }
         }
     }
-
-    /*
-     * Method for filling table
-     */
-    private void fillTables(int[][] temp, int oldNumber, int newNumber) {
-        for (int i = 0; i < temp.length; ++i) {
-            for (int j = 0; j < temp.length; ++j) {
-                if (temp[i][j] == oldNumber) {
-                    temp[i][j] = newNumber;
-                }
-            }
-        }
-    }
     
     /*
      * Method to update game status when there are no moving rows
      */
 
     private int updateGameNoMovingRows() {
+        int movingRows=checkFullRows();
         this.currentBlock = generateBlock();
         int[][] tempBlock = this.currentBlock.getBlockStructure();
         for (int i = 0; i < tempBlock.length; ++i) {
@@ -199,7 +189,7 @@ public class gameLogic {
             }
         }
         this.movingBlocks = true;
-        return (checkFullRows());
+        return movingRows;
     }
     
     /*

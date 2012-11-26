@@ -5,7 +5,8 @@
 package Javalabra;
 
 /**
- *File handling, saving and reading high score from file
+ *File handling, saving and reading high score from file. gameFiles-object has name and score, and score for this object can be set with
+ * setScore(), and the score will be saved to file with saveToFile() if this objects score is higher than current highscore in file.
  * @author jzvaris
  */
 import java.io.*;

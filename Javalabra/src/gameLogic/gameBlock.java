@@ -6,7 +6,8 @@ package gameLogic;
  */
 
 /**
- *Class for representing moving block
+ *Class for representing moving block. Normal rotate is done with rotate(), and other methods give means to edit this blocks x and y -coordinates.
+ * Moving the block and filling it in game is left for gameLogic-object.
  * @author jarno
  */
 public class gameBlock {
