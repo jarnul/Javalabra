@@ -11,7 +11,9 @@ package Javalabra;
  * Created on Oct 30, 2012, 7:40:19 PM
  */
 /**
- *The main game-window which renders game and updates it by implementing abstract class ActionListener and using timer.
+ * The main game-window which renders game and updates it by implementing
+ * abstract class ActionListener and using timer.
+ *
  * @author jarno
  */
 import java.awt.Color;
@@ -33,8 +35,6 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
     private int score;
     private boolean gameOver;
     private gameFiles files;
-    private Image dbImage;
-    private Graphics dbg;
     private int blockColor;
     private int gameWidth;
     private int gameHeight;
@@ -67,7 +67,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
                 this.lastStatus[i][j] = 0;
             }
         }
-        repaint();
+        drawGame(jLabel1.getGraphics());
     }
 
     /**
@@ -85,6 +85,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jButton4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -139,7 +140,8 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(330, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
@@ -161,7 +163,8 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(177, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -173,37 +176,10 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     this.setVisible(false);
     (this.menu).setVisible(true);
-    this.timer.stop();
-}//GEN-LAST:event_jButton2ActionPerformed
-
-//    /*
-//     * Method for drawing game-status
-//     */
-//    @Override
-//    public void update(Graphics g) {
-//        // initialize buffer 
-//        if (dbImage == null) {
-//            dbImage = createImage(this.getSize().width, this.getSize().height);
-//            dbg = dbImage.getGraphics();
-//        }
-//
-//        // clear screen in background 
-//        dbg.setColor(getBackground());
-//        dbg.fillRect(0, 0, this.getSize().width, this.getSize().height);
-//
-//        // draw elements in background 
-//        dbg.setColor(getForeground());
-//        paint(dbg);
-//
-//        // draw image on the screen 
-//        g.drawImage(dbImage, 0, 0, this);
-//    }
-
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        drawGame(g);
+    if(this.timer!=null){
+        this.timer.stop();
     }
+}//GEN-LAST:event_jButton2ActionPerformed
 
     /*
      * Draw game in given graphics-object
@@ -239,7 +215,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             g.fillRect(20 * x + 50, 20 * y + 50, this.squareWidth, this.squareWidth);
         }
     }
-    
+
     /*
      * Method for keypress
      */
@@ -257,13 +233,15 @@ private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_form
         if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
             updateGameStatus();
         }
-        this.repaint();
+        drawGame(jLabel1.getGraphics());
     }
 
 }//GEN-LAST:event_formKeyPressed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    this.timer.stop();
+    if(this.timer != null){
+        this.timer.stop();
+    }
 }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -279,7 +257,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         } else if (this.blockColor == 2) {
             this.blockColor = 1;
         }
-        this.repaint();
+        drawGame(jLabel1.getGraphics());
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /*
@@ -289,7 +267,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     @Override
     public void actionPerformed(ActionEvent e) {
         updateGameStatus();
-        this.repaint();
+        drawGame(jLabel1.getGraphics());
     }
 
     private void updateGameStatus() {
@@ -299,17 +277,17 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             jTextPane1.setText(Integer.toString(this.score));
         } else {
             this.timer.stop();
-            this.gameOver = true;
             files.setScore(this.score);
             files.saveScore();
             JOptionPane.showMessageDialog(this,
-                    "Your score was "+this.score,
+                    "Your score was " + this.score,
                     "Game Over",
                     JOptionPane.INFORMATION_MESSAGE);
-            this.gameOver=false;
             this.currentGame = new gameLogic.gameLogic(this.gameWidth, this.gameHeight);
-            this.score=0;
+            this.score = 0;
+            repaint();
             jTextPane1.setText(Integer.toString(this.score));
+            drawGame(jLabel1.getGraphics());
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -317,6 +295,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables

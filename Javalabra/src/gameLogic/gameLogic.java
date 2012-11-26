@@ -174,7 +174,7 @@ public class gameLogic {
      * Method to update game status when there are no moving rows
      */
 
-    private int updateGameNoMovingRows() {
+    protected int updateGameNoMovingRows() {
         int movingRows=checkFullRows();
         this.currentBlock = generateBlock();
         int[][] tempBlock = this.currentBlock.getBlockStructure();
@@ -196,7 +196,7 @@ public class gameLogic {
      * Method to update game when there are moving rows
      */
     
-    private int updateGameMovingRows(){
+    protected int updateGameMovingRows(){
             int[][] tempBlock = this.currentBlock.getBlockStructure();
             boolean tempBreak = true;
             for (int i = 0; i < tempBlock.length; ++i) {
