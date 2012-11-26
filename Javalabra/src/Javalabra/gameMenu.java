@@ -211,7 +211,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             g.fillRect(20 * x + 50, 20 * y + 50, this.squareWidth, this.squareWidth);
         } else {
             //The colour of the background
-            g.setColor(Color.orange);
+            g.setColor(Color.darkGray);
             g.fillRect(20 * x + 50, 20 * y + 50, this.squareWidth, this.squareWidth);
         }
     }
