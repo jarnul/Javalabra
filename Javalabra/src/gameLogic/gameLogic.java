@@ -64,7 +64,7 @@ public class gameLogic {
     }
 
     /**
-     *
+     * Gets this gameLogic-objects game status table.
      * @return int[][]-table which has the current game, 0's are empty squares, 1's are solid blocks and 2's are currently moving blocks
      */
     
@@ -73,7 +73,7 @@ public class gameLogic {
     }
 
     /**
-     *
+     *Gets this gameLogic-objects BlockXco
      * @return the x-coordinate of current moving blocks upper left corner
      */
     
@@ -82,7 +82,7 @@ public class gameLogic {
     }
 
     /**
-     *
+     *Gets this gameLogic-objects BlockYco
      * @return the y-coordinate of current moving blocks upper left corner
      */
     public int getBlockYco(){
@@ -90,7 +90,7 @@ public class gameLogic {
     }
 
     /**
-     *
+     *Gets this gameLogic-objects currentBlocks blocktype
      * @return returns the type of block
      */
     public int getCurrentBlockType(){
@@ -101,6 +101,7 @@ public class gameLogic {
     /**
      * Method to rotate or move pieces, 0 rotates piece, 1 moves piece left, 2
      * moves piece right
+     * @param 0 to rotate piece, 1 to move piece left, and 2 to move piece right
      */
     public void movePiece(int move) {
         int[][] temp = copyTable(this.status);

@@ -23,7 +23,7 @@ public class gameBlock {
     }
     
     /**
-     * 
+     * Constructor for gameblock
      * @param type int to tell which kind of block to build: 0 is lineblock, 2 is Squidblock, 3 is squareblock, 4 is pointyblock, 5 is snakeblock, 6 is reversesquidblock, 7 is reversesnakeblock
      */
 
@@ -37,7 +37,7 @@ public class gameBlock {
 
     
     /**
-     * 
+     * Creates a real copy of the gameBlock that is given in parameter
      * @param copy another gameblock-instance, which will be copied
      */
     public gameBlock(gameBlock copy) {
@@ -94,7 +94,7 @@ public class gameBlock {
 
     
     /**
-     * 
+     * Gets this gameBlock-objects blocktype
      * @return blocktype of this block
      */
     public int getBlockType() {
@@ -102,7 +102,7 @@ public class gameBlock {
     }
     
     /**
-     * 
+     * Gets this gameBlock-objects x-Coordinate
      * @return the x-coordinate of this block
      */
 
@@ -112,7 +112,7 @@ public class gameBlock {
 
     
     /**
-     * 
+     * Gets this gameBlock-objects y-Coordinate
      * @return the y-coordinate of this block
      */
     public int getBlockYco() {
@@ -120,7 +120,7 @@ public class gameBlock {
     }
     
     /**
-     * 
+     * Sets this gameBlock-objects xCoordinate
      * @param x the x-coordinate wanted for block
      */
 
@@ -128,7 +128,7 @@ public class gameBlock {
         this.xCoordinate = x;
     }
     /**
-     * 
+     * Gets this gameBlock-objects yCoordinate
      * @param y the y-coordinate wanted for block
      */
 
@@ -144,15 +144,16 @@ public class gameBlock {
         ++this.yCoordinate;
     }
     /**
-     * 
+     * Gets this gameBlock-objects rotationdegree
      * @return returns this blocks rotationdegree
      */
 
     public int getRotationDegree() {
         return this.rotationDegree;
     }
+    
     /**
-     * 
+     * Gets a real copy of this gameBlock-objects blockstructure
      * @return returns the int[][] table of current block
      */
 

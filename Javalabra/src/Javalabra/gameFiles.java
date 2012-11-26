@@ -21,7 +21,7 @@ public class gameFiles {
     }
     
     /**
-     * 
+     * Creates gameFiles-object that has players name and score
      * @param player name of the player that will be saved in file
      * @param score the given score of player
      */
@@ -35,7 +35,7 @@ public class gameFiles {
     }
     
     /**
-     * 
+     * Creates gameFiles-object that has players name and score
      * @param player name of the player that will be saved in file
      */
 
@@ -44,18 +44,16 @@ public class gameFiles {
     }
     
     /**
-     * 
+     * Sets this gameFiles objects score
      * @param score set the score for this gameFiles-object
      */
     
     public void setScore(int score){
-        if (this.score<score){
-            this.score=score;
-        }
+        this.score=score;
     }
     
     /**
-     * 
+     * saves the score of the player in file if it is new high score
      * @return true if saveScore was successful, else false
      */
 
@@ -70,7 +68,7 @@ public class gameFiles {
     }
     
     /**
-     * 
+     * Saves 0 to the scores.txt
      * @return boolean to tell if resetting score.txt succeeded
      */
     
@@ -89,7 +87,7 @@ public class gameFiles {
     }
     
     /**
-     * 
+     * Get this gameFile-objects score
      * @return the score of this gameFiles-object
      */
     
@@ -98,7 +96,7 @@ public class gameFiles {
     }
     
     /**
-     * 
+     * Gets the name of this gameFiles-object
      * @return the name of this player
      */
     

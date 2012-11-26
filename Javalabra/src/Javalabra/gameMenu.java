@@ -49,6 +49,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
     /**
      * Creates new form gameMenu and fills the game-status table status and
      * rotations-table
+     * @param The handle of the Javalabra-object that created this gameMenu-object
      */
     public gameMenu(Javalabra handle) {
         initComponents();
