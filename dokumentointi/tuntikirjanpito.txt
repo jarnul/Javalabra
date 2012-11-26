@@ -39,4 +39,4 @@
 1h uudet sekvenssikaaviot, uusia junit-testejä
 
 26.11:
-2h testausdokumentti aloitettu, muutama uusi junit-testi, mahdollisesti korjattu bugi, jossa monta riviä hävittäessä näkyy graafisia artifakteja.
+3h testausdokumentti aloitettu, muutama uusi junit-testi, mahdollisesti korjattu bugi, jossa monta riviä hävittäessä näkyy graafisia artifakteja. Myös grafiikan piirto kokonaan uusiksi, paljon paremmin toteutettu nyt.
