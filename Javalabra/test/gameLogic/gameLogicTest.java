@@ -132,13 +132,14 @@ public class gameLogicTest {
     @Test
     public void gameLogicGameOver(){
         int[][] testTable=testGame.getGameStatus();
-        for (int i=0;i<testTable.length;++i){
+        for (int i=0;i<testTable.length-1;++i){
             for (int j=0;j<testTable[0].length;++j){
                 testTable[i][j]=1;
             }
         }
         assertEquals(testGame.updateGame(), -1);
     }
+    
     @Test
     public void gameLogicMovePieceRightTest(){
         int[][] testTable=testGame.getGameStatus();

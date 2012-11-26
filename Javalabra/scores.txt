@@ -1,1 +1,1 @@
-Highscore is: 70 by Player
+Highscore is: 500 by test
