@@ -1,4 +1,3 @@
-Ohjelma avaa pelivalikon, jossa tällä hetkellä ainoa toimiva nappula on "Start game".
-Peli alkaa pelivalikossa "Start"-nappulasta, kaikkien nappuloiden toiminnot toimivat, ja peliä ohjataan nuolinäppäimillä.
+Start aloittaa uuden pelin. Nappuloita ohjataan nuolinäppäimillä, vasen ja oikea liikuttavat palikkaa vaakatasossa, ja ylöspäin pyörittää palikkaa.
 
-Ylöspäin kääntää palikkaa, alaspäin nopeuttaa palikan alastuloa, oikea liikuttaa oikealla ja vasen vasemmalle
+Peli tallettaa suurimman saadun pistemäärän, ja sen näkee päävalikosta High Score -nappulasta. Clear tyhjentää High Scoren.
