@@ -1,1 +1,1 @@
-Highscore is: 10 by Player
+Highscore is: 0 by default

@@ -132,8 +132,15 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         gameFiles player = new gameFiles("default", 0);// TODO add your handling code here:
+        String score;
+        if(player.readHighScore() > -1) {
+            score=Integer.toString(player.readHighScore());
+        }
+        else {
+            score="No high score set yet!";
+        }
         JOptionPane.showMessageDialog(this,
-                Integer.toString(player.readHighScore()),
+                score,
                 "High score",
                 JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton2ActionPerformed

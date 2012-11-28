@@ -21,6 +21,7 @@ public class gameLogic {
     private int height;
     //Boolean to tell if there are moving blocks
     private boolean movingBlocks;
+    //Currently moving block
     private gameBlock currentBlock;
 
     public gameLogic() {
