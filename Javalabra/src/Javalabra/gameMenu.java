@@ -27,10 +27,13 @@ import javax.swing.JOptionPane;
 
 public class gameMenu extends javax.swing.JFrame implements ActionListener {
 
+    //game-instances handle for main menu
     private Javalabra menu;
     private int squareWidth;
+    //the gameLogic-object for currently running tetris-game
     private gameLogic.gameLogic currentGame;
     private Timer timer;
+    //the int[][]-table of last gamestatus
     private int[][] lastStatus;
     private int score;
     private boolean gameOver;
