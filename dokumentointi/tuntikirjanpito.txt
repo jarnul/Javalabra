@@ -40,3 +40,6 @@
 
 26.11:
 3h testausdokumentti aloitettu, muutama uusi junit-testi, mahdollisesti korjattu bugi, jossa monta riviä hävittäessä näkyy graafisia artifakteja. Myös grafiikan piirto kokonaan uusiksi, paljon paremmin toteutettu nyt.
+
+28.11:
+1h30min testausdokumentti

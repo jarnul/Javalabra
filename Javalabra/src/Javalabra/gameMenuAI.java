@@ -1,8 +1,8 @@
 package Javalabra;
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in
+ * the editor.
  */
 
 /*
@@ -11,7 +11,8 @@ package Javalabra;
  * Created on Oct 30, 2012, 7:40:19 PM
  */
 /**
- *Class that renders tetris and uses AI to play it
+ * Class that renders tetris and uses AI to play it
+ *
  * @author jarno
  */
 import java.awt.Color;
@@ -29,6 +30,8 @@ public class gameMenuAI extends javax.swing.JFrame implements ActionListener {
     private int[][] lastStatus;
     private gameLogic.gameAI gameAI;
     private int blockColor;
+    private int gameWidth;
+    private int gameHeight;
 
     /**
      * Creates new form gameMenuAI, which is menu to show ai-playing
@@ -45,9 +48,9 @@ public class gameMenuAI extends javax.swing.JFrame implements ActionListener {
         initComponents();
         menu = handle;
         this.squareWidth = 20;
-        int gameWidth = 12;
+        this.gameWidth = 12;
         this.blockColor = 0;
-        int gameHeight = 15;
+        this.gameHeight = 15;
         this.currentGame = new gameLogic.gameLogic(gameWidth, gameHeight);
         this.currentGame.updateGame();
         this.gameAI = new gameLogic.gameAI(this.currentGame);
@@ -181,8 +184,17 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.timer = new Timer(100, this);
-        timer.start();
+        if (this.timer == null) {
+            this.timer = new Timer(100, this);
+            timer.start();
+        }
+        else{
+            this.currentGame = new gameLogic.gameLogic(this.gameWidth, this.gameHeight);
+            this.currentGame.updateGame();
+            this.gameAI = new gameLogic.gameAI(this.currentGame);
+            this.timer = new Timer(100, this);
+            timer.start();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /*
