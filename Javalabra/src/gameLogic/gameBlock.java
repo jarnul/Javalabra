@@ -73,6 +73,7 @@ public class gameBlock {
         int tempRotation = this.rotationDegree;
         int tempXco = this.xCoordinate;
         int tempYco = this.yCoordinate;
+        int[][] tempStructure = copyTable(this.getBlockStructure());
         //rotationDegree is used in case block must be transposed from different origins (as with pointyBlock for example)
         if (this.rotationDegree == 0 || this.rotationDegree == 2) {
             rotated = matrixTranspose(this.blockStructure);
@@ -86,6 +87,7 @@ public class gameBlock {
         this.rotationDegree = tempRotation;
         this.xCoordinate = tempXco;
         this.yCoordinate = tempYco;
+        this.blockStructure = tempStructure;
         return rotated;
     }
 
@@ -308,7 +310,7 @@ public class gameBlock {
         int[][] rotated = new int[temp[0].length][temp.length];
         for (int i = 0; i < rotated.length; ++i) {
             for (int j = 0; j < rotated[i].length; ++j) {
-                rotated[rotated.length - i - 1][rotated[i].length - j - 1] = this.blockStructure[j][i];
+                rotated[rotated.length - i - 1][rotated[i].length - j - 1] = temp[j][i];
             }
         }
         return rotated;
