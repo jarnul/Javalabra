@@ -139,6 +139,8 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
             }
         });
 
+        jLabel1.setFocusable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -168,7 +170,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(177, Short.MAX_VALUE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
         );
 
         pack();
@@ -223,25 +225,6 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     /*
      * Method for keypress
      */
-private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-    if (!this.gameOver) {
-        if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
-            this.currentGame.movePiece(2);
-        }
-        if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
-            this.currentGame.movePiece(1);
-        }
-        if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            this.currentGame.movePiece(0);
-        }
-        if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
-            updateGameStatus();
-        }
-        drawGame(jLabel1.getGraphics());
-    }
-
-}//GEN-LAST:event_formKeyPressed
-
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     if (this.timer != null) {
         this.timer.stop();
@@ -263,6 +246,24 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
         drawGame(jLabel1.getGraphics());
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (!this.gameOver) {
+            if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
+                this.currentGame.movePiece(2);
+            }
+            if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
+                this.currentGame.movePiece(1);
+            }
+            if (evt.getKeyCode() == KeyEvent.VK_UP) {
+                this.currentGame.movePiece(0);
+            }
+            if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+                updateGameStatus();
+            }
+            drawGame(jLabel1.getGraphics());
+      }
+    }//GEN-LAST:event_formKeyPressed
 
     /*
      * Method for implementing abstract class ActionListener, updates the

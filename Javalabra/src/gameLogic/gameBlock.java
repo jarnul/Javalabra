@@ -347,6 +347,7 @@ public class gameBlock {
         if (this.blockType == 4) {
             if (this.rotationDegree == 2) {
                 ++this.xCoordinate;
+                --this.yCoordinate;
                 this.rotationDegree = 3;
             } else {
                 this.rotationDegree = 1;

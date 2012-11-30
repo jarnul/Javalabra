@@ -119,8 +119,9 @@ public class gameLogic {
      */
     private gameBlock generateBlock() {
         //code to generate random block
-        double random = Math.random() * 7;
-        return new gameBlock((int) random + 1);
+        //double random = Math.random() * 7;
+        //return new gameBlock((int) random + 1);
+        return new gameBlock(4);
     }
 
     /*
@@ -146,8 +147,10 @@ public class gameLogic {
 
     protected void rotatePiece(int[][] tempTable, int[][] temp, int tempX, int tempY) {
         tempTable = this.currentBlock.getNextRotationStructure();
-        //Includes ad-hoc fix for bug with block type 4 being at the left edge of gamescreen and trying to rotate
-        if (!checkForCollision(tempTable, tempX, tempY) && !(this.currentBlock.getRotationDegree() == 3 && this.currentBlock.getBlockXco() == 0)) {
+        if(this.currentBlock.getBlockType()==4 && this.currentBlock.getRotationDegree()==3){
+            --tempX;
+        }
+        if (!checkForCollision(tempTable, tempX, tempY)) {
             this.currentBlock.rotate();
             fillIn(this.currentBlock);
         } else {
@@ -247,7 +250,6 @@ public class gameLogic {
                 this.status[j][index] = 0;
             }
             bringStatusDown(index);
-            //Method to add score here
         }
     }
 
@@ -329,7 +331,7 @@ public class gameLogic {
         for (int i = 0; i < tempBlock.length; ++i) {
             for (int j = 0; j < tempBlock[i].length; ++j) {
                 //Testing if the block is in the bounds of gamestatus
-                if (i + tempX < this.status.length && i + tempX > -1 && j + tempY < this.status[0].length && tempX > -1) {
+                if (i + tempX>-1 && i + tempX < this.status.length && i + tempX > -1 && j + tempY < this.status[0].length && tempX > -1) {
                     if (this.status[i + tempX][j + tempY] == 1 && tempBlock[i][j] == 1) {
                         return true;
                     }
