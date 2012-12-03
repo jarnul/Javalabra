@@ -204,7 +204,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
      */
     private void drawBlock(Graphics g, int[][] tempStatus, int x, int y) {
         if (tempStatus[x][y] == 1) {
-            g.setColor(Color.black);
+            g.setColor(new Color(0xEB7D00));
             g.fillRect(20 * x + 50, 20 * y + 50, this.squareWidth, this.squareWidth);
         } else if (tempStatus[x][y] == 2) {
             if (this.blockColor == 0) {
