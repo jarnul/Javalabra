@@ -97,7 +97,7 @@ public class gameLogic {
     /**
      * Method to rotate or move pieces, 0 rotates piece, 1 moves piece left, 2
      * moves piece right
-     * @param 0 to rotate piece, 1 to move piece left, and 2 to move piece right
+     * @param move 0 to rotate piece, 1 to move piece left, and 2 to move piece right
      */
     public void movePiece(int move) {
         int[][] temp = copyTable(this.status);
