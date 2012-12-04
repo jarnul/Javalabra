@@ -125,13 +125,13 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton3ActionPerformed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    gameMenu game = new gameMenu(this);
+    GameMenu game = new GameMenu(this);
     this.setVisible(false);
     game.setVisible(true);
 }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        gameFiles player = new gameFiles("default", 0);// TODO add your handling code here:
+        GameFiles player = new GameFiles("default", 0);// TODO add your handling code here:
         String score;
         if(player.readHighScore() > -1) {
             score=Integer.toString(player.readHighScore());
@@ -146,13 +146,13 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        gameMenuAI game = new gameMenuAI(this);
+        GameMenuAI game = new GameMenuAI(this);
         this.setVisible(false);
         game.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
 private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-    gameFiles player = new gameFiles();// TODO add your handling code here:
+    GameFiles player = new GameFiles();// TODO add your handling code here:
     player.resetScore();
 }//GEN-LAST:event_jButton5ActionPerformed
 
