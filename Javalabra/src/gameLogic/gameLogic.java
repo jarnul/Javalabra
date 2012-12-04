@@ -223,8 +223,7 @@ public class gameLogic {
      */
     private int checkFullRows() {
         int eliminatedRows = 0;
-        int fullRowIndex = -1;
-        for (int j = 0; j < this.status[0].length; ++j) {
+        for (int j = this.status[0].length-1; j > -1; --j) {
             boolean fullRow = true;
             for (int i = 0; i < this.status.length; ++i) {
                 if (this.status[i][j] != 1) {
@@ -232,10 +231,11 @@ public class gameLogic {
                 }
             }
             if (fullRow) {
-                fullRowIndex = j;
                 ++eliminatedRows;
+                eliminateFullRow(j);
+                ++j;
             }
-            eliminateFullRow(fullRowIndex);
+            
         }
         return eliminatedRows;
     }
@@ -245,8 +245,8 @@ public class gameLogic {
      */
     private void eliminateFullRow(int index) {
         if (index != -1) {
-            for (int j = 0; j < this.status.length; ++j) {
-                this.status[j][index] = 0;
+            for (int i = 0; i < this.status.length; ++i) {
+                this.status[i][index] = 0;
             }
             bringStatusDown(index);
         }

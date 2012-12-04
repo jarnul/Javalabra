@@ -41,6 +41,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
     private int blockColor;
     private int gameWidth;
     private int gameHeight;
+    private boolean paused;
 
     /**
      * Creates new form gameMenu
@@ -57,6 +58,7 @@ public class gameMenu extends javax.swing.JFrame implements ActionListener {
     public gameMenu(Javalabra handle) {
         initComponents();
         menu = handle;
+        this.paused=false;
         this.squareWidth = 20;
         this.gameWidth = 12;
         this.gameHeight = 15;
@@ -228,10 +230,12 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     if (this.timer != null) {
         this.timer.stop();
+        this.paused=true;
     }
 }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.paused=false;
         this.timer = new Timer(1000, this);
         timer.start();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -248,7 +252,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if (!this.gameOver) {
+        if (!this.gameOver && this.paused==false) {
             if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
                 this.currentGame.movePiece(2);
             }
