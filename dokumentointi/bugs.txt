@@ -1,2 +1,3 @@
-Tunnettu bugi on, että joskus monta riviä eliminoidessa ilmestyy peliruudulle ylimääräisiä ruutuja ylälaitaan,
-mutta ne ovat vain graafisia artifakteja, ja häviävät peliä jatkaessa.
+Joskus jos palikkaa liikuttaa nopeasti, kun se on kiinni pohjassa, syntyy graafinen artifakti.
+
+Jos palikkaa pyörittää erittäin ahtaassa välissä, on mahdollista, että palikka pyörähtää toisen palikan sisään.

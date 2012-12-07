@@ -1,5 +1,3 @@
 Start aloittaa uuden pelin. Palikoita ohjataan nuolinäppäimillä, vasen ja oikea liikuttavat palikkaa vaakatasossa, nuoli alas liikuttaa palikkaa alas ja ylöspäin pyörittää palikkaa.
 
 Peli tallettaa suurimman saadun pistemäärän, ja sen näkee päävalikosta High Score -nappulasta. Clear tyhjentää High Scoren.
-
-Jos pelin aikana painaa pause-nappulaa, peli lähtee taas käyntiin painamalla Start-nappulaa.
